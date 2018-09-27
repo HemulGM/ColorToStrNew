@@ -5,11 +5,13 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
-  sPageControl, PanelExt, acPNG, LKDU.PanelCollapsed, sEdit, sSpinEdit,
-  Vcl.Samples.Spin, LKDU.SpinEdit, Vcl.Buttons, sSpeedButton, HexaColorPicker,
+  sPageControl, sEdit, sSpinEdit,
+  Vcl.Samples.Spin, Vcl.Buttons, sSpeedButton, HexaColorPicker,
   mbColorPickerControl, HSColorPicker, HSLRingPicker, HSLColorPicker,
   SLHColorPicker, HSVColorPicker, mbOfficeColorDialog, mbDeskPickerButton,
-  LabelButton, LKDU.Button, System.ImageList, Vcl.ImgList;
+  System.ImageList, Vcl.ImgList, HGM.Controls.Labels,
+  HGM.Controls.SpinEdit, HGM.Button, HGM.Controls.PanelCollapsed, acPNG,
+  HGM.Controls.PanelExt;
 
 type
   TPaletteMode = (pm4bit, pm8bit, pm16bit, pm24bit, pm32bit);

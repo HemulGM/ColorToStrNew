@@ -153,30 +153,34 @@ object FormMain: TFormMain
       Margins.Top = 0
       Margins.Right = 1
       Margins.Bottom = 1
-      OnClick = ButtonFlat1Click
-      ImageIndex = 0
-      ImageOver = -1
-      ImagePress = -1
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
+      Align = alCustom
       Caption = #1054#1073#1077#1089#1094#1074#1077#1090#1080#1090#1100
+      ColorNormal = clWhite
+      ColorOver = 14540253
+      ColorPressed = 9079434
       Font.Charset = DEFAULT_CHARSET
       Font.Color = 4737096
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      FontOver.Charset = DEFAULT_CHARSET
+      FontOver.Color = clWhite
+      FontOver.Height = -13
+      FontOver.Name = 'Tahoma'
+      FontOver.Style = []
+      FontDown.Charset = DEFAULT_CHARSET
+      FontDown.Color = clWhite
+      FontDown.Height = -13
+      FontDown.Name = 'Tahoma'
+      FontDown.Style = []
+      ImageIndentLeft = 2
+      ImageIndentRight = 3
+      ImageIndex = 0
+      OnClick = ButtonFlat1Click
       RoundRectParam = 0
-      IgnorBounds = False
-      EllipseRectVertical = False
-      ColorNormal = clWhite
-      ColorPressed = 9079434
-      ColorOver = 14540253
-      ParentBackground = False
-      Align = alCustom
-      GroupItemKind = giNone
       TabOrder = 2
       TabStop = True
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
     end
   end
   object PanelCollapsed4: TPanelCollapsed
@@ -215,6 +219,10 @@ object FormMain: TFormMain
       TabOrder = 1
       object sTabSheet5: TTabSheet
         Caption = #1057#1090#1072#1085#1076#1072#1088#1090#1085#1072#1103
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object DrawPanel2: TDrawPanel
           AlignWithMargins = True
           Left = 0
@@ -238,6 +246,10 @@ object FormMain: TFormMain
       end
       object TabSheetP2: TTabSheet
         Caption = #1050#1088#1091#1075#1086#1074#1072#1103
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object ImageR: TImage
           AlignWithMargins = True
           Left = 3
@@ -14379,6 +14391,10 @@ object FormMain: TFormMain
       end
       object TabSheetPHexa: TTabSheet
         Caption = 'Hexa'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label19: TLabel
           Left = 336
           Top = 2
@@ -14415,6 +14431,10 @@ object FormMain: TFormMain
       end
       object sTabSheet1: TTabSheet
         Caption = 'HS'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object HSColorPicker1: THSColorPicker
           AlignWithMargins = True
           Left = 0
@@ -14436,6 +14456,10 @@ object FormMain: TFormMain
       end
       object sTabSheet3: TTabSheet
         Caption = 'HSL'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label20: TLabel
           Left = 336
           Top = 2
@@ -14822,31 +14846,35 @@ object FormMain: TFormMain
       Margins.Top = 0
       Margins.Right = 1
       Margins.Bottom = 1
-      OnClick = ButtonFlatHEXClick
-      Images = ImageList2
-      ImageIndex = 0
-      ImageOver = -1
-      ImagePress = -1
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
+      Align = alCustom
       Caption = ''
+      ColorNormal = clWhite
+      ColorOver = 14540253
+      ColorPressed = 9079434
       Font.Charset = DEFAULT_CHARSET
       Font.Color = 4737096
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      FontOver.Charset = DEFAULT_CHARSET
+      FontOver.Color = clWhite
+      FontOver.Height = -13
+      FontOver.Name = 'Tahoma'
+      FontOver.Style = []
+      FontDown.Charset = DEFAULT_CHARSET
+      FontDown.Color = clWhite
+      FontDown.Height = -13
+      FontDown.Name = 'Tahoma'
+      FontDown.Style = []
+      ImageIndentLeft = 2
+      ImageIndentRight = 3
+      ImageIndex = 0
+      Images = ImageList2
+      OnClick = ButtonFlatHEXClick
       RoundRectParam = 0
-      IgnorBounds = False
-      EllipseRectVertical = False
-      ColorNormal = clWhite
-      ColorPressed = 9079434
-      ColorOver = 14540253
-      ParentBackground = False
-      Align = alCustom
-      GroupItemKind = giNone
       TabOrder = 4
       TabStop = True
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
     end
     object ButtonFlatTColor: TButtonFlat
       AlignWithMargins = True
@@ -14859,31 +14887,35 @@ object FormMain: TFormMain
       Margins.Top = 0
       Margins.Right = 1
       Margins.Bottom = 1
-      OnClick = ButtonFlatTColorClick
-      Images = ImageList2
-      ImageIndex = 0
-      ImageOver = -1
-      ImagePress = -1
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
+      Align = alCustom
       Caption = ''
+      ColorNormal = clWhite
+      ColorOver = 14540253
+      ColorPressed = 9079434
       Font.Charset = DEFAULT_CHARSET
       Font.Color = 4737096
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      FontOver.Charset = DEFAULT_CHARSET
+      FontOver.Color = clWhite
+      FontOver.Height = -13
+      FontOver.Name = 'Tahoma'
+      FontOver.Style = []
+      FontDown.Charset = DEFAULT_CHARSET
+      FontDown.Color = clWhite
+      FontDown.Height = -13
+      FontDown.Name = 'Tahoma'
+      FontDown.Style = []
+      ImageIndentLeft = 2
+      ImageIndentRight = 3
+      ImageIndex = 0
+      Images = ImageList2
+      OnClick = ButtonFlatTColorClick
       RoundRectParam = 0
-      IgnorBounds = False
-      EllipseRectVertical = False
-      ColorNormal = clWhite
-      ColorPressed = 9079434
-      ColorOver = 14540253
-      ParentBackground = False
-      Align = alCustom
-      GroupItemKind = giNone
       TabOrder = 5
       TabStop = True
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
     end
     object ButtonFlatWeb: TButtonFlat
       AlignWithMargins = True
@@ -14896,31 +14928,35 @@ object FormMain: TFormMain
       Margins.Top = 0
       Margins.Right = 1
       Margins.Bottom = 1
-      OnClick = ButtonFlatWebClick
-      Images = ImageList2
-      ImageIndex = 0
-      ImageOver = -1
-      ImagePress = -1
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
+      Align = alCustom
       Caption = ''
+      ColorNormal = clWhite
+      ColorOver = 14540253
+      ColorPressed = 9079434
       Font.Charset = DEFAULT_CHARSET
       Font.Color = 4737096
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      FontOver.Charset = DEFAULT_CHARSET
+      FontOver.Color = clWhite
+      FontOver.Height = -13
+      FontOver.Name = 'Tahoma'
+      FontOver.Style = []
+      FontDown.Charset = DEFAULT_CHARSET
+      FontDown.Color = clWhite
+      FontDown.Height = -13
+      FontDown.Name = 'Tahoma'
+      FontDown.Style = []
+      ImageIndentLeft = 2
+      ImageIndentRight = 3
+      ImageIndex = 0
+      Images = ImageList2
+      OnClick = ButtonFlatWebClick
       RoundRectParam = 0
-      IgnorBounds = False
-      EllipseRectVertical = False
-      ColorNormal = clWhite
-      ColorPressed = 9079434
-      ColorOver = 14540253
-      ParentBackground = False
-      Align = alCustom
-      GroupItemKind = giNone
       TabOrder = 6
       TabStop = True
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
     end
   end
   object PanelCollapsed7: TPanelCollapsed
@@ -14979,31 +15015,35 @@ object FormMain: TFormMain
       Margins.Top = 0
       Margins.Right = 1
       Margins.Bottom = 1
-      OnClick = SpeedButtonMixAddClick
-      Images = ImageList2
-      ImageIndex = 2
-      ImageOver = -1
-      ImagePress = -1
-      ImageIndentLeft = 5
-      ImageIndentRight = 3
+      Align = alCustom
       Caption = ''
+      ColorNormal = clWhite
+      ColorOver = 14540253
+      ColorPressed = 9079434
       Font.Charset = DEFAULT_CHARSET
       Font.Color = 4737096
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      FontOver.Charset = DEFAULT_CHARSET
+      FontOver.Color = clWhite
+      FontOver.Height = -13
+      FontOver.Name = 'Tahoma'
+      FontOver.Style = []
+      FontDown.Charset = DEFAULT_CHARSET
+      FontDown.Color = clWhite
+      FontDown.Height = -13
+      FontDown.Name = 'Tahoma'
+      FontDown.Style = []
+      ImageIndentLeft = 5
+      ImageIndentRight = 3
+      ImageIndex = 2
+      Images = ImageList2
+      OnClick = SpeedButtonMixAddClick
       RoundRectParam = 0
-      IgnorBounds = False
-      EllipseRectVertical = False
-      ColorNormal = clWhite
-      ColorPressed = 9079434
-      ColorOver = 14540253
-      ParentBackground = False
-      Align = alCustom
-      GroupItemKind = giNone
       TabOrder = 2
       TabStop = True
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
     end
     object ButtonFlat3: TButtonFlat
       AlignWithMargins = True
@@ -15016,31 +15056,35 @@ object FormMain: TFormMain
       Margins.Top = 0
       Margins.Right = 1
       Margins.Bottom = 1
-      OnClick = SpeedButtonMixDeleteClick
-      Images = ImageList2
-      ImageIndex = 1
-      ImageOver = -1
-      ImagePress = -1
-      ImageIndentLeft = 5
-      ImageIndentRight = 3
+      Align = alCustom
       Caption = ''
+      ColorNormal = clWhite
+      ColorOver = 14540253
+      ColorPressed = 9079434
       Font.Charset = DEFAULT_CHARSET
       Font.Color = 4737096
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      FontOver.Charset = DEFAULT_CHARSET
+      FontOver.Color = clWhite
+      FontOver.Height = -13
+      FontOver.Name = 'Tahoma'
+      FontOver.Style = []
+      FontDown.Charset = DEFAULT_CHARSET
+      FontDown.Color = clWhite
+      FontDown.Height = -13
+      FontDown.Name = 'Tahoma'
+      FontDown.Style = []
+      ImageIndentLeft = 5
+      ImageIndentRight = 3
+      ImageIndex = 1
+      Images = ImageList2
+      OnClick = SpeedButtonMixDeleteClick
       RoundRectParam = 0
-      IgnorBounds = False
-      EllipseRectVertical = False
-      ColorNormal = clWhite
-      ColorPressed = 9079434
-      ColorOver = 14540253
-      ParentBackground = False
-      Align = alCustom
-      GroupItemKind = giNone
       TabOrder = 3
       TabStop = True
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
     end
   end
   object PanelCollapsed8: TPanelCollapsed
@@ -15321,31 +15365,36 @@ object FormMain: TFormMain
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 1
-      OnClick = SpeedButtonStdDlgClick
-      Images = ImageList1
-      ImageIndex = 1
-      ImageOver = -1
-      ImagePress = -1
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
+      Align = alLeft
       Caption = ''
+      ColorNormal = clWhite
+      ColorOver = 14540253
+      ColorPressed = 9079434
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
-      RoundRectParam = 0
+      FontOver.Charset = DEFAULT_CHARSET
+      FontOver.Color = clWhite
+      FontOver.Height = -13
+      FontOver.Name = 'Tahoma'
+      FontOver.Style = []
+      FontDown.Charset = DEFAULT_CHARSET
+      FontDown.Color = clWhite
+      FontDown.Height = -13
+      FontDown.Name = 'Tahoma'
+      FontDown.Style = []
       IgnorBounds = True
-      EllipseRectVertical = False
-      ColorNormal = clWhite
-      ColorPressed = 9079434
-      ColorOver = 14540253
-      ParentBackground = False
-      Align = alLeft
-      GroupItemKind = giNone
+      ImageIndentLeft = 2
+      ImageIndentRight = 3
+      ImageIndex = 1
+      Images = ImageList1
+      OnClick = SpeedButtonStdDlgClick
+      RoundRectParam = 0
       TabOrder = 1
       TabStop = True
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
     end
     object SpeedButtonOffice: TButtonFlat
       AlignWithMargins = True
@@ -15358,31 +15407,36 @@ object FormMain: TFormMain
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 1
-      OnClick = SpeedButtonOfficeClick
-      Images = ImageList1
-      ImageIndex = 2
-      ImageOver = -1
-      ImagePress = -1
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
+      Align = alLeft
       Caption = ''
+      ColorNormal = clWhite
+      ColorOver = 14540253
+      ColorPressed = 9079434
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
-      RoundRectParam = 0
+      FontOver.Charset = DEFAULT_CHARSET
+      FontOver.Color = clWhite
+      FontOver.Height = -13
+      FontOver.Name = 'Tahoma'
+      FontOver.Style = []
+      FontDown.Charset = DEFAULT_CHARSET
+      FontDown.Color = clWhite
+      FontDown.Height = -13
+      FontDown.Name = 'Tahoma'
+      FontDown.Style = []
       IgnorBounds = True
-      EllipseRectVertical = False
-      ColorNormal = clWhite
-      ColorPressed = 9079434
-      ColorOver = 14540253
-      ParentBackground = False
-      Align = alLeft
-      GroupItemKind = giNone
+      ImageIndentLeft = 2
+      ImageIndentRight = 3
+      ImageIndex = 2
+      Images = ImageList1
+      OnClick = SpeedButtonOfficeClick
+      RoundRectParam = 0
       TabOrder = 2
       TabStop = True
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
     end
     object SpeedButtonOnTop: TButtonFlat
       AlignWithMargins = True
@@ -15395,31 +15449,36 @@ object FormMain: TFormMain
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 1
-      OnClick = SpeedButtonOnTopClick
-      Images = ImageList1
-      ImageIndex = 3
-      ImageOver = -1
-      ImagePress = -1
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
+      Align = alLeft
       Caption = ''
+      ColorNormal = clWhite
+      ColorOver = 14540253
+      ColorPressed = 9079434
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
-      RoundRectParam = 0
+      FontOver.Charset = DEFAULT_CHARSET
+      FontOver.Color = clWhite
+      FontOver.Height = -13
+      FontOver.Name = 'Tahoma'
+      FontOver.Style = []
+      FontDown.Charset = DEFAULT_CHARSET
+      FontDown.Color = clWhite
+      FontDown.Height = -13
+      FontDown.Name = 'Tahoma'
+      FontDown.Style = []
       IgnorBounds = True
-      EllipseRectVertical = False
-      ColorNormal = clWhite
-      ColorPressed = 9079434
-      ColorOver = 14540253
-      ParentBackground = False
-      Align = alLeft
-      GroupItemKind = giNone
+      ImageIndentLeft = 2
+      ImageIndentRight = 3
+      ImageIndex = 3
+      Images = ImageList1
+      OnClick = SpeedButtonOnTopClick
+      RoundRectParam = 0
       TabOrder = 3
       TabStop = True
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
     end
     object SpeedButtonHelp: TButtonFlat
       AlignWithMargins = True
@@ -15432,31 +15491,36 @@ object FormMain: TFormMain
       Margins.Top = 0
       Margins.Right = 1
       Margins.Bottom = 1
-      OnClick = SpeedButtonHelpClick
-      Images = ImageList1
-      ImageIndex = 0
-      ImageOver = -1
-      ImagePress = -1
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
+      Align = alLeft
       Caption = ''
+      ColorNormal = clWhite
+      ColorOver = 14540253
+      ColorPressed = 9079434
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
-      RoundRectParam = 0
+      FontOver.Charset = DEFAULT_CHARSET
+      FontOver.Color = clWhite
+      FontOver.Height = -13
+      FontOver.Name = 'Tahoma'
+      FontOver.Style = []
+      FontDown.Charset = DEFAULT_CHARSET
+      FontDown.Color = clWhite
+      FontDown.Height = -13
+      FontDown.Name = 'Tahoma'
+      FontDown.Style = []
       IgnorBounds = True
-      EllipseRectVertical = False
-      ColorNormal = clWhite
-      ColorPressed = 9079434
-      ColorOver = 14540253
-      ParentBackground = False
-      Align = alLeft
-      GroupItemKind = giNone
+      ImageIndentLeft = 2
+      ImageIndentRight = 3
+      ImageIndex = 0
+      Images = ImageList1
+      OnClick = SpeedButtonHelpClick
+      RoundRectParam = 0
       TabOrder = 4
       TabStop = True
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
     end
   end
   object PanelCollapsed11: TPanelCollapsed
@@ -15506,7 +15570,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitLeft = 0
@@ -15537,7 +15601,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitLeft = 53
@@ -15568,7 +15632,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitLeft = 106
@@ -15599,7 +15663,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitTop = 27
@@ -15629,7 +15693,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitLeft = 411
@@ -15660,7 +15724,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitLeft = 426
@@ -15691,7 +15755,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitTop = 27
@@ -15721,7 +15785,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitLeft = 369
@@ -15752,7 +15816,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitLeft = 417
@@ -15783,7 +15847,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitLeft = 470
@@ -15813,7 +15877,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitLeft = 681
@@ -15845,7 +15909,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitTop = 27
@@ -15875,7 +15939,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitTop = 27
@@ -15905,7 +15969,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitTop = 27
@@ -15935,7 +15999,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitTop = 27
@@ -15965,7 +16029,7 @@ object FormMain: TFormMain
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taVCenter, taCenter, taWordBrake]
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
       IgnorBounds = True
       EllipseRectVertical = False
       ExplicitTop = 27
@@ -15994,7 +16058,7 @@ object FormMain: TFormMain
     Left = 601
     Top = 151
     Bitmap = {
-      494C010104001000240030003000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010104001000280030003000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000C00000006000000001002000000000000020
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -18382,7 +18446,7 @@ object FormMain: TFormMain
     Left = 657
     Top = 226
     Bitmap = {
-      494C010103000800180010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101030008001C0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
