@@ -66,3 +66,4 @@ __recovery/
 *.stat
 *.ini
 Win32/Release/config.ini
+*.ini
