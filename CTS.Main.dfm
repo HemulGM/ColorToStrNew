@@ -173,11 +173,13 @@ object FormMain: TFormMain
       FontDown.Height = -13
       FontDown.Name = 'Tahoma'
       FontDown.Style = []
+      IgnorBounds = True
       ImageIndentLeft = 2
       ImageIndentRight = 3
       ImageIndex = 0
       OnClick = ButtonFlat1Click
       RoundRectParam = 0
+      ShowFocusRect = False
       TabOrder = 2
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -219,10 +221,6 @@ object FormMain: TFormMain
       TabOrder = 1
       object sTabSheet5: TTabSheet
         Caption = #1057#1090#1072#1085#1076#1072#1088#1090#1085#1072#1103
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object DrawPanel2: TDrawPanel
           AlignWithMargins = True
           Left = 0
@@ -246,10 +244,6 @@ object FormMain: TFormMain
       end
       object TabSheetP2: TTabSheet
         Caption = #1050#1088#1091#1075#1086#1074#1072#1103
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object ImageR: TImage
           AlignWithMargins = True
           Left = 3
@@ -14391,10 +14385,6 @@ object FormMain: TFormMain
       end
       object TabSheetPHexa: TTabSheet
         Caption = 'Hexa'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label19: TLabel
           Left = 336
           Top = 2
@@ -14431,10 +14421,6 @@ object FormMain: TFormMain
       end
       object sTabSheet1: TTabSheet
         Caption = 'HS'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object HSColorPicker1: THSColorPicker
           AlignWithMargins = True
           Left = 0
@@ -14456,10 +14442,6 @@ object FormMain: TFormMain
       end
       object sTabSheet3: TTabSheet
         Caption = 'HSL'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label20: TLabel
           Left = 336
           Top = 2
@@ -14866,12 +14848,14 @@ object FormMain: TFormMain
       FontDown.Height = -13
       FontDown.Name = 'Tahoma'
       FontDown.Style = []
+      IgnorBounds = True
       ImageIndentLeft = 2
       ImageIndentRight = 3
       ImageIndex = 0
       Images = ImageList2
       OnClick = ButtonFlatHEXClick
       RoundRectParam = 0
+      ShowFocusRect = False
       TabOrder = 4
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -14907,12 +14891,14 @@ object FormMain: TFormMain
       FontDown.Height = -13
       FontDown.Name = 'Tahoma'
       FontDown.Style = []
+      IgnorBounds = True
       ImageIndentLeft = 2
       ImageIndentRight = 3
       ImageIndex = 0
       Images = ImageList2
       OnClick = ButtonFlatTColorClick
       RoundRectParam = 0
+      ShowFocusRect = False
       TabOrder = 5
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -14948,12 +14934,14 @@ object FormMain: TFormMain
       FontDown.Height = -13
       FontDown.Name = 'Tahoma'
       FontDown.Style = []
+      IgnorBounds = True
       ImageIndentLeft = 2
       ImageIndentRight = 3
       ImageIndex = 0
       Images = ImageList2
       OnClick = ButtonFlatWebClick
       RoundRectParam = 0
+      ShowFocusRect = False
       TabOrder = 6
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -15035,12 +15023,14 @@ object FormMain: TFormMain
       FontDown.Height = -13
       FontDown.Name = 'Tahoma'
       FontDown.Style = []
+      IgnorBounds = True
       ImageIndentLeft = 5
       ImageIndentRight = 3
       ImageIndex = 2
       Images = ImageList2
       OnClick = SpeedButtonMixAddClick
       RoundRectParam = 0
+      ShowFocusRect = False
       TabOrder = 2
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -15076,12 +15066,14 @@ object FormMain: TFormMain
       FontDown.Height = -13
       FontDown.Name = 'Tahoma'
       FontDown.Style = []
+      IgnorBounds = True
       ImageIndentLeft = 5
       ImageIndentRight = 3
       ImageIndex = 1
       Images = ImageList2
       OnClick = SpeedButtonMixDeleteClick
       RoundRectParam = 0
+      ShowFocusRect = False
       TabOrder = 3
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -15392,11 +15384,12 @@ object FormMain: TFormMain
       Images = ImageList1
       OnClick = SpeedButtonStdDlgClick
       RoundRectParam = 0
+      ShowFocusRect = False
       TabOrder = 1
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
     end
-    object SpeedButtonOffice: TButtonFlat
+    object ButtonTest: TButtonFlat
       AlignWithMargins = True
       Left = 53
       Top = 27
@@ -15432,8 +15425,9 @@ object FormMain: TFormMain
       ImageIndentRight = 3
       ImageIndex = 2
       Images = ImageList1
-      OnClick = SpeedButtonOfficeClick
+      OnClick = ButtonTestClick
       RoundRectParam = 0
+      ShowFocusRect = False
       TabOrder = 2
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -15476,6 +15470,7 @@ object FormMain: TFormMain
       Images = ImageList1
       OnClick = SpeedButtonOnTopClick
       RoundRectParam = 0
+      ShowFocusRect = False
       TabOrder = 3
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -15518,6 +15513,7 @@ object FormMain: TFormMain
       Images = ImageList1
       OnClick = SpeedButtonHelpClick
       RoundRectParam = 0
+      ShowFocusRect = False
       TabOrder = 4
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -16047,10 +16043,6 @@ object FormMain: TFormMain
     Left = 521
     Top = 151
   end
-  object OfficeColorDialog1: TmbOfficeColorDialog
-    Left = 553
-    Top = 239
-  end
   object ImageList1: TImageList
     ColorDepth = cd32Bit
     Height = 48
@@ -16058,7 +16050,7 @@ object FormMain: TFormMain
     Left = 601
     Top = 151
     Bitmap = {
-      494C010104001000280030003000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101040010002C0030003000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000C00000006000000001002000000000000020
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -18446,7 +18438,7 @@ object FormMain: TFormMain
     Left = 657
     Top = 226
     Bitmap = {
-      494C0101030008001C0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010103000800200010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

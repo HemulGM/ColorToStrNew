@@ -77,7 +77,6 @@ type
     sTabSheet2: TTabSheet;
     HSVColorPicker1: THSVColorPicker;
     ColorDialog1: TColorDialog;
-    OfficeColorDialog1: TmbOfficeColorDialog;
     PanelCollapsed11: TPanelCollapsed;
     Shape1: TLabelEx;
     Shape2: TLabelEx;
@@ -106,7 +105,7 @@ type
     TrackBarHSVV: TTrackBar;
     ImageRWeb: TImage;
     SpeedButtonStdDlg: TButtonFlat;
-    SpeedButtonOffice: TButtonFlat;
+    ButtonTest: TButtonFlat;
     SpeedButtonOnTop: TButtonFlat;
     SpeedButtonHelp: TButtonFlat;
     ImageList1: TImageList;
@@ -149,7 +148,7 @@ type
     procedure ImageRMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure SpeedButtonStdDlgClick(Sender: TObject);
-    procedure SpeedButtonOfficeClick(Sender: TObject);
+    procedure ButtonTestClick(Sender: TObject);
     procedure SpeedButtonOnTopClick(Sender: TObject);
     procedure SpeedButtonHelpClick(Sender: TObject);
     procedure Shape1MouseEnter(Sender: TObject);
@@ -200,7 +199,7 @@ var
 
 
 implementation
- uses Main.CommonFunc, Math, System.IniFiles;
+ uses Main.CommonFunc, Math, System.IniFiles, CTS.Test;
 
 {$R *.dfm}
 
@@ -687,6 +686,25 @@ begin
  HSVColorPicker1.SelectedColor:=FDataColor;
 
  if Assigned(FActiveShape) then FActiveShape.Brush.Color:=FDataColor;
+ if Assigned(FormTest) then
+  begin
+   if FormTest.RadioButtonBG.Checked then
+    begin
+     FormTest.ColorSelectBG.ColorValue:=FDataColor;
+     FormTest.ColorSelectBGChange(nil);
+    end;
+   if FormTest.RadioButtonPanel.Checked then
+    begin
+     FormTest.ColorSelectPanel.ColorValue:=FDataColor;
+     FormTest.ColorSelectPanelChange(nil);
+    end;
+   if FormTest.RadioButtonFont.Checked then
+    begin
+     FormTest.ColorSelectFont.ColorValue:=FDataColor;
+     FormTest.ColorSelectFontChange(nil);
+    end;
+  end;
+
  Repaint;
 end;
 
@@ -765,9 +783,9 @@ begin
   end;
 end;
 
-procedure TFormMain.SpeedButtonOfficeClick(Sender: TObject);
+procedure TFormMain.ButtonTestClick(Sender: TObject);
 begin
- if OfficeColorDialog1.Execute(FDataColor) then SetDataColor(OfficeColorDialog1.SelectedColor);
+ FormTest.Show;
 end;
 
 procedure TFormMain.SpeedButtonOnTopClick(Sender: TObject);
