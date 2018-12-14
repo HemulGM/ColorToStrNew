@@ -66,15 +66,15 @@ type
     SpinEditV: TlkSpinEdit;
     SpinEditH: TlkSpinEdit;
     PanelCollapsed10: TPanelCollapsed;
-    TabSheetPHexa: TTabSheet;
+    TabSheetHexa: TTabSheet;
     HexaColorPicker1: THexaColorPicker;
-    sTabSheet1: TTabSheet;
+    TabSheetHS: TTabSheet;
     HSColorPicker1: THSColorPicker;
-    sTabSheet3: TTabSheet;
+    TabSheetHSL: TTabSheet;
     HSLRingPicker1: THSLRingPicker;
-    sTabSheet4: TTabSheet;
+    TabSheetSLH: TTabSheet;
     SLHColorPicker1: TSLHColorPicker;
-    sTabSheet2: TTabSheet;
+    TabSheetHSV: TTabSheet;
     HSVColorPicker1: THSVColorPicker;
     ColorDialog1: TColorDialog;
     PanelCollapsed11: TPanelCollapsed;
@@ -94,7 +94,7 @@ type
     Shape10: TLabelEx;
     Shape11: TLabelEx;
     Shape12: TLabelEx;
-    sTabSheet5: TTabSheet;
+    TabSheetStd: TTabSheet;
     DrawPanel2: TDrawPanel;
     Panel1: TPanel;
     Label17: TLabel;
@@ -116,6 +116,14 @@ type
     ButtonFlatWeb: TButtonFlat;
     ButtonFlat2: TButtonFlat;
     ButtonFlat3: TButtonFlat;
+    Panel2: TPanel;
+    ButtonFlatStd: TButtonFlat;
+    ButtonFlatP2: TButtonFlat;
+    ButtonFlatHexa: TButtonFlat;
+    ButtonFlatHS: TButtonFlat;
+    ButtonFlatHSL: TButtonFlat;
+    ButtonFlatSLH: TButtonFlat;
+    ButtonFlatHSV: TButtonFlat;
     procedure TimerPXUCTimer(Sender: TObject);
     procedure TrackBarLChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -177,6 +185,13 @@ type
     procedure ButtonFlatTColorClick(Sender: TObject);
     procedure EditResTColorKeyPress(Sender: TObject; var Key: Char);
     procedure EditResHTMLKeyPress(Sender: TObject; var Key: Char);
+    procedure ButtonFlatStdClick(Sender: TObject);
+    procedure ButtonFlatP2Click(Sender: TObject);
+    procedure ButtonFlatHexaClick(Sender: TObject);
+    procedure ButtonFlatHSClick(Sender: TObject);
+    procedure ButtonFlatHSLClick(Sender: TObject);
+    procedure ButtonFlatSLHClick(Sender: TObject);
+    procedure ButtonFlatHSVClick(Sender: TObject);
   private
     FDataColor:TColor;
     FSpectBMP:TBitmap;
@@ -188,6 +203,7 @@ type
     procedure SetShapeColor(Shape:TShape; aColor:TColor);
     procedure SetActiveShape(const Value: TShape);
     procedure DrawSpect;
+    procedure Navigate(Tab: TTabSheet);
   public
     procedure SetDataColor(dColor:TColor);
     function GetPixelUnderCursor:TColor;
@@ -361,6 +377,42 @@ begin
  SetShapeColor(ShapeDL, GrayColor(FDataColor));
 end;
 
+procedure TFormMain.Navigate(Tab:TTabSheet);
+
+procedure SetMenuButtonActive(Button:TButtonFlat; Value:Boolean);
+begin
+ case Value of
+  True:Button.ColorNormal:=$00F7F6F5;
+  False:Button.ColorNormal:=clWhite;
+ end;
+end;
+
+begin
+ PageControlPalette.ActivePage:=Tab;
+ SetMenuButtonActive(ButtonFlatStd, PageControlPalette.ActivePage = TabSheetStd);
+ SetMenuButtonActive(ButtonFlatP2, PageControlPalette.ActivePage = TabSheetP2);
+ SetMenuButtonActive(ButtonFlatHexa, PageControlPalette.ActivePage = TabSheetHexa);
+ SetMenuButtonActive(ButtonFlatHS, PageControlPalette.ActivePage = TabSheetHS);
+ SetMenuButtonActive(ButtonFlatHSL, PageControlPalette.ActivePage = TabSheetHSL);
+ SetMenuButtonActive(ButtonFlatHSV, PageControlPalette.ActivePage = TabSheetHSV);
+ SetMenuButtonActive(ButtonFlatSLH, PageControlPalette.ActivePage = TabSheetSLH);
+end;
+
+procedure TFormMain.ButtonFlatSLHClick(Sender: TObject);
+begin
+ Navigate(TabSheetSLH);
+end;
+
+procedure TFormMain.ButtonFlatStdClick(Sender: TObject);
+begin
+ Navigate(TabSheetStd);
+end;
+
+procedure TFormMain.ButtonFlatHexaClick(Sender: TObject);
+begin
+ Navigate(TabSheetHexa);
+end;
+
 procedure TFormMain.ButtonFlatHEXClick(Sender: TObject);
 begin
  try
@@ -368,6 +420,26 @@ begin
  except
   ShowMessage('Ops');
  end;
+end;
+
+procedure TFormMain.ButtonFlatHSClick(Sender: TObject);
+begin
+ Navigate(TabSheetHS);
+end;
+
+procedure TFormMain.ButtonFlatHSLClick(Sender: TObject);
+begin
+ Navigate(TabSheetHSL);
+end;
+
+procedure TFormMain.ButtonFlatHSVClick(Sender: TObject);
+begin
+ Navigate(TabSheetHSV);
+end;
+
+procedure TFormMain.ButtonFlatP2Click(Sender: TObject);
+begin
+ Navigate(TabSheetP2);
 end;
 
 procedure TFormMain.ButtonFlatTColorClick(Sender: TObject);
@@ -566,6 +638,7 @@ begin
  finally
   Ini.Free;
  end;
+ Navigate(TabSheetStd);
 end;
 
 function TFormMain.GetPixelUnderCursor: TColor;

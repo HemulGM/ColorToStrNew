@@ -164,12 +164,12 @@ object FormMain: TFormMain
       Font.Name = 'Tahoma'
       Font.Style = []
       FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
+      FontOver.Color = clBlack
       FontOver.Height = -13
       FontOver.Name = 'Tahoma'
       FontOver.Style = []
       FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
+      FontDown.Color = clBlack
       FontDown.Height = -13
       FontDown.Name = 'Tahoma'
       FontDown.Style = []
@@ -209,24 +209,32 @@ object FormMain: TFormMain
     ShowSimpleBorder = True
     CaptionHeight = 26
     object PageControlPalette: TPageControl
-      Left = 0
-      Top = 26
-      Width = 409
-      Height = 329
+      AlignWithMargins = True
+      Left = 1
+      Top = 50
+      Width = 405
+      Height = 303
       Margins.Left = 1
       Margins.Top = 0
       Margins.Right = 1
       Margins.Bottom = 1
-      ActivePage = sTabSheet2
+      ActivePage = TabSheetP2
+      Align = alClient
+      Style = tsButtons
       TabOrder = 1
-      object sTabSheet5: TTabSheet
+      ExplicitTop = 26
+      ExplicitHeight = 327
+      object TabSheetStd: TTabSheet
         Caption = #1057#1090#1072#1085#1076#1072#1088#1090#1085#1072#1103
+        TabVisible = False
+        ExplicitTop = 27
+        ExplicitHeight = 296
         object DrawPanel2: TDrawPanel
           AlignWithMargins = True
           Left = 0
           Top = 0
-          Width = 399
-          Height = 300
+          Width = 395
+          Height = 292
           Cursor = crCross
           Margins.Left = 0
           Margins.Top = 0
@@ -240,16 +248,20 @@ object FormMain: TFormMain
           TabOrder = 0
           OnMouseDown = DrawPanel2MouseDown
           OnMouseUp = DrawPanel2MouseUp
+          ExplicitHeight = 295
         end
       end
       object TabSheetP2: TTabSheet
         Caption = #1050#1088#1091#1075#1086#1074#1072#1103
+        TabVisible = False
+        ExplicitTop = 27
+        ExplicitHeight = 296
         object ImageR: TImage
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 395
-          Height = 295
+          Width = 391
+          Height = 287
           Cursor = crCross
           Align = alClient
           Center = True
@@ -11514,13 +11526,14 @@ object FormMain: TFormMain
           ExplicitLeft = -3
           ExplicitTop = -14
           ExplicitWidth = 392
+          ExplicitHeight = 295
         end
         object ImageRWeb: TImage
           AlignWithMargins = True
           Left = 3
           Top = 3
-          Width = 395
-          Height = 295
+          Width = 391
+          Height = 287
           Cursor = crCross
           Align = alClient
           Center = True
@@ -14383,8 +14396,11 @@ object FormMain: TFormMain
           ExplicitHeight = 301
         end
       end
-      object TabSheetPHexa: TTabSheet
+      object TabSheetHexa: TTabSheet
         Caption = 'Hexa'
+        TabVisible = False
+        ExplicitTop = 27
+        ExplicitHeight = 296
         object Label19: TLabel
           Left = 336
           Top = 2
@@ -14402,8 +14418,8 @@ object FormMain: TFormMain
           AlignWithMargins = True
           Left = 55
           Top = 3
-          Width = 343
-          Height = 295
+          Width = 339
+          Height = 287
           Margins.Left = 55
           Align = alClient
           HintFormat = 'RGB(%r, %g, %b)'#13'Hex: #%hex'
@@ -14417,16 +14433,20 @@ object FormMain: TFormMain
           Constraints.MinHeight = 85
           Constraints.MinWidth = 93
           OnMouseUp = HexaColorPicker1MouseUp
+          ExplicitHeight = 290
         end
       end
-      object sTabSheet1: TTabSheet
+      object TabSheetHS: TTabSheet
         Caption = 'HS'
+        TabVisible = False
+        ExplicitTop = 27
+        ExplicitHeight = 296
         object HSColorPicker1: THSColorPicker
           AlignWithMargins = True
           Left = 0
           Top = 0
-          Width = 399
-          Height = 300
+          Width = 395
+          Height = 292
           Margins.Left = 0
           Margins.Top = 0
           Margins.Right = 2
@@ -14438,10 +14458,14 @@ object FormMain: TFormMain
           ParentShowHint = False
           TabOrder = 0
           OnMouseUp = HSColorPicker1MouseUp
+          ExplicitHeight = 295
         end
       end
-      object sTabSheet3: TTabSheet
+      object TabSheetHSL: TTabSheet
         Caption = 'HSL'
+        TabVisible = False
+        ExplicitTop = 27
+        ExplicitHeight = 296
         object Label20: TLabel
           Left = 336
           Top = 2
@@ -14459,8 +14483,8 @@ object FormMain: TFormMain
           AlignWithMargins = True
           Left = 55
           Top = 3
-          Width = 343
-          Height = 295
+          Width = 339
+          Height = 287
           Margins.Left = 55
           RingPickerHintFormat = #1058#1086#1085': %h'
           SLPickerHintFormat = 'S: %hslS L: %l'#13'Hex: %hex'
@@ -14471,10 +14495,14 @@ object FormMain: TFormMain
           Color = clWhite
           ParentColor = False
           OnChange = HSLRingPicker1Change
+          ExplicitHeight = 290
         end
       end
-      object sTabSheet4: TTabSheet
+      object TabSheetSLH: TTabSheet
         Caption = 'SLH'
+        TabVisible = False
+        ExplicitTop = 27
+        ExplicitHeight = 296
         object Label21: TLabel
           Left = 336
           Top = 2
@@ -14512,14 +14540,17 @@ object FormMain: TFormMain
             297)
         end
       end
-      object sTabSheet2: TTabSheet
+      object TabSheetHSV: TTabSheet
         Caption = 'HSV'
+        TabVisible = False
+        ExplicitTop = 27
+        ExplicitHeight = 296
         object HSVColorPicker1: THSVColorPicker
           AlignWithMargins = True
           Left = 45
           Top = 3
-          Width = 308
-          Height = 295
+          Width = 304
+          Height = 287
           Margins.Left = 45
           HintFormat = 
             'Hex #%hex'#10#13'RGB[%r, %g, %b]'#10#13'HSL[%hslH, %hslS, %hslL]'#10#13'HSV[%hsvH,' +
@@ -14533,12 +14564,13 @@ object FormMain: TFormMain
           ParentColor = False
           OnMouseUp = HSVColorPicker1MouseUp
           OnChange = HSVColorPicker1Change
+          ExplicitHeight = 290
         end
         object TrackBarHSVV: TTrackBar
-          Left = 356
+          Left = 352
           Top = 0
           Width = 45
-          Height = 301
+          Height = 293
           Align = alRight
           Max = 255
           Min = 1
@@ -14549,34 +14581,292 @@ object FormMain: TFormMain
           TickMarks = tmBoth
           TickStyle = tsManual
           OnChange = TrackBarHSVVChange
+          ExplicitHeight = 296
         end
       end
     end
-    object Panel1: TPanel
-      Left = 356
+    object Panel2: TPanel
+      AlignWithMargins = True
+      Left = 1
       Top = 27
-      Width = 44
-      Height = 17
+      Width = 405
+      Height = 23
+      Margins.Left = 1
+      Margins.Top = 0
+      Margins.Right = 1
+      Margins.Bottom = 0
+      Align = alTop
       BevelOuter = bvNone
-      Color = clWindow
       TabOrder = 2
-      object Label17: TLabel
-        Left = 18
-        Top = 3
-        Width = 22
-        Height = 13
-        Caption = 'Web'
-      end
-      object CheckBoxWeb: TCheckBox
-        Left = 2
-        Top = 3
-        Width = 13
-        Height = 13
-        Caption = 'WEB'
-        Color = clBtnFace
-        ParentColor = False
+      ExplicitLeft = 3
+      ExplicitTop = 30
+      ExplicitWidth = 401
+      object ButtonFlatStd: TButtonFlat
+        Left = 0
+        Top = 0
+        Width = 85
+        Height = 23
+        Align = alLeft
+        Caption = #1057#1090#1072#1085#1076#1072#1088#1090#1085#1072#1103
+        ColorNormal = clWhite
+        ColorOver = 16250613
+        ColorPressed = 15921390
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        FontOver.Charset = DEFAULT_CHARSET
+        FontOver.Color = clBlack
+        FontOver.Height = -13
+        FontOver.Name = 'Tahoma'
+        FontOver.Style = []
+        FontDown.Charset = DEFAULT_CHARSET
+        FontDown.Color = clBlack
+        FontDown.Height = -13
+        FontDown.Name = 'Tahoma'
+        FontDown.Style = []
+        IgnorBounds = True
+        OnClick = ButtonFlatStdClick
+        RoundRectParam = 0
+        ShowFocusRect = False
         TabOrder = 0
-        OnClick = CheckBoxHSVWebClick
+        TabStop = True
+        TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+      end
+      object ButtonFlatP2: TButtonFlat
+        Left = 85
+        Top = 0
+        Width = 64
+        Height = 23
+        Align = alLeft
+        Caption = #1050#1088#1091#1075#1086#1074#1072#1103
+        ColorNormal = clWhite
+        ColorOver = 16250613
+        ColorPressed = 15921390
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        FontOver.Charset = DEFAULT_CHARSET
+        FontOver.Color = clBlack
+        FontOver.Height = -13
+        FontOver.Name = 'Tahoma'
+        FontOver.Style = []
+        FontDown.Charset = DEFAULT_CHARSET
+        FontDown.Color = clBlack
+        FontDown.Height = -13
+        FontDown.Name = 'Tahoma'
+        FontDown.Style = []
+        IgnorBounds = True
+        OnClick = ButtonFlatP2Click
+        RoundRectParam = 0
+        ShowFocusRect = False
+        TabOrder = 1
+        TabStop = True
+        TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+        ExplicitLeft = 81
+      end
+      object ButtonFlatHexa: TButtonFlat
+        Left = 149
+        Top = 0
+        Width = 39
+        Height = 23
+        Align = alLeft
+        Caption = 'Hexa'
+        ColorNormal = clWhite
+        ColorOver = 16250613
+        ColorPressed = 15921390
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        FontOver.Charset = DEFAULT_CHARSET
+        FontOver.Color = clBlack
+        FontOver.Height = -13
+        FontOver.Name = 'Tahoma'
+        FontOver.Style = []
+        FontDown.Charset = DEFAULT_CHARSET
+        FontDown.Color = clBlack
+        FontDown.Height = -13
+        FontDown.Name = 'Tahoma'
+        FontDown.Style = []
+        IgnorBounds = True
+        OnClick = ButtonFlatHexaClick
+        RoundRectParam = 0
+        ShowFocusRect = False
+        TabOrder = 2
+        TabStop = True
+        TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+        ExplicitLeft = 145
+      end
+      object ButtonFlatHS: TButtonFlat
+        Left = 188
+        Top = 0
+        Width = 39
+        Height = 23
+        Align = alLeft
+        Caption = 'HS'
+        ColorNormal = clWhite
+        ColorOver = 16250613
+        ColorPressed = 15921390
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        FontOver.Charset = DEFAULT_CHARSET
+        FontOver.Color = clBlack
+        FontOver.Height = -13
+        FontOver.Name = 'Tahoma'
+        FontOver.Style = []
+        FontDown.Charset = DEFAULT_CHARSET
+        FontDown.Color = clBlack
+        FontDown.Height = -13
+        FontDown.Name = 'Tahoma'
+        FontDown.Style = []
+        IgnorBounds = True
+        OnClick = ButtonFlatHSClick
+        RoundRectParam = 0
+        ShowFocusRect = False
+        TabOrder = 3
+        TabStop = True
+        TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+        ExplicitLeft = 265
+      end
+      object ButtonFlatHSL: TButtonFlat
+        Left = 227
+        Top = 0
+        Width = 39
+        Height = 23
+        Align = alLeft
+        Caption = 'HSL'
+        ColorNormal = clWhite
+        ColorOver = 16250613
+        ColorPressed = 15921390
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        FontOver.Charset = DEFAULT_CHARSET
+        FontOver.Color = clBlack
+        FontOver.Height = -13
+        FontOver.Name = 'Tahoma'
+        FontOver.Style = []
+        FontDown.Charset = DEFAULT_CHARSET
+        FontDown.Color = clBlack
+        FontDown.Height = -13
+        FontDown.Name = 'Tahoma'
+        FontDown.Style = []
+        IgnorBounds = True
+        OnClick = ButtonFlatHSLClick
+        RoundRectParam = 0
+        ShowFocusRect = False
+        TabOrder = 4
+        TabStop = True
+        TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+        ExplicitLeft = 310
+      end
+      object ButtonFlatSLH: TButtonFlat
+        Left = 266
+        Top = 0
+        Width = 39
+        Height = 23
+        Align = alLeft
+        Caption = 'SLH'
+        ColorNormal = clWhite
+        ColorOver = 16250613
+        ColorPressed = 15921390
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        FontOver.Charset = DEFAULT_CHARSET
+        FontOver.Color = clBlack
+        FontOver.Height = -13
+        FontOver.Name = 'Tahoma'
+        FontOver.Style = []
+        FontDown.Charset = DEFAULT_CHARSET
+        FontDown.Color = clBlack
+        FontDown.Height = -13
+        FontDown.Name = 'Tahoma'
+        FontDown.Style = []
+        IgnorBounds = True
+        OnClick = ButtonFlatSLHClick
+        RoundRectParam = 0
+        ShowFocusRect = False
+        TabOrder = 5
+        TabStop = True
+        TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+        ExplicitLeft = 337
+        ExplicitTop = 3
+      end
+      object ButtonFlatHSV: TButtonFlat
+        Left = 305
+        Top = 0
+        Width = 39
+        Height = 23
+        Align = alLeft
+        Caption = 'HSV'
+        ColorNormal = clWhite
+        ColorOver = 16250613
+        ColorPressed = 15921390
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        FontOver.Charset = DEFAULT_CHARSET
+        FontOver.Color = clBlack
+        FontOver.Height = -13
+        FontOver.Name = 'Tahoma'
+        FontOver.Style = []
+        FontDown.Charset = DEFAULT_CHARSET
+        FontDown.Color = clBlack
+        FontDown.Height = -13
+        FontDown.Name = 'Tahoma'
+        FontDown.Style = []
+        IgnorBounds = True
+        OnClick = ButtonFlatHSVClick
+        RoundRectParam = 0
+        ShowFocusRect = False
+        TabOrder = 6
+        TabStop = True
+        TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+        ExplicitLeft = 374
+      end
+      object Panel1: TPanel
+        Left = 350
+        Top = 0
+        Width = 55
+        Height = 23
+        Align = alRight
+        BevelOuter = bvNone
+        Color = clWindow
+        TabOrder = 7
+        ExplicitLeft = 346
+        object Label17: TLabel
+          Left = 22
+          Top = 5
+          Width = 22
+          Height = 13
+          Caption = 'Web'
+        end
+        object CheckBoxWeb: TCheckBox
+          Left = 6
+          Top = 5
+          Width = 13
+          Height = 13
+          Caption = 'WEB'
+          Color = clBtnFace
+          ParentColor = False
+          TabOrder = 0
+          OnClick = CheckBoxHSVWebClick
+        end
       end
     end
   end
@@ -16050,7 +16340,7 @@ object FormMain: TFormMain
     Left = 601
     Top = 151
     Bitmap = {
-      494C0101040010002C0030003000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010104001000300030003000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000C00000006000000001002000000000000020
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -18438,7 +18728,7 @@ object FormMain: TFormMain
     Left = 657
     Top = 226
     Bitmap = {
-      494C010103000800200010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010103000800240010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
