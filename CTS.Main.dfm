@@ -181,8 +181,12 @@ object FormMain: TFormMain
       RoundRectParam = 0
       ShowFocusRect = False
       TabOrder = 2
-      TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+      SubTextFont.Charset = DEFAULT_CHARSET
+      SubTextFont.Color = clWhite
+      SubTextFont.Height = -13
+      SubTextFont.Name = 'Tahoma'
+      SubTextFont.Style = []
     end
   end
   object PanelCollapsed4: TPanelCollapsed
@@ -222,12 +226,12 @@ object FormMain: TFormMain
       Align = alClient
       Style = tsButtons
       TabOrder = 1
-      ExplicitTop = 26
-      ExplicitHeight = 327
       object TabSheetStd: TTabSheet
         Caption = #1057#1090#1072#1085#1076#1072#1088#1090#1085#1072#1103
         TabVisible = False
+        ExplicitLeft = 0
         ExplicitTop = 27
+        ExplicitWidth = 0
         ExplicitHeight = 296
         object DrawPanel2: TDrawPanel
           AlignWithMargins = True
@@ -254,8 +258,6 @@ object FormMain: TFormMain
       object TabSheetP2: TTabSheet
         Caption = #1050#1088#1091#1075#1086#1074#1072#1103
         TabVisible = False
-        ExplicitTop = 27
-        ExplicitHeight = 296
         object ImageR: TImage
           AlignWithMargins = True
           Left = 3
@@ -14399,7 +14401,9 @@ object FormMain: TFormMain
       object TabSheetHexa: TTabSheet
         Caption = 'Hexa'
         TabVisible = False
+        ExplicitLeft = 0
         ExplicitTop = 27
+        ExplicitWidth = 0
         ExplicitHeight = 296
         object Label19: TLabel
           Left = 336
@@ -14439,7 +14443,9 @@ object FormMain: TFormMain
       object TabSheetHS: TTabSheet
         Caption = 'HS'
         TabVisible = False
+        ExplicitLeft = 0
         ExplicitTop = 27
+        ExplicitWidth = 0
         ExplicitHeight = 296
         object HSColorPicker1: THSColorPicker
           AlignWithMargins = True
@@ -14464,7 +14470,9 @@ object FormMain: TFormMain
       object TabSheetHSL: TTabSheet
         Caption = 'HSL'
         TabVisible = False
+        ExplicitLeft = 0
         ExplicitTop = 27
+        ExplicitWidth = 0
         ExplicitHeight = 296
         object Label20: TLabel
           Left = 336
@@ -14501,8 +14509,6 @@ object FormMain: TFormMain
       object TabSheetSLH: TTabSheet
         Caption = 'SLH'
         TabVisible = False
-        ExplicitTop = 27
-        ExplicitHeight = 296
         object Label21: TLabel
           Left = 336
           Top = 2
@@ -14543,7 +14549,9 @@ object FormMain: TFormMain
       object TabSheetHSV: TTabSheet
         Caption = 'HSV'
         TabVisible = False
+        ExplicitLeft = 0
         ExplicitTop = 27
+        ExplicitWidth = 0
         ExplicitHeight = 296
         object HSVColorPicker1: THSVColorPicker
           AlignWithMargins = True
@@ -14598,9 +14606,6 @@ object FormMain: TFormMain
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 2
-      ExplicitLeft = 3
-      ExplicitTop = 30
-      ExplicitWidth = 401
       object ButtonFlatStd: TButtonFlat
         Left = 0
         Top = 0
@@ -14631,8 +14636,12 @@ object FormMain: TFormMain
         RoundRectParam = 0
         ShowFocusRect = False
         TabOrder = 0
-        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+        SubTextFont.Charset = DEFAULT_CHARSET
+        SubTextFont.Color = clWhite
+        SubTextFont.Height = -13
+        SubTextFont.Name = 'Tahoma'
+        SubTextFont.Style = []
       end
       object ButtonFlatP2: TButtonFlat
         Left = 85
@@ -14664,9 +14673,12 @@ object FormMain: TFormMain
         RoundRectParam = 0
         ShowFocusRect = False
         TabOrder = 1
-        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-        ExplicitLeft = 81
+        SubTextFont.Charset = DEFAULT_CHARSET
+        SubTextFont.Color = clWhite
+        SubTextFont.Height = -13
+        SubTextFont.Name = 'Tahoma'
+        SubTextFont.Style = []
       end
       object ButtonFlatHexa: TButtonFlat
         Left = 149
@@ -14698,9 +14710,12 @@ object FormMain: TFormMain
         RoundRectParam = 0
         ShowFocusRect = False
         TabOrder = 2
-        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-        ExplicitLeft = 145
+        SubTextFont.Charset = DEFAULT_CHARSET
+        SubTextFont.Color = clWhite
+        SubTextFont.Height = -13
+        SubTextFont.Name = 'Tahoma'
+        SubTextFont.Style = []
       end
       object ButtonFlatHS: TButtonFlat
         Left = 188
@@ -14732,9 +14747,12 @@ object FormMain: TFormMain
         RoundRectParam = 0
         ShowFocusRect = False
         TabOrder = 3
-        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-        ExplicitLeft = 265
+        SubTextFont.Charset = DEFAULT_CHARSET
+        SubTextFont.Color = clWhite
+        SubTextFont.Height = -13
+        SubTextFont.Name = 'Tahoma'
+        SubTextFont.Style = []
       end
       object ButtonFlatHSL: TButtonFlat
         Left = 227
@@ -14766,9 +14784,12 @@ object FormMain: TFormMain
         RoundRectParam = 0
         ShowFocusRect = False
         TabOrder = 4
-        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-        ExplicitLeft = 310
+        SubTextFont.Charset = DEFAULT_CHARSET
+        SubTextFont.Color = clWhite
+        SubTextFont.Height = -13
+        SubTextFont.Name = 'Tahoma'
+        SubTextFont.Style = []
       end
       object ButtonFlatSLH: TButtonFlat
         Left = 266
@@ -14800,10 +14821,12 @@ object FormMain: TFormMain
         RoundRectParam = 0
         ShowFocusRect = False
         TabOrder = 5
-        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-        ExplicitLeft = 337
-        ExplicitTop = 3
+        SubTextFont.Charset = DEFAULT_CHARSET
+        SubTextFont.Color = clWhite
+        SubTextFont.Height = -13
+        SubTextFont.Name = 'Tahoma'
+        SubTextFont.Style = []
       end
       object ButtonFlatHSV: TButtonFlat
         Left = 305
@@ -14835,9 +14858,12 @@ object FormMain: TFormMain
         RoundRectParam = 0
         ShowFocusRect = False
         TabOrder = 6
-        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-        ExplicitLeft = 374
+        SubTextFont.Charset = DEFAULT_CHARSET
+        SubTextFont.Color = clWhite
+        SubTextFont.Height = -13
+        SubTextFont.Name = 'Tahoma'
+        SubTextFont.Style = []
       end
       object Panel1: TPanel
         Left = 350
@@ -14848,7 +14874,6 @@ object FormMain: TFormMain
         BevelOuter = bvNone
         Color = clWindow
         TabOrder = 7
-        ExplicitLeft = 346
         object Label17: TLabel
           Left = 22
           Top = 5
@@ -15147,8 +15172,12 @@ object FormMain: TFormMain
       RoundRectParam = 0
       ShowFocusRect = False
       TabOrder = 4
-      TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+      SubTextFont.Charset = DEFAULT_CHARSET
+      SubTextFont.Color = clWhite
+      SubTextFont.Height = -13
+      SubTextFont.Name = 'Tahoma'
+      SubTextFont.Style = []
     end
     object ButtonFlatTColor: TButtonFlat
       AlignWithMargins = True
@@ -15190,8 +15219,12 @@ object FormMain: TFormMain
       RoundRectParam = 0
       ShowFocusRect = False
       TabOrder = 5
-      TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+      SubTextFont.Charset = DEFAULT_CHARSET
+      SubTextFont.Color = clWhite
+      SubTextFont.Height = -13
+      SubTextFont.Name = 'Tahoma'
+      SubTextFont.Style = []
     end
     object ButtonFlatWeb: TButtonFlat
       AlignWithMargins = True
@@ -15233,8 +15266,12 @@ object FormMain: TFormMain
       RoundRectParam = 0
       ShowFocusRect = False
       TabOrder = 6
-      TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+      SubTextFont.Charset = DEFAULT_CHARSET
+      SubTextFont.Color = clWhite
+      SubTextFont.Height = -13
+      SubTextFont.Name = 'Tahoma'
+      SubTextFont.Style = []
     end
   end
   object PanelCollapsed7: TPanelCollapsed
@@ -15322,8 +15359,12 @@ object FormMain: TFormMain
       RoundRectParam = 0
       ShowFocusRect = False
       TabOrder = 2
-      TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+      SubTextFont.Charset = DEFAULT_CHARSET
+      SubTextFont.Color = clWhite
+      SubTextFont.Height = -13
+      SubTextFont.Name = 'Tahoma'
+      SubTextFont.Style = []
     end
     object ButtonFlat3: TButtonFlat
       AlignWithMargins = True
@@ -15365,8 +15406,12 @@ object FormMain: TFormMain
       RoundRectParam = 0
       ShowFocusRect = False
       TabOrder = 3
-      TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+      SubTextFont.Charset = DEFAULT_CHARSET
+      SubTextFont.Color = clWhite
+      SubTextFont.Height = -13
+      SubTextFont.Name = 'Tahoma'
+      SubTextFont.Style = []
     end
   end
   object PanelCollapsed8: TPanelCollapsed
@@ -15676,8 +15721,12 @@ object FormMain: TFormMain
       RoundRectParam = 0
       ShowFocusRect = False
       TabOrder = 1
-      TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+      SubTextFont.Charset = DEFAULT_CHARSET
+      SubTextFont.Color = clWhite
+      SubTextFont.Height = -13
+      SubTextFont.Name = 'Tahoma'
+      SubTextFont.Style = []
     end
     object ButtonTest: TButtonFlat
       AlignWithMargins = True
@@ -15719,8 +15768,12 @@ object FormMain: TFormMain
       RoundRectParam = 0
       ShowFocusRect = False
       TabOrder = 2
-      TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+      SubTextFont.Charset = DEFAULT_CHARSET
+      SubTextFont.Color = clWhite
+      SubTextFont.Height = -13
+      SubTextFont.Name = 'Tahoma'
+      SubTextFont.Style = []
     end
     object SpeedButtonOnTop: TButtonFlat
       AlignWithMargins = True
@@ -15762,8 +15815,12 @@ object FormMain: TFormMain
       RoundRectParam = 0
       ShowFocusRect = False
       TabOrder = 3
-      TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+      SubTextFont.Charset = DEFAULT_CHARSET
+      SubTextFont.Color = clWhite
+      SubTextFont.Height = -13
+      SubTextFont.Name = 'Tahoma'
+      SubTextFont.Style = []
     end
     object SpeedButtonHelp: TButtonFlat
       AlignWithMargins = True
@@ -15805,8 +15862,12 @@ object FormMain: TFormMain
       RoundRectParam = 0
       ShowFocusRect = False
       TabOrder = 4
-      TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+      SubTextFont.Charset = DEFAULT_CHARSET
+      SubTextFont.Color = clWhite
+      SubTextFont.Height = -13
+      SubTextFont.Name = 'Tahoma'
+      SubTextFont.Style = []
     end
   end
   object PanelCollapsed11: TPanelCollapsed
@@ -16340,7 +16401,7 @@ object FormMain: TFormMain
     Left = 601
     Top = 151
     Bitmap = {
-      494C010104001000300030003000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010104001000340030003000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000C00000006000000001002000000000000020
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -18728,7 +18789,7 @@ object FormMain: TFormMain
     Left = 657
     Top = 226
     Bitmap = {
-      494C010103000800240010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010103000800280010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

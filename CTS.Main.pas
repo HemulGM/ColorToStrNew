@@ -5,16 +5,14 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
-  sPageControl, sEdit, sSpinEdit,
-  Vcl.Samples.Spin, Vcl.Buttons, sSpeedButton, HexaColorPicker,
-  mbColorPickerControl, HSColorPicker, HSLRingPicker, HSLColorPicker,
+  Vcl.Samples.Spin, Vcl.Buttons, HexaColorPicker,
+  HSColorPicker, HSLRingPicker, HSLColorPicker,
   SLHColorPicker, HSVColorPicker, mbOfficeColorDialog, mbDeskPickerButton,
   System.ImageList, Vcl.ImgList, HGM.Controls.Labels,
-  HGM.Controls.SpinEdit, HGM.Button, HGM.Controls.PanelCollapsed, acPNG,
-  HGM.Controls.PanelExt;
-
+  HGM.Controls.SpinEdit, HGM.Button, HGM.Controls.PanelCollapsed,
+  HGM.Controls.PanelExt, mbColorPickerControl, acPNG;
+  //acPNG - can be dropped
 type
-  TPaletteMode = (pm4bit, pm8bit, pm16bit, pm24bit, pm32bit);
   TFormMain = class(TForm)
     TimerPXUC: TTimer;
     PanelCollapsed1: TPanelCollapsed;
@@ -215,7 +213,7 @@ var
 
 
 implementation
- uses Main.CommonFunc, Math, System.IniFiles, CTS.Test;
+ uses Math, System.IniFiles, CTS.Test, HGM.Common.Utils;
 
 {$R *.dfm}
 
@@ -519,8 +517,8 @@ var Ini:TIniFile;
     i:Integer;
     Buf:TComponent;
 begin
+ Ini:=TIniFile.Create(ExtractFilePath(Application.ExeName)+'\config.ini');
  try
-  Ini:=TIniFile.Create(ExtractFilePath(Application.ExeName)+'\config.ini');
   for i:= 1 to 16 do
    begin
     Buf:=FindComponent('Shape'+IntToStr(i));
@@ -537,8 +535,6 @@ var H, S, V:Word;
 begin
  with FSpectBMP.Canvas do
   begin
-   H:=0;
-   S:=100;
    V:=100;
    for H:= 0 to 359 do
     begin
@@ -624,8 +620,8 @@ begin
  FSpectBMP.Width:=360;
  FSpectBMP.Height:=201;
  DrawSpect;
+ Ini:=TIniFile.Create(ExtractFilePath(Application.ExeName)+'\config.ini');
  try
-  Ini:=TIniFile.Create(ExtractFilePath(Application.ExeName)+'\config.ini');
   for i:= 1 to 16 do
    begin
     Buf:=FindComponent('Shape'+IntToStr(i));
