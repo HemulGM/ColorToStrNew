@@ -13,6 +13,9 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.Title := 'Работа с цветом';
+  {$IFDEF DEBUG}
+  ReportMemoryLeaksOnShutdown := True;
+  {$ENDIF}
   Application.CreateForm(TFormMain, FormMain);
   Application.CreateForm(TFormTest, FormTest);
   Application.Run;

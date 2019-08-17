@@ -3,32 +3,44 @@ unit CTS.Main;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
-  Vcl.Samples.Spin, Vcl.Buttons, HexaColorPicker,
-  HSColorPicker, HSLRingPicker, HSLColorPicker,
-  SLHColorPicker, HSVColorPicker, mbOfficeColorDialog, mbDeskPickerButton,
-  System.ImageList, Vcl.ImgList, HGM.Controls.Labels,
-  HGM.Controls.SpinEdit, HGM.Button, HGM.Controls.PanelCollapsed,
-  HGM.Controls.PanelExt, mbColorPickerControl, acPNG;
-  //acPNG - can be dropped
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Buttons, System.Types,
+  Vcl.Imaging.pngimage, System.ImageList, Vcl.ImgList, System.UITypes,
+
+  HGM.Controls.Labels,
+  HGM.Controls.SpinEdit,
+  HGM.Button,
+  HGM.Controls.PanelCollapsed,
+  HGM.Controls.PanelExt,
+
+  HexaColorPicker,
+  HSColorPicker,
+  HSLRingPicker,
+  HSLColorPicker,
+  SLHColorPicker,
+  HSVColorPicker,
+  mbDeskPickerButton,
+  mbOfficeColorDialog,
+  mbColorPickerControl;
+
 type
   TFormMain = class(TForm)
     TimerPXUC: TTimer;
-    PanelCollapsed1: TPanelCollapsed;
-    DrawPanel1: TDrawPanel;
-    PanelCollapsed2: TPanelCollapsed;
+    PanelCollapsedMagnify: TPanelCollapsed;
+    DrawPanelMagnify: TDrawPanel;
+    PanelCollapsedCurrentColor: TPanelCollapsed;
     ShapeCur: TShape;
-    PanelCollapsed3: TPanelCollapsed;
+    PanelCollapsedLDG: TPanelCollapsed;
     ShapeDL: TShape;
     Label1: TLabel;
     TrackBarL: TTrackBar;
     Label2: TLabel;
-    PanelCollapsed4: TPanelCollapsed;
+    PanelCollapsedPallete: TPanelCollapsed;
     PageControlPalette: TPageControl;
     TabSheetP2: TTabSheet;
     ImageR: TImage;
-    PanelCollapsed5: TPanelCollapsed;
+    PanelCollapsedRGB: TPanelCollapsed;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
@@ -36,17 +48,17 @@ type
     SpinEditB: TlkSpinEdit;
     SpinEditR: TlkSpinEdit;
     SpinEditRGB: TlkSpinEdit;
-    PanelCollapsed6: TPanelCollapsed;
+    PanelCollapsedValues: TPanelCollapsed;
     Label6: TLabel;
     EditResHEX: TEdit;
     EditResTColor: TEdit;
     Label7: TLabel;
     Label8: TLabel;
     EditResHTML: TEdit;
-    PanelCollapsed7: TPanelCollapsed;
+    PanelCollapsedMix: TPanelCollapsed;
     ListBoxMix: TListBox;
     ShapeMix: TShape;
-    PanelCollapsed8: TPanelCollapsed;
+    PanelCollapsedCMYK: TPanelCollapsed;
     Label9: TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -56,14 +68,14 @@ type
     SpinEditK: TlkSpinEdit;
     Label12: TLabel;
     Label13: TLabel;
-    PanelCollapsed9: TPanelCollapsed;
+    PanelCollapsedHSVB: TPanelCollapsed;
     Label14: TLabel;
     Label15: TLabel;
     Label16: TLabel;
     SpinEditS: TlkSpinEdit;
     SpinEditV: TlkSpinEdit;
     SpinEditH: TlkSpinEdit;
-    PanelCollapsed10: TPanelCollapsed;
+    PanelCollapsedTools: TPanelCollapsed;
     TabSheetHexa: TTabSheet;
     HexaColorPicker1: THexaColorPicker;
     TabSheetHS: TTabSheet;
@@ -75,7 +87,7 @@ type
     TabSheetHSV: TTabSheet;
     HSVColorPicker1: THSVColorPicker;
     ColorDialog1: TColorDialog;
-    PanelCollapsed11: TPanelCollapsed;
+    PanelCollapsedMem: TPanelCollapsed;
     Shape1: TLabelEx;
     Shape2: TLabelEx;
     Shape4: TLabelEx;
@@ -93,7 +105,7 @@ type
     Shape11: TLabelEx;
     Shape12: TLabelEx;
     TabSheetStd: TTabSheet;
-    DrawPanel2: TDrawPanel;
+    DrawPanelSpectr: TDrawPanel;
     Panel1: TPanel;
     Label17: TLabel;
     CheckBoxWeb: TCheckBox;
@@ -106,10 +118,10 @@ type
     ButtonTest: TButtonFlat;
     SpeedButtonOnTop: TButtonFlat;
     SpeedButtonHelp: TButtonFlat;
-    ImageList1: TImageList;
+    ImageListTools: TImageList;
     ButtonFlat1: TButtonFlat;
     ButtonFlatHEX: TButtonFlat;
-    ImageList2: TImageList;
+    ImageList16: TImageList;
     ButtonFlatTColor: TButtonFlat;
     ButtonFlatWeb: TButtonFlat;
     ButtonFlat2: TButtonFlat;
@@ -122,60 +134,48 @@ type
     ButtonFlatHSL: TButtonFlat;
     ButtonFlatSLH: TButtonFlat;
     ButtonFlatHSV: TButtonFlat;
+    ButtonFlatMagnDown: TButtonFlat;
+    ButtonFlatMagnUp: TButtonFlat;
     procedure TimerPXUCTimer(Sender: TObject);
     procedure TrackBarLChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure DrawPanel1Paint(Sender: TObject);
+    procedure DrawPanelMagnifyPaint(Sender: TObject);
     procedure SpinEditRChange(Sender: TObject);
     procedure SpinEditRKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure SpinEditRGBChange(Sender: TObject);
     procedure ShapeDLMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-    procedure ListBoxMixDrawItem(Control: TWinControl; Index: Integer;
-      Rect: TRect; State: TOwnerDrawState);
+    procedure ListBoxMixDrawItem(Control: TWinControl; Index: Integer; Rect: TRect; State: TOwnerDrawState);
     procedure SpeedButtonMixAddClick(Sender: TObject);
     procedure SpeedButtonMixDeleteClick(Sender: TObject);
     procedure SpeedButtonMixDoClick(Sender: TObject);
     procedure SpinEditKChange(Sender: TObject);
-    procedure ShapeMixMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure DrawPanel1MouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    procedure ShapeMixMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure DrawPanelMagnifyMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure SpinEditVChange(Sender: TObject);
-    procedure HexaColorPicker1MouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure HSColorPicker1MouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    procedure HexaColorPicker1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure HSColorPicker1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure HSLRingPicker1Change(Sender: TObject);
     procedure SLHColorPicker1Change(Sender: TObject);
-    procedure HSVColorPicker1MouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure Image1MouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure ImageRMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    procedure HSVColorPicker1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure Image1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure ImageRMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure SpeedButtonStdDlgClick(Sender: TObject);
     procedure ButtonTestClick(Sender: TObject);
     procedure SpeedButtonOnTopClick(Sender: TObject);
     procedure SpeedButtonHelpClick(Sender: TObject);
     procedure Shape1MouseEnter(Sender: TObject);
     procedure Shape1MouseLeave(Sender: TObject);
-    procedure Shape1MouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure Shape1MouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure DrawPanel2Paint(Sender: TObject);
-    procedure DrawPanel2MouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure DrawPanel2MouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    procedure Shape1MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure Shape1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure DrawPanelSpectrPaint(Sender: TObject);
+    procedure DrawPanelSpectrMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure DrawPanelSpectrMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure CheckBoxHSVWebClick(Sender: TObject);
     procedure TrackBarHSVVChange(Sender: TObject);
     procedure HSVColorPicker1Change(Sender: TObject);
-    procedure ImageRMouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Integer);
-    procedure ImageRMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    procedure ImageRMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure ImageRMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure ButtonFlat1Click(Sender: TObject);
     procedure ButtonFlatHEXClick(Sender: TObject);
     procedure ButtonFlatWebClick(Sender: TObject);
@@ -190,375 +190,437 @@ type
     procedure ButtonFlatHSLClick(Sender: TObject);
     procedure ButtonFlatSLHClick(Sender: TObject);
     procedure ButtonFlatHSVClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure ListBoxMixDblClick(Sender: TObject);
+    procedure ButtonFlatMagnUpClick(Sender: TObject);
+    procedure ButtonFlatMagnDownClick(Sender: TObject);
   private
-    FDataColor:TColor;
-    FSpectBMP:TBitmap;
-    FMagnify:TBitmap;
-    FMgEmpty:Boolean;
-    FActiveShape:TShape;
-    FKeepColor:Boolean;
-    procedure AddColorToMix(aColor:TColor);
-    procedure SetShapeColor(Shape:TShape; aColor:TColor);
+    FDataColor: TColor;
+    FSpectBMP: TBitmap;
+    FMagnify: TBitmap;
+    FMgEmpty: Boolean;
+    FActiveShape: TShape;
+    FKeepColor: Boolean;
+    procedure SetShapeColor(Shape: TShape; aColor: TColor);
     procedure SetActiveShape(const Value: TShape);
     procedure DrawSpect;
-    procedure Navigate(Tab: TTabSheet);
   public
-    procedure SetDataColor(dColor:TColor);
-    function GetPixelUnderCursor:TColor;
-    property ActiveShape:TShape read FActiveShape write SetActiveShape;
+    procedure SetDataColor(dColor: TColor);
+    procedure AddColorToMix(aColor: TColor);
+    procedure Navigate(Tab: TTabSheet);
+    function GetPixelUnderCursor: TColor;
+    property ActiveShape: TShape read FActiveShape write SetActiveShape;
   end;
 
 var
   FormMain: TFormMain;
 
-
 implementation
- uses Math, System.IniFiles, CTS.Test, HGM.Common.Utils;
+
+uses
+  Math, System.IniFiles, CTS.Test, HGM.Common.Utils;
 
 {$R *.dfm}
 
-function CtrlDown:Boolean;
+function CtrlDown: Boolean;
 begin
- Result:=GetKeyState(VK_CONTROL) < 0;
+  Result := GetKeyState(VK_CONTROL) < 0;
 end;
 
-function ShiftDown:Boolean;
+function ShiftDown: Boolean;
 begin
- Result:=GetKeyState(VK_SHIFT) < 0;
+  Result := GetKeyState(VK_SHIFT) < 0;
 end;
 
-function GrayColor(AColor:TColor):TColor;
-var Gr:Byte;
+function GrayColor(AColor: TColor): TColor;
+var
+  Gr: Byte;
 begin
- AColor:=ColorToRGB(AColor);
- Gr:=Trunc((GetBValue(AColor) + GetGValue(AColor) + GetRValue(AColor))/3);
- Result:=RGB(Gr, Gr, Gr);
+  AColor := ColorToRGB(AColor);
+  Gr := Trunc((GetBValue(AColor) + GetGValue(AColor) + GetRValue(AColor)) / 3);
+  Result := RGB(Gr, Gr, Gr);
 end;
 
-function RGBToHSV(R, G, B:Byte; var H, S, V:Double):Boolean;
-var minRGB, maxRGB, delta: Double;
+function RGBToHSV(R, G, B: Byte; var H, S, V: Double): Boolean;
+var
+  minRGB, maxRGB, delta: Double;
 begin
- H:=0.0;
- minRGB:=Min(Min(R, G), B);
- maxRGB:=Max(Max(R, G), B);
- delta:=(maxRGB-minRGB);
- V:=maxRGB;
- if (maxRGB <> 0.0) then S:=255.0*delta/maxRGB else S:=0.0;
+  H := 0.0;
+  minRGB := Min(Min(R, G), B);
+  maxRGB := Max(Max(R, G), B);
+  delta := (maxRGB - minRGB);
+  V := maxRGB;
+  if (maxRGB <> 0.0) then
+    S := 255.0 * delta / maxRGB
+  else
+    S := 0.0;
 
- if (S <> 0.0) then
+  if (S <> 0.0) then
   begin
-   if R = maxRGB then H:=(G-B)/delta
-   else
-    if G = maxRGB then H:=2.0+(B-R)/delta
-    else
-     if B = maxRGB then H:=4.0+(R-G)/delta
+    if R = maxRGB then
+      H := (G - B) / delta
+    else if G = maxRGB then
+      H := 2.0 + (B - R) / delta
+    else if B = maxRGB then
+      H := 4.0 + (R - G) / delta
   end
- else H:=-1.0;
- H:=H*60;
- if H < 0.0 then H:=H+360.0;
+  else
+    H := -1.0;
+  H := H * 60;
+  if H < 0.0 then
+    H := H + 360.0;
 
-  //S := S * 100 / 255;
-  //V := B * 100 / 255;
- S:=S/255*100;
- V:=V/255*100;
+  S := S / 255 * 100;
+  V := V / 255 * 100;
 
- Result:=True;
+  Result := True;
 end;
 
 function HSVToRGB(H, S, V: Double; var R, G, B: Byte): Boolean;
-var i: Integer;
-    f, p, q, t: Double;
+var
+  i: Integer;
+  f, p, q, t: Double;
 
-procedure CopyOutput(const RV, GV, BV: Double);
-const RGBmax = 255;
-begin
- R:=Round(RGBmax * RV);
- G:=Round(RGBmax * GV);
- B:=Round(RGBmax * BV);
-end;
+  procedure CopyOutput(const RV, GV, BV: Double);
+  const
+    RGBmax = 255;
+  begin
+    R := Round(RGBmax * RV);
+    G := Round(RGBmax * GV);
+    B := Round(RGBmax * BV);
+  end;
 
 begin
- S:=S/100;
- V:=V/100;
- H:=H/60;
+  S := S / 100;
+  V := V / 100;
+  H := H / 60;
  //Assert(InRange(H, 0.0, 1.0));
  //Assert(InRange(S, 0.0, 1.0));
  //Assert(InRange(V, 0.0, 1.0));
- if S = 0.0 then
+  if S = 0.0 then
   begin
-   // achromatic (grey)
-   CopyOutput(B, B, B);
-   Result:= True;
-   Exit;
+    CopyOutput(B, B, B);
+    Result := True;
+    Exit;
   end;
- //H:=H*6.0; // sector 0 to 5
- i:=floor(H);
- f:=H-i; // fractional part of H
- p:=V*(1.0-S);
- q:=V*(1.0-S*f);
- t:=V*(1.0-S*(1.0-f));
- case i of
-  0: CopyOutput(V, t, p);
-  1: CopyOutput(q, V, p);
-  2: CopyOutput(p, V, t);
-  3: CopyOutput(p, q, V);
-  4: CopyOutput(t, p, V);
- else
-  CopyOutput(V, p, q);
- end;
- Result:=True;
+ //H:=H*6.0;
+  i := floor(H);
+  f := H - i;
+  p := V * (1.0 - S);
+  q := V * (1.0 - S * f);
+  t := V * (1.0 - S * (1.0 - f));
+  case i of
+    0:
+      CopyOutput(V, t, p);
+    1:
+      CopyOutput(q, V, p);
+    2:
+      CopyOutput(p, V, t);
+    3:
+      CopyOutput(p, q, V);
+    4:
+      CopyOutput(t, p, V);
+  else
+    CopyOutput(V, p, q);
+  end;
+  Result := True;
 end;
 
-procedure RGBToCMYK(const R, G, B:Byte; var C:Byte; var M:Byte; var Y:Byte; var K:Byte);
+procedure RGBToCMYK(const R, G, B: Byte; var C: Byte; var M: Byte; var Y: Byte; var K: Byte);
 begin
- C:=255-R;
- M:=255-G;
- Y:=255-B;
- if C < M then K:=C else K:=M;
- if Y < K then K:=Y;
- if K > 0 then
+  C := 255 - R;
+  M := 255 - G;
+  Y := 255 - B;
+  if C < M then
+    K := C
+  else
+    K := M;
+  if Y < K then
+    K := Y;
+  if K > 0 then
   begin
-   C:=C-K;
-   M:=M-K;
-   Y:=Y-K;
+    C := C - K;
+    M := M - K;
+    Y := Y - K;
   end;
 end;
 
-procedure CMYKToRGB(C, M, Y, K:Byte; var R:Byte; var G:Byte; var B:Byte);
+procedure CMYKToRGB(C, M, Y, K: Byte; var R: Byte; var G: Byte; var B: Byte);
 begin
- if (Integer(C)+Integer(K)) < 255 then R:=255-(C+K) else R:=0;
- if (Integer(M)+Integer(K)) < 255 then G:=255-(M+K) else G:=0;
- if (Integer(Y)+Integer(K)) < 255 then B:=255-(Y+K) else B:=0;
+  if (Integer(C) + Integer(K)) < 255 then
+    R := 255 - (C + K)
+  else
+    R := 0;
+  if (Integer(M) + Integer(K)) < 255 then
+    G := 255 - (M + K)
+  else
+    G := 0;
+  if (Integer(Y) + Integer(K)) < 255 then
+    B := 255 - (Y + K)
+  else
+    B := 0;
 end;
 
-procedure ColorCorrectCMYK(var C:Byte; var M:Byte; var Y:Byte; var K:Byte);
-var MinColor:Byte;
+procedure ColorCorrectCMYK(var C: Byte; var M: Byte; var Y: Byte; var K: Byte);
+var
+  MinColor: Byte;
 begin
- if C < M then MinColor:=C else MinColor:=M;
- if Y < MinColor then MinColor:=Y;
- if MinColor+K > 255 then MinColor:=255-K;
- C:=C-MinColor;
- M:=M-MinColor;
- Y:=Y-MinColor;
- K:=K+MinColor;
+  if C < M then
+    MinColor := C
+  else
+    MinColor := M;
+  if Y < MinColor then
+    MinColor := Y;
+  if MinColor + K > 255 then
+    MinColor := 255 - K;
+  C := C - MinColor;
+  M := M - MinColor;
+  Y := Y - MinColor;
+  K := K + MinColor;
 end;
 
-function HexToTColor(sColor:string):TColor;
+function HexToTColor(sColor: string): TColor;
 begin
- Result:=RGB(StrToInt('$'+Copy(sColor, 1, 2)), StrToInt('$'+Copy(sColor, 3, 2)), StrToInt('$'+Copy( sColor, 5, 2)));
+  Result := RGB(StrToInt('$' + Copy(sColor, 1, 2)), StrToInt('$' + Copy(sColor, 3, 2)), StrToInt('$' + Copy(sColor, 5, 2)));
 end;
 
-function ColorToHex(Color:TColor):string;
+function ColorToHex(Color: TColor): string;
 begin
- Result:=IntToHex(GetRValue(Color), 2) + IntToHex(GetGValue(Color), 2) + IntToHex(GetBValue(Color), 2);
+  Result := IntToHex(GetRValue(Color), 2) + IntToHex(GetGValue(Color), 2) + IntToHex(GetBValue(Color), 2);
 end;
 
 function ColorToHtml(Color: TColor): string;
-var COL:Integer;
+var
+  COL: Integer;
 begin
- COL:=ColorToRGB(Color);
- Result:='#' + IntToHex(COL and $FF, 2) + IntToHex(COL shr 8 and $FF, 2) + IntToHex(COL shr 16 and $FF, 2);
+  COL := ColorToRGB(Color);
+  Result := '#' + IntToHex(COL and $FF, 2) + IntToHex(COL shr 8 and $FF, 2) + IntToHex(COL shr 16 and $FF, 2);
 end;
 
-function HtmlToColor(Color:string):TColor;
+function HtmlToColor(Color: string): TColor;
 begin
- Result:= StringToColor('$' + Copy(Color, 6, 2) + Copy(Color, 4, 2) + Copy(Color, 2, 2));
+  Result := StringToColor('$' + Copy(Color, 6, 2) + Copy(Color, 4, 2) + Copy(Color, 2, 2));
 end;
 
 procedure TFormMain.AddColorToMix(aColor: TColor);
 begin
- ListBoxMix.Items.Add(ColorToString(aColor));
+  ListBoxMix.Items.Add(ColorToString(aColor));
+  SpeedButtonMixDoClick(nil);
 end;
 
 procedure TFormMain.ButtonFlat1Click(Sender: TObject);
 begin
- SetShapeColor(ShapeDL, GrayColor(FDataColor));
+  SetShapeColor(ShapeDL, GrayColor(FDataColor));
 end;
 
-procedure TFormMain.Navigate(Tab:TTabSheet);
-
-procedure SetMenuButtonActive(Button:TButtonFlat; Value:Boolean);
+procedure TFormMain.ButtonFlatMagnDownClick(Sender: TObject);
 begin
- case Value of
-  True:Button.ColorNormal:=$00F7F6F5;
-  False:Button.ColorNormal:=clWhite;
- end;
+  if FMagnify.Width >= DrawPanelMagnify.Width then Exit;
+  FMagnify.SetSize(FMagnify.Width + 2, FMagnify.Width + 2);
+  DrawPanelMagnify.Repaint;
 end;
 
+procedure TFormMain.ButtonFlatMagnUpClick(Sender: TObject);
 begin
- PageControlPalette.ActivePage:=Tab;
- SetMenuButtonActive(ButtonFlatStd, PageControlPalette.ActivePage = TabSheetStd);
- SetMenuButtonActive(ButtonFlatP2, PageControlPalette.ActivePage = TabSheetP2);
- SetMenuButtonActive(ButtonFlatHexa, PageControlPalette.ActivePage = TabSheetHexa);
- SetMenuButtonActive(ButtonFlatHS, PageControlPalette.ActivePage = TabSheetHS);
- SetMenuButtonActive(ButtonFlatHSL, PageControlPalette.ActivePage = TabSheetHSL);
- SetMenuButtonActive(ButtonFlatHSV, PageControlPalette.ActivePage = TabSheetHSV);
- SetMenuButtonActive(ButtonFlatSLH, PageControlPalette.ActivePage = TabSheetSLH);
+  if FMagnify.Width <= 3 then Exit;
+  FMagnify.SetSize(FMagnify.Width - 2, FMagnify.Width - 2);
+  DrawPanelMagnify.Repaint;
+end;
+
+procedure TFormMain.Navigate(Tab: TTabSheet);
+
+  procedure SetMenuButtonActive(Button: TButtonFlat; Value: Boolean);
+  begin
+    case Value of
+      True:
+        Button.ColorNormal := clWhite;
+      False:
+        Button.ColorNormal := $00E8E8E8;
+    end;
+  end;
+
+begin
+  PageControlPalette.ActivePage := Tab;
+  SetMenuButtonActive(ButtonFlatStd, PageControlPalette.ActivePage = TabSheetStd);
+  SetMenuButtonActive(ButtonFlatP2, PageControlPalette.ActivePage = TabSheetP2);
+  SetMenuButtonActive(ButtonFlatHexa, PageControlPalette.ActivePage = TabSheetHexa);
+  SetMenuButtonActive(ButtonFlatHS, PageControlPalette.ActivePage = TabSheetHS);
+  SetMenuButtonActive(ButtonFlatHSL, PageControlPalette.ActivePage = TabSheetHSL);
+  SetMenuButtonActive(ButtonFlatHSV, PageControlPalette.ActivePage = TabSheetHSV);
+  SetMenuButtonActive(ButtonFlatSLH, PageControlPalette.ActivePage = TabSheetSLH);
 end;
 
 procedure TFormMain.ButtonFlatSLHClick(Sender: TObject);
 begin
- Navigate(TabSheetSLH);
+  Navigate(TabSheetSLH);
 end;
 
 procedure TFormMain.ButtonFlatStdClick(Sender: TObject);
 begin
- Navigate(TabSheetStd);
+  Navigate(TabSheetStd);
 end;
 
 procedure TFormMain.ButtonFlatHexaClick(Sender: TObject);
 begin
- Navigate(TabSheetHexa);
+  Navigate(TabSheetHexa);
 end;
 
 procedure TFormMain.ButtonFlatHEXClick(Sender: TObject);
 begin
- try
-  SetDataColor(HexToTColor(EditResHEX.Text));
- except
-  ShowMessage('Ops');
- end;
+  try
+    SetDataColor(HexToTColor(EditResHEX.Text));
+  except
+    ShowMessage('Ops');
+  end;
 end;
 
 procedure TFormMain.ButtonFlatHSClick(Sender: TObject);
 begin
- Navigate(TabSheetHS);
+  Navigate(TabSheetHS);
 end;
 
 procedure TFormMain.ButtonFlatHSLClick(Sender: TObject);
 begin
- Navigate(TabSheetHSL);
+  Navigate(TabSheetHSL);
 end;
 
 procedure TFormMain.ButtonFlatHSVClick(Sender: TObject);
 begin
- Navigate(TabSheetHSV);
+  Navigate(TabSheetHSV);
 end;
 
 procedure TFormMain.ButtonFlatP2Click(Sender: TObject);
 begin
- Navigate(TabSheetP2);
+  Navigate(TabSheetP2);
 end;
 
 procedure TFormMain.ButtonFlatTColorClick(Sender: TObject);
 begin
- try
-  SetDataColor(StringToColor(EditResTColor.Text));
- except
-  ShowMessage('Ops');
- end;
+  try
+    SetDataColor(StringToColor(EditResTColor.Text));
+  except
+    ShowMessage('Ops');
+  end;
 end;
 
 procedure TFormMain.ButtonFlatWebClick(Sender: TObject);
 begin
- try
-  SetDataColor(HtmlToColor(EditResHTML.Text));
- except
-  ShowMessage('Ops');
- end;
+  try
+    SetDataColor(HtmlToColor(EditResHTML.Text));
+  except
+    ShowMessage('Ops');
+  end;
 end;
 
 procedure TFormMain.CheckBoxHSVWebClick(Sender: TObject);
 begin
- HSVColorPicker1.WebSafe:=CheckBoxWeb.Checked;
- HSColorPicker1.WebSafe:=CheckBoxWeb.Checked;
- DrawSpect;
- DrawPanel2.Repaint;
- ImageR.Visible:=not CheckBoxWeb.Checked;
- ImageRWeb.Visible:=CheckBoxWeb.Checked;
+  HSVColorPicker1.WebSafe := CheckBoxWeb.Checked;
+  HSColorPicker1.WebSafe := CheckBoxWeb.Checked;
+  DrawSpect;
+  DrawPanelSpectr.Repaint;
+  ImageR.Visible := not CheckBoxWeb.Checked;
+  ImageRWeb.Visible := CheckBoxWeb.Checked;
 end;
 
-procedure TFormMain.DrawPanel1MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TFormMain.DrawPanelMagnifyMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
- if ssDouble in Shift then SetDataColor(GetPixelUnderCursor);
+  if ssDouble in Shift then
+    SetDataColor(GetPixelUnderCursor);
 end;
 
-procedure TFormMain.DrawPanel1Paint(Sender: TObject);
-var PixW:Integer;
-    R:TRect;
-    S:string;
+procedure TFormMain.DrawPanelMagnifyPaint(Sender: TObject);
+var
+  PixW: Single;
+  R: TRect;
+  S: string;
 begin
- DrawPanel1.Canvas.StretchDraw(DrawPanel1.ClientRect, FMagnify);
- if FMgEmpty then
+  DrawPanelMagnify.Canvas.StretchDraw(DrawPanelMagnify.ClientRect, FMagnify);
+  if FMgEmpty then
   begin
-   R:=DrawPanel1.ClientRect;
-   S:='Ctrl+Shift';
-   DrawPanel1.Canvas.TextRect(R, S, [tfCenter, tfVerticalCenter, tfSingleLine]);
+    R := DrawPanelMagnify.ClientRect;
+    S := 'Ctrl+Shift';
+    DrawPanelMagnify.Canvas.TextRect(R, S, [tfCenter, tfVerticalCenter, tfSingleLine]);
   end;
- PixW:=(DrawPanel1.ClientRect.Width div 5);
- DrawPanel1.Brush.Style:=bsClear;
- DrawPanel1.Canvas.FrameRect(Rect(PixW*2, PixW*2, PixW*2+PixW, PixW*2+PixW));
+  PixW := DrawPanelMagnify.ClientRect.Width / FMagnify.Width;
+  DrawPanelMagnify.Brush.Style := bsClear;
+  R.Width := Ceil(PixW);
+  R.Height := Ceil(PixW);
+  R.Location := Point(Round((PixW * FMagnify.Width / 2) - (PixW / 2)), Round((PixW * FMagnify.Width / 2) - (PixW / 2)));
+  DrawPanelMagnify.Canvas.FrameRect(R);
 end;
 
-procedure TFormMain.DrawPanel2MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-var RC:TRect;
-    TL, BR:TPoint;
+procedure TFormMain.DrawPanelSpectrMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+var
+  RC: TRect;
+  TL, BR: TPoint;
 begin
- TL:=DrawPanel2.ClientToScreen(Point(0, 0));
- BR:=DrawPanel2.ClientToScreen(Point(DrawPanel2.Width, DrawPanel2.Height));
- RC:=Rect(TL, BR);
- ClipCursor(@RC);
- FKeepColor:=True;
+  TL := DrawPanelSpectr.ClientToScreen(Point(0, 0));
+  BR := DrawPanelSpectr.ClientToScreen(Point(DrawPanelSpectr.Width, DrawPanelSpectr.Height));
+  RC := TRect.Create(TL, BR);
+  ClipCursor(@RC);
+  FKeepColor := True;
 end;
 
-procedure TFormMain.DrawPanel2MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TFormMain.DrawPanelSpectrMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
- ClipCursor(nil);
- FKeepColor:=False;
+  ClipCursor(nil);
+  FKeepColor := False;
 end;
 
-procedure TFormMain.DrawPanel2Paint(Sender: TObject);
+procedure TFormMain.DrawPanelSpectrPaint(Sender: TObject);
 begin
- DrawPanel2.Canvas.StretchDraw(DrawPanel2.ClientRect, FSpectBMP);
+  DrawPanelSpectr.Canvas.StretchDraw(DrawPanelSpectr.ClientRect, FSpectBMP);
 end;
 
 procedure TFormMain.FormClose(Sender: TObject; var Action: TCloseAction);
-var Ini:TIniFile;
-    i:Integer;
-    Buf:TComponent;
+var
+  Ini: TIniFile;
+  i: Integer;
+  Buf: TComponent;
 begin
- Ini:=TIniFile.Create(ExtractFilePath(Application.ExeName)+'\config.ini');
- try
-  for i:= 1 to 16 do
-   begin
-    Buf:=FindComponent('Shape'+IntToStr(i));
-    if Assigned(Buf) then Ini.WriteInteger('CustomPallete', 'Shape'+IntToStr(i), (Buf as TShape).Brush.Color);
-   end;
- finally
-  Ini.Free;
- end;
+  Ini := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\config.ini');
+  try
+    for i := 1 to 16 do
+    begin
+      Buf := FindComponent('Shape' + IntToStr(i));
+      if Assigned(Buf) then
+        Ini.WriteInteger('CustomPallete', 'Shape' + IntToStr(i), (Buf as TShape).Brush.Color);
+    end;
+  finally
+    Ini.Free;
+  end;
 end;
 
 procedure TFormMain.DrawSpect;
-var H, S, V:Word;
-    R, G, B:Byte;
+var
+  H, S, V: Word;
+  R, G, B: Byte;
 begin
- with FSpectBMP.Canvas do
+  with FSpectBMP.Canvas do
   begin
-   V:=100;
-   for H:= 0 to 359 do
+    V := 100;
+    for H := 0 to 359 do
     begin
-     for S:= 1 to 100 do
+      for S := 1 to 100 do
       begin
-       HSVToRGB(H, S, V, R, G, B);
-       //Brush.Color:=RGB(R, G, B);
-       Pen.Color:=Brush.Color;
-       if CheckBoxWeb.Checked then
-        Pixels[H, S]:=RGB(Byte(Trunc(R / 50) * 50), Trunc(G / 50) * 50, Trunc(B / 50) * 50)
-       else Pixels[H, S]:=RGB(R, G, B);
+        HSVToRGB(H, S, V, R, G, B);
+        if CheckBoxWeb.Checked then
+          Pixels[H, S] := RGB(Byte(Trunc(R / 50) * 50), Trunc(G / 50) * 50, Trunc(B / 50) * 50)
+        else
+          Pixels[H, S] := RGB(R, G, B);
       end;
     end;
-   S:=100;
-   for H:= 0 to 359 do
+
+    S := 100;
+    for H := 0 to 359 do
     begin
-     for V:= 200 downto 100 do      //100 - 200
+      for V := 200 downto 100 do
       begin
-       HSVToRGB(H, S, V-100, R, G, B);
-       //Brush.Color:=RGB(R, G, B);
-      // Pen.Color:=Brush.Color;
-       if CheckBoxWeb.Checked then
-        Pixels[H, Abs(100-(V - 100))+100]:=RGB(Trunc(R / 50) * 50, Trunc(G / 50) * 50, Trunc(B / 50) * 50)
-       else Pixels[H, Abs(100-(V - 100))+100]:=RGB(R, G, B);
+        HSVToRGB(H, S, V - 100, R, G, B);
+        if CheckBoxWeb.Checked then
+          Pixels[H, Abs(100 - (V - 100)) + 100] := RGB(Trunc(R / 50) * 50, Trunc(G / 50) * 50, Trunc(B / 50) * 50)
+        else
+          Pixels[H, Abs(100 - (V - 100)) + 100] := RGB(R, G, B);
       end;
     end;
   end;
@@ -566,378 +628,408 @@ end;
 
 procedure TFormMain.EditResHEXKeyPress(Sender: TObject; var Key: Char);
 begin
- if Key = #13 then
+  if Key = #13 then
   begin
-   Key:=#0;
-   ButtonFlatHEXClick(nil);
+    Key := #0;
+    ButtonFlatHEXClick(nil);
   end;
 end;
 
 procedure TFormMain.EditResHTMLKeyPress(Sender: TObject; var Key: Char);
 begin
- if Key = #13 then
+  if Key = #13 then
   begin
-   Key:=#0;
-   ButtonFlatWebClick(nil);
+    Key := #0;
+    ButtonFlatWebClick(nil);
   end;
 end;
 
 procedure TFormMain.EditResTColorKeyPress(Sender: TObject; var Key: Char);
 begin
- if Key = #13 then
+  if Key = #13 then
   begin
-   Key:=#0;
-   ButtonFlatTColorClick(nil);
+    Key := #0;
+    ButtonFlatTColorClick(nil);
   end;
 end;
 
 procedure TFormMain.FormCreate(Sender: TObject);
-var i: Integer;
-    AC:TColor;
-    Ini:TIniFile;
-    Buf:TComponent;
+var
+  i: Integer;
+  AC: TColor;
+  Ini: TIniFile;
+  Buf: TComponent;
 begin
- FKeepColor:=False;
- ActiveShape:=Shape1;
- FMagnify:=TBitmap.Create;
- FMagnify.PixelFormat:=pf24bit;
- FMagnify.Width:=5;
- FMagnify.Height:=5;
- FMgEmpty:=True;
- SetDataColor(Random(9000000));
- AC:=GetAeroColor;
- for i:= 0 to ComponentCount-1 do
-  if Components[i] is TPanelCollapsed then
-   with Components[i] as TPanelCollapsed do
+  FKeepColor := False;
+  ActiveShape := Shape1;
+  FMagnify := TBitmap.Create;
+  FMagnify.PixelFormat := pf24bit;
+  FMagnify.Width := 5;
+  FMagnify.Height := 5;
+  FMgEmpty := True;
+  SetDataColor(Random(9000000));
+  AC := GetAeroColor;
+  if AC = 14145495 then AC := $00997800;
+
+  for i := 0 to ComponentCount - 1 do
+    if Components[i] is TPanelCollapsed then
+      with Components[i] as TPanelCollapsed do
+      begin
+        CaptionColor := ColorDarker(AC, 30);
+        Color := clWhite;
+        SimpleBorderColor := ColorDarker(AC, 50);
+      end;
+  ButtonFlatMagnUp.ColorNormal := PanelCollapsedMagnify.CaptionColor;
+  ButtonFlatMagnUp.ColorOver := ColorLighter(PanelCollapsedMagnify.CaptionColor, 40);
+  ButtonFlatMagnUp.ColorPressed := ColorDarker(PanelCollapsedMagnify.CaptionColor, 30);
+
+  ButtonFlatMagnDown.ColorNormal := PanelCollapsedMagnify.CaptionColor;
+  ButtonFlatMagnDown.ColorOver := ColorLighter(PanelCollapsedMagnify.CaptionColor, 40);
+  ButtonFlatMagnDown.ColorPressed := ColorDarker(PanelCollapsedMagnify.CaptionColor, 30);
+
+  Color := $00D0D0D0;
+  FSpectBMP := TBitmap.Create;
+  FSpectBMP.PixelFormat := pf24bit;
+  FSpectBMP.Width := 360;
+  FSpectBMP.Height := 201;
+  DrawSpect;
+  Ini := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\config.ini');
+  try
+    for i := 1 to 16 do
     begin
-     CaptionColor:=ColorDarker(AC, 30);
-     Color:=clWhite;
-     SimpleBorderColor:=ColorDarker(AC, 50);
+      Buf := FindComponent('Shape' + IntToStr(i));
+      if Assigned(Buf) then
+      begin
+        (Buf as TShape).Brush.Color := Ini.ReadInteger('CustomPallete', 'Shape' + IntToStr(i), clGray);
+      end;
     end;
- Color:=$00D0D0D0;
- FSpectBMP:=TBitmap.Create;
- FSpectBMP.PixelFormat:=pf24bit;
- FSpectBMP.Width:=360;
- FSpectBMP.Height:=201;
- DrawSpect;
- Ini:=TIniFile.Create(ExtractFilePath(Application.ExeName)+'\config.ini');
- try
-  for i:= 1 to 16 do
-   begin
-    Buf:=FindComponent('Shape'+IntToStr(i));
-    if Assigned(Buf) then
-     begin
-      (Buf as TShape).Brush.Color:=Ini.ReadInteger('CustomPallete', 'Shape'+IntToStr(i), clGray);
-      //(Buf as TShape).Pen.Color:=(Buf as TShape).Brush.Color;
-     end;
-   end;
- finally
-  Ini.Free;
- end;
- Navigate(TabSheetStd);
+  finally
+    Ini.Free;
+  end;
+  Navigate(TabSheetStd);
+end;
+
+procedure TFormMain.FormDestroy(Sender: TObject);
+begin
+  FMagnify.Free;
+  FSpectBMP.Free;
 end;
 
 function TFormMain.GetPixelUnderCursor: TColor;
-var DC:HDC;
-    Cur:TPoint;
+var
+  DC: HDC;
+  Cur: TPoint;
 begin
- DC:=GetDC(0);
- GetCursorPos(Cur);
- Result:=GetPixel(DC, Cur.X, Cur.Y);
- BitBlt(FMagnify.Canvas.Handle, 0, 0, 5, 5, DC, Cur.X-2, Cur.Y-2, SRCCOPY);
- FMgEmpty:=False;
- DrawPanel1.Repaint;
+  DC := GetDC(0);
+  GetCursorPos(Cur);
+  Result := GetPixel(DC, Cur.X, Cur.Y);
+  BitBlt(FMagnify.Canvas.Handle, 0, 0, FMagnify.Width, FMagnify.Width, DC, Cur.X - FMagnify.Width div 2, Cur.Y - FMagnify.Width div 2, SRCCOPY);
+  FMgEmpty := False;
+  DrawPanelMagnify.Repaint;
 end;
 
-procedure TFormMain.HexaColorPicker1MouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TFormMain.HexaColorPicker1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
- SetDataColor(HexaColorPicker1.SelectedColor);
+  SetDataColor(HexaColorPicker1.SelectedColor);
 end;
 
-procedure TFormMain.HSColorPicker1MouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
+procedure TFormMain.HSColorPicker1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
- SetDataColor(HSColorPicker1.SelectedColor);
+  SetDataColor(HSColorPicker1.SelectedColor);
 end;
 
 procedure TFormMain.HSLRingPicker1Change(Sender: TObject);
 begin
- SetDataColor(HSLRingPicker1.SelectedColor);
+  SetDataColor(HSLRingPicker1.SelectedColor);
 end;
 
 procedure TFormMain.HSVColorPicker1Change(Sender: TObject);
 begin
- TrackBarHSVV.Position:=255-HSVColorPicker1.Value;
+  TrackBarHSVV.Position := 255 - HSVColorPicker1.Value;
 end;
 
-procedure TFormMain.HSVColorPicker1MouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TFormMain.HSVColorPicker1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
- SetDataColor(HSVColorPicker1.SelectedColor);
+  SetDataColor(HSVColorPicker1.SelectedColor);
 end;
 
-procedure TFormMain.Image1MouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
+procedure TFormMain.Image1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
- SetDataColor(GetPixelUnderCursor);
-end;
-
-procedure TFormMain.ImageRMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
- FKeepColor:=True;
-end;
-
-procedure TFormMain.ImageRMouseMove(Sender: TObject; Shift: TShiftState; X,
-  Y: Integer);
-begin
- if ssLeft in Shift then
   SetDataColor(GetPixelUnderCursor);
 end;
 
-procedure TFormMain.ImageRMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
+procedure TFormMain.ImageRMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
- SetDataColor(GetPixelUnderCursor);
- FKeepColor:=False;
+  FKeepColor := True;
 end;
 
-procedure TFormMain.ListBoxMixDrawItem(Control: TWinControl; Index: Integer;
-  Rect: TRect; State: TOwnerDrawState);
+procedure TFormMain.ImageRMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
 begin
- if ListBoxMix.Items.Count <= 0 then Exit;
- ListBoxMix.Canvas.Brush.Color:=StringToColor(ListBoxMix.Items[Index]);
- ListBoxMix.Canvas.Pen.Color:=ListBoxMix.Canvas.Brush.Color;
- ListBoxMix.Canvas.Rectangle(Rect);
+  if ssLeft in Shift then
+    SetDataColor(GetPixelUnderCursor);
+end;
+
+procedure TFormMain.ImageRMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  SetDataColor(GetPixelUnderCursor);
+  FKeepColor := False;
+end;
+
+procedure TFormMain.ListBoxMixDblClick(Sender: TObject);
+begin
+  if ListBoxMix.ItemIndex >= 0 then
+    SetDataColor(StringToColor(ListBoxMix.Items[ListBoxMix.ItemIndex]));
+end;
+
+procedure TFormMain.ListBoxMixDrawItem(Control: TWinControl; Index: Integer; Rect: TRect; State: TOwnerDrawState);
+begin
+  if ListBoxMix.Items.Count <= 0 then
+    Exit;
+  ListBoxMix.Canvas.Brush.Color := StringToColor(ListBoxMix.Items[Index]);
+  ListBoxMix.Canvas.Pen.Color := ListBoxMix.Canvas.Brush.Color;
+  ListBoxMix.Canvas.Rectangle(Rect);
 end;
 
 procedure TFormMain.SetActiveShape(const Value: TShape);
 begin
- FActiveShape:= Value;
- Shape1MouseLeave(FActiveShape);
+  FActiveShape := Value;
+  Shape1MouseLeave(FActiveShape);
 end;
 
 procedure TFormMain.SetDataColor(dColor: TColor);
-var C, M, Y, K, R, G, B:Byte;
-    H, V, S:Double;
+var
+  C, M, Y, K, R, G, B: Byte;
+  H, V, S: Double;
 begin
- FDataColor:=dColor;
- R:=GetRValue(ColorToRGB(FDataColor));
- G:=GetGValue(ColorToRGB(FDataColor));
- B:=GetBValue(ColorToRGB(FDataColor));
- SetShapeColor(ShapeCur, FDataColor);
- SetShapeColor(ShapeDL, FDataColor);
- TrackBarL.Position:=100;
+  FDataColor := dColor;
+  R := GetRValue(ColorToRGB(FDataColor));
+  G := GetGValue(ColorToRGB(FDataColor));
+  B := GetBValue(ColorToRGB(FDataColor));
+  SetShapeColor(ShapeCur, FDataColor);
+  SetShapeColor(ShapeDL, FDataColor);
+  TrackBarL.Position := 100;
 
- SpinEditR.Value:=R;
- SpinEditG.Value:=G;
- SpinEditB.Value:=B;
- SpinEditRGB.Value:=ColorToRGB(RGB(R, G, B));
- //
- EditResHEX.Text:=ColorToHex(FDataColor);
- EditResTColor.Text:=ColorToString(FDataColor);
- EditResHTML.Text:=ColorToHtml(FDataColor);
+  SpinEditR.Value := R;
+  SpinEditG.Value := G;
+  SpinEditB.Value := B;
+  SpinEditRGB.Value := ColorToRGB(RGB(R, G, B));
+  //
+  EditResHEX.Text := ColorToHex(FDataColor);
+  EditResTColor.Text := ColorToString(FDataColor);
+  EditResHTML.Text := ColorToHtml(FDataColor);
 
- RGBToCMYK(R, G, B, C, M, Y, K);
- SpinEditC.Value:=C;
- SpinEditM.Value:=M;
- SpinEditY.Value:=Y;
- SpinEditK.Value:=K;
+  RGBToCMYK(R, G, B, C, M, Y, K);
+  SpinEditC.Value := C;
+  SpinEditM.Value := M;
+  SpinEditY.Value := Y;
+  SpinEditK.Value := K;
 
- RGBToHSV(R, G, B, H, S, V);
- SpinEditH.Value:=Round(H);
- SpinEditS.Value:=Round(S);
- SpinEditV.Value:=Round(V);
+  RGBToHSV(R, G, B, H, S, V);
+  SpinEditH.Value := Round(H);
+  SpinEditS.Value := Round(S);
+  SpinEditV.Value := Round(V);
 
- HexaColorPicker1.SelectedColor:=FDataColor;
- HSColorPicker1.SelectedColor:=FDataColor;
- HSVColorPicker1.SelectedColor:=FDataColor;
+  HexaColorPicker1.SelectedColor := FDataColor;
+  HSColorPicker1.SelectedColor := FDataColor;
+  HSVColorPicker1.SelectedColor := FDataColor;
 
- if Assigned(FActiveShape) then FActiveShape.Brush.Color:=FDataColor;
- if Assigned(FormTest) then
+  if Assigned(FActiveShape) then
+    FActiveShape.Brush.Color := FDataColor;
+  if Assigned(FormTest) then
   begin
-   if FormTest.RadioButtonBG.Checked then
+    if FormTest.RadioButtonBG.Checked then
     begin
-     FormTest.ColorSelectBG.ColorValue:=FDataColor;
-     FormTest.ColorSelectBGChange(nil);
+      FormTest.ColorSelectBG.ColorValue := FDataColor;
+      FormTest.ColorSelectBGChange(nil);
     end;
-   if FormTest.RadioButtonPanel.Checked then
+    if FormTest.RadioButtonPanel.Checked then
     begin
-     FormTest.ColorSelectPanel.ColorValue:=FDataColor;
-     FormTest.ColorSelectPanelChange(nil);
+      FormTest.ColorSelectPanel.ColorValue := FDataColor;
+      FormTest.ColorSelectPanelChange(nil);
     end;
-   if FormTest.RadioButtonFont.Checked then
+    if FormTest.RadioButtonFont.Checked then
     begin
-     FormTest.ColorSelectFont.ColorValue:=FDataColor;
-     FormTest.ColorSelectFontChange(nil);
+      FormTest.ColorSelectFont.ColorValue := FDataColor;
+      FormTest.ColorSelectFontChange(nil);
     end;
   end;
 
- Repaint;
+  Repaint;
 end;
 
 procedure TFormMain.SetShapeColor(Shape: TShape; aColor: TColor);
 begin
- Shape.Brush.Color:=aColor;
- Shape.Pen.Color:=aColor;
+  Shape.Brush.Color := aColor;
+  Shape.Pen.Color := aColor;
 end;
 
-procedure TFormMain.Shape1MouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
+procedure TFormMain.Shape1MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
- (Sender as TShape).Pen.Color:=ColorDarker($00818181, 30);
+  (Sender as TShape).Pen.Color := ColorDarker($00818181, 30);
 end;
 
 procedure TFormMain.Shape1MouseEnter(Sender: TObject);
 begin
- (Sender as TShape).Pen.Color:=$00818181;
+  (Sender as TShape).Pen.Color := $00818181;
 end;
 
 procedure TFormMain.Shape1MouseLeave(Sender: TObject);
 begin
- if ActiveShape = (Sender as TShape) then (Sender as TShape).Pen.Color:=$00818181//$001065DC
- else (Sender as TShape).Pen.Color:=ColorDarker(clWhite, 10);//$00818181;
+  if ActiveShape = (Sender as TShape) then
+    (Sender as TShape).Pen.Color := $00818181
+  else
+    (Sender as TShape).Pen.Color := ColorDarker(clWhite, 10);
 end;
 
 procedure TFormMain.Shape1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-var OldShape:TShape;
+var
+  OldShape: TShape;
 begin
- OldShape:=ActiveShape;
- ActiveShape:=(Sender as TShape);
- Shape1MouseLeave(OldShape);
- SetDataColor(ActiveShape.Brush.Color);
+  OldShape := ActiveShape;
+  ActiveShape := (Sender as TShape);
+  Shape1MouseLeave(OldShape);
+  SetDataColor(ActiveShape.Brush.Color);
 end;
 
 procedure TFormMain.ShapeDLMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
- if ssDouble in Shift then SetDataColor(ShapeDL.Brush.Color);
+  if ssDouble in Shift then
+    SetDataColor(ShapeDL.Brush.Color);
 end;
 
 procedure TFormMain.ShapeMixMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
- if ssDouble in Shift then SetDataColor(ShapeMix.Brush.Color);
+  if ssDouble in Shift then
+    SetDataColor(ShapeMix.Brush.Color);
 end;
 
 procedure TFormMain.SLHColorPicker1Change(Sender: TObject);
 begin
- SetDataColor(SLHColorPicker1.SelectedColor);
+  SetDataColor(SLHColorPicker1.SelectedColor);
 end;
 
 procedure TFormMain.SpeedButtonHelpClick(Sender: TObject);
 begin
- ShowMessage('Зажмите Ctrl+Shift для выбора цвета из любой точки экрана'+#13#10+'Автор программы: Геннадий Малинин aka HemulGM'#13#10'Сайт: http://hemulgm.ru');
+  ShowMessage('Зажмите Ctrl+Shift для выбора цвета из любой точки экрана'#13#10+
+              'Автор программы: Геннадий Малинин aka HemulGM'#13#10+
+              'Сайт: https://hemulgm.ru');
 end;
 
 procedure TFormMain.SpeedButtonMixAddClick(Sender: TObject);
 begin
- AddColorToMix(FDataColor);
- SpeedButtonMixDoClick(nil);
+  AddColorToMix(FDataColor);
 end;
 
 procedure TFormMain.SpeedButtonMixDeleteClick(Sender: TObject);
 begin
- if ListBoxMix.ItemIndex >= 0 then ListBoxMix.Items.Delete(ListBoxMix.ItemIndex);
- SpeedButtonMixDoClick(nil);
+  if ListBoxMix.ItemIndex >= 0 then
+    ListBoxMix.Items.Delete(ListBoxMix.ItemIndex);
+  SpeedButtonMixDoClick(nil);
 end;
 
 procedure TFormMain.SpeedButtonMixDoClick(Sender: TObject);
-var i:Integer;
+var
+  i: Integer;
 begin
- if ListBoxMix.Items.Count <= 0 then Exit;
- SetShapeColor(ShapeMix, StringToColor(ListBoxMix.Items[0]));
- for i:= 1 to ListBoxMix.Items.Count-1 do
+  if ListBoxMix.Items.Count <= 0 then
+    Exit;
+  SetShapeColor(ShapeMix, StringToColor(ListBoxMix.Items[0]));
+  for i := 1 to ListBoxMix.Items.Count - 1 do
   begin
-   SetShapeColor(ShapeMix, MixColors(ShapeMix.Brush.Color, StringToColor(ListBoxMix.Items[i]), 100));
+    SetShapeColor(ShapeMix, MixColors(ShapeMix.Brush.Color, StringToColor(ListBoxMix.Items[i]), 50));
   end;
 end;
 
 procedure TFormMain.ButtonTestClick(Sender: TObject);
 begin
- FormTest.Show;
+  FormTest.Show;
 end;
 
 procedure TFormMain.SpeedButtonOnTopClick(Sender: TObject);
 begin
- if FormStyle <> fsStayOnTop then
+  if FormStyle <> fsStayOnTop then
   begin
-   FormStyle:=fsStayOnTop;
-   Caption:='Работа с цветом (Поверх остальных окон)';
-   SpeedButtonOnTop.NotifyVisible:=True;
+    FormStyle := fsStayOnTop;
+    Caption := 'Работа с цветом (Поверх остальных окон)';
+    SpeedButtonOnTop.NotifyVisible := True;
   end
- else
+  else
   begin
-   FormStyle:=fsNormal;
-   Caption:='Работа с цветом';
-   SpeedButtonOnTop.NotifyVisible:=False;
+    FormStyle := fsNormal;
+    Caption := 'Работа с цветом';
+    SpeedButtonOnTop.NotifyVisible := False;
   end;
 end;
 
 procedure TFormMain.SpeedButtonStdDlgClick(Sender: TObject);
 begin
- ColorDialog1.Color:=FDataColor;
- if ColorDialog1.Execute(Handle) then SetDataColor(ColorDialog1.Color);
+  ColorDialog1.Color := FDataColor;
+  if ColorDialog1.Execute(Handle) then
+    SetDataColor(ColorDialog1.Color);
 end;
 
 procedure TFormMain.SpinEditKChange(Sender: TObject);
-var R, G, B:Byte;
+var
+  R, G, B: Byte;
 begin
- CMYKToRGB(SpinEditC.Value, SpinEditM.Value, SpinEditY.Value, SpinEditK.Value, R, G, B);
- SetDataColor(RGB(R, G, B));
+  CMYKToRGB(SpinEditC.Value, SpinEditM.Value, SpinEditY.Value, SpinEditK.Value, R, G, B);
+  SetDataColor(RGB(R, G, B));
 end;
 
 procedure TFormMain.SpinEditRChange(Sender: TObject);
 begin
- SpinEditRGB.Value:=ColorToRGB(RGB(SpinEditR.Value, SpinEditG.Value, SpinEditB.Value));
- SetDataColor(RGB(SpinEditR.Value, SpinEditG.Value, SpinEditB.Value));
+  SpinEditRGB.Value := ColorToRGB(RGB(SpinEditR.Value, SpinEditG.Value, SpinEditB.Value));
+  SetDataColor(RGB(SpinEditR.Value, SpinEditG.Value, SpinEditB.Value));
 end;
 
 procedure TFormMain.SpinEditRGBChange(Sender: TObject);
 begin
- SpinEditR.Value:=GetRValue(SpinEditRGB.Value);
- SpinEditG.Value:=GetGValue(SpinEditRGB.Value);
- SpinEditB.Value:=GetBValue(SpinEditRGB.Value);
- SetDataColor(RGB(SpinEditR.Value, SpinEditG.Value, SpinEditB.Value));
+  SpinEditR.Value := GetRValue(SpinEditRGB.Value);
+  SpinEditG.Value := GetGValue(SpinEditRGB.Value);
+  SpinEditB.Value := GetBValue(SpinEditRGB.Value);
+  SetDataColor(RGB(SpinEditR.Value, SpinEditG.Value, SpinEditB.Value));
 end;
 
 procedure TFormMain.SpinEditRKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
- SpinEditRChange(nil);
+  SpinEditRChange(nil);
 end;
 
 procedure TFormMain.SpinEditVChange(Sender: TObject);
-var H, S, V:Single;
-    R, G, B:Byte;
+var
+  H, S, V: Single;
+  R, G, B: Byte;
 begin
- H:=SpinEditH.Value;
- S:=SpinEditS.Value;
- V:=SpinEditV.Value;
- HSVToRGB(H, S, V, R, G, B);
- SetDataColor(RGB(R, G, B));
+  H := SpinEditH.Value;
+  S := SpinEditS.Value;
+  V := SpinEditV.Value;
+  HSVToRGB(H, S, V, R, G, B);
+  SetDataColor(RGB(R, G, B));
 end;
 
 procedure TFormMain.TimerPXUCTimer(Sender: TObject);
 begin
- if (CtrlDown and ShiftDown) or FKeepColor then
+  if (CtrlDown and ShiftDown) or FKeepColor then
   begin
-   SetDataColor(GetPixelUnderCursor);
-   //Cursor:=crHandPoint;
+    SetDataColor(GetPixelUnderCursor);
   end;
- //else Cursor:=crDefault;
 end;
 
 procedure TFormMain.TrackBarHSVVChange(Sender: TObject);
 begin
- HSVColorPicker1.Value:=Abs(255 - TrackBarHSVV.Position);
- SetDataColor(HSVColorPicker1.SelectedColor);
+  HSVColorPicker1.Value := Abs(255 - TrackBarHSVV.Position);
+  SetDataColor(HSVColorPicker1.SelectedColor);
 end;
 
 procedure TFormMain.TrackBarLChange(Sender: TObject);
 begin
- case TrackBarL.Position of
-  0..100:SetShapeColor(ShapeDL, ColorDarker(FDataColor, Abs(TrackBarL.Position-100)));
-  101..200:SetShapeColor(ShapeDL, ColorLighter(FDataColor, TrackBarL.Position-100));
- end;
+  case TrackBarL.Position of
+    0..100:
+      SetShapeColor(ShapeDL, ColorDarker(FDataColor, Abs(TrackBarL.Position - 100)));
+    101..200:
+      SetShapeColor(ShapeDL, ColorLighter(FDataColor, TrackBarL.Position - 100));
+  end;
 end;
 
 end.
+
