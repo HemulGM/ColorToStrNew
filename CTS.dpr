@@ -3,8 +3,6 @@ program CTS;
 uses
   Vcl.Forms,
   CTS.Main in 'CTS.Main.pas' {FormMain},
-  Vcl.Themes,
-  Vcl.Styles,
   CTS.Test in 'CTS.Test.pas' {FormTest};
 
 {$R *.res}

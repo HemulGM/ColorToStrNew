@@ -3,26 +3,12 @@ unit CTS.Main;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Buttons, System.Types,
-  Vcl.Imaging.pngimage, System.ImageList, Vcl.ImgList, System.UITypes,
-
-  HGM.Controls.Labels,
-  HGM.Controls.SpinEdit,
-  HGM.Button,
-  HGM.Controls.PanelCollapsed,
-  HGM.Controls.PanelExt,
-
-  HexaColorPicker,
-  HSColorPicker,
-  HSLRingPicker,
-  HSLColorPicker,
-  SLHColorPicker,
-  HSVColorPicker,
-  mbDeskPickerButton,
-  mbOfficeColorDialog,
-  mbColorPickerControl;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, Vcl.Controls,
+  Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Buttons, System.Types, Vcl.Imaging.pngimage,
+  System.ImageList, Vcl.ImgList, System.UITypes, HGM.Controls.Labels, HGM.Controls.SpinEdit, HGM.Button,
+  HGM.Controls.PanelCollapsed, HGM.Controls.PanelExt, HexaColorPicker, HSColorPicker, HSLRingPicker, HSLColorPicker,
+  SLHColorPicker, HSVColorPicker, mbDeskPickerButton, mbOfficeColorDialog, mbColorPickerControl, acPNG, Vcl.Themes,
+  Vcl.Styles;
 
 type
   TFormMain = class(TForm)
@@ -114,18 +100,18 @@ type
     Label21: TLabel;
     TrackBarHSVV: TTrackBar;
     ImageRWeb: TImage;
-    SpeedButtonStdDlg: TButtonFlat;
-    ButtonTest: TButtonFlat;
-    SpeedButtonOnTop: TButtonFlat;
-    SpeedButtonHelp: TButtonFlat;
+    ButtonFlatStdDlg: TButtonFlat;
+    ButtonFlatTest: TButtonFlat;
+    ButtonFlatOnTop: TButtonFlat;
+    ButtonFlatHelp: TButtonFlat;
     ImageListTools: TImageList;
-    ButtonFlat1: TButtonFlat;
+    ButtonFlatDoGrey: TButtonFlat;
     ButtonFlatHEX: TButtonFlat;
     ImageList16: TImageList;
     ButtonFlatTColor: TButtonFlat;
     ButtonFlatWeb: TButtonFlat;
-    ButtonFlat2: TButtonFlat;
-    ButtonFlat3: TButtonFlat;
+    ButtonFlatMixAdd: TButtonFlat;
+    ButtonFlatMixDel: TButtonFlat;
     Panel2: TPanel;
     ButtonFlatStd: TButtonFlat;
     ButtonFlatP2: TButtonFlat;
@@ -136,6 +122,8 @@ type
     ButtonFlatHSV: TButtonFlat;
     ButtonFlatMagnDown: TButtonFlat;
     ButtonFlatMagnUp: TButtonFlat;
+    PanelDoGray: TPanel;
+    ButtonFlatTheme: TButtonFlat;
     procedure TimerPXUCTimer(Sender: TObject);
     procedure TrackBarLChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -159,10 +147,10 @@ type
     procedure HSVColorPicker1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure Image1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure ImageRMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-    procedure SpeedButtonStdDlgClick(Sender: TObject);
-    procedure ButtonTestClick(Sender: TObject);
-    procedure SpeedButtonOnTopClick(Sender: TObject);
-    procedure SpeedButtonHelpClick(Sender: TObject);
+    procedure ButtonFlatStdDlgClick(Sender: TObject);
+    procedure ButtonFlatTestClick(Sender: TObject);
+    procedure ButtonFlatOnTopClick(Sender: TObject);
+    procedure ButtonFlatHelpClick(Sender: TObject);
     procedure Shape1MouseEnter(Sender: TObject);
     procedure Shape1MouseLeave(Sender: TObject);
     procedure Shape1MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -176,7 +164,7 @@ type
     procedure HSVColorPicker1Change(Sender: TObject);
     procedure ImageRMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure ImageRMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-    procedure ButtonFlat1Click(Sender: TObject);
+    procedure ButtonFlatDoGreyClick(Sender: TObject);
     procedure ButtonFlatHEXClick(Sender: TObject);
     procedure ButtonFlatWebClick(Sender: TObject);
     procedure EditResHEXKeyPress(Sender: TObject; var Key: Char);
@@ -194,6 +182,10 @@ type
     procedure ListBoxMixDblClick(Sender: TObject);
     procedure ButtonFlatMagnUpClick(Sender: TObject);
     procedure ButtonFlatMagnDownClick(Sender: TObject);
+    procedure EditResTColorChange(Sender: TObject);
+    procedure EditResHTMLChange(Sender: TObject);
+    procedure EditResHEXChange(Sender: TObject);
+    procedure ButtonFlatThemeClick(Sender: TObject);
   private
     FDataColor: TColor;
     FSpectBMP: TBitmap;
@@ -201,9 +193,11 @@ type
     FMgEmpty: Boolean;
     FActiveShape: TShape;
     FKeepColor: Boolean;
+    FIsDark: Boolean;
     procedure SetShapeColor(Shape: TShape; aColor: TColor);
     procedure SetActiveShape(const Value: TShape);
     procedure DrawSpect;
+    procedure SetColor(IsDark: Boolean);
   public
     procedure SetDataColor(dColor: TColor);
     procedure AddColorToMix(aColor: TColor);
@@ -408,46 +402,25 @@ begin
   SpeedButtonMixDoClick(nil);
 end;
 
-procedure TFormMain.ButtonFlat1Click(Sender: TObject);
+procedure TFormMain.ButtonFlatDoGreyClick(Sender: TObject);
 begin
   SetShapeColor(ShapeDL, GrayColor(FDataColor));
 end;
 
 procedure TFormMain.ButtonFlatMagnDownClick(Sender: TObject);
 begin
-  if FMagnify.Width >= DrawPanelMagnify.Width then Exit;
+  if FMagnify.Width >= DrawPanelMagnify.Width then
+    Exit;
   FMagnify.SetSize(FMagnify.Width + 2, FMagnify.Width + 2);
   DrawPanelMagnify.Repaint;
 end;
 
 procedure TFormMain.ButtonFlatMagnUpClick(Sender: TObject);
 begin
-  if FMagnify.Width <= 3 then Exit;
+  if FMagnify.Width <= 3 then
+    Exit;
   FMagnify.SetSize(FMagnify.Width - 2, FMagnify.Width - 2);
   DrawPanelMagnify.Repaint;
-end;
-
-procedure TFormMain.Navigate(Tab: TTabSheet);
-
-  procedure SetMenuButtonActive(Button: TButtonFlat; Value: Boolean);
-  begin
-    case Value of
-      True:
-        Button.ColorNormal := clWhite;
-      False:
-        Button.ColorNormal := $00E8E8E8;
-    end;
-  end;
-
-begin
-  PageControlPalette.ActivePage := Tab;
-  SetMenuButtonActive(ButtonFlatStd, PageControlPalette.ActivePage = TabSheetStd);
-  SetMenuButtonActive(ButtonFlatP2, PageControlPalette.ActivePage = TabSheetP2);
-  SetMenuButtonActive(ButtonFlatHexa, PageControlPalette.ActivePage = TabSheetHexa);
-  SetMenuButtonActive(ButtonFlatHS, PageControlPalette.ActivePage = TabSheetHS);
-  SetMenuButtonActive(ButtonFlatHSL, PageControlPalette.ActivePage = TabSheetHSL);
-  SetMenuButtonActive(ButtonFlatHSV, PageControlPalette.ActivePage = TabSheetHSV);
-  SetMenuButtonActive(ButtonFlatSLH, PageControlPalette.ActivePage = TabSheetSLH);
 end;
 
 procedure TFormMain.ButtonFlatSLHClick(Sender: TObject);
@@ -470,7 +443,7 @@ begin
   try
     SetDataColor(HexToTColor(EditResHEX.Text));
   except
-    ShowMessage('Ops');
+    //ShowMessage('Ops');
   end;
 end;
 
@@ -499,7 +472,7 @@ begin
   try
     SetDataColor(StringToColor(EditResTColor.Text));
   except
-    ShowMessage('Ops');
+    //ShowMessage('Ops');
   end;
 end;
 
@@ -508,7 +481,7 @@ begin
   try
     SetDataColor(HtmlToColor(EditResHTML.Text));
   except
-    ShowMessage('Ops');
+    //ShowMessage('Ops');
   end;
 end;
 
@@ -580,6 +553,7 @@ var
 begin
   Ini := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\config.ini');
   try
+    Ini.WriteBool('General', 'DarkTheme', FIsDark);
     for i := 1 to 16 do
     begin
       Buf := FindComponent('Shape' + IntToStr(i));
@@ -626,6 +600,11 @@ begin
   end;
 end;
 
+procedure TFormMain.EditResHEXChange(Sender: TObject);
+begin
+  //ButtonFlatHEXClick(nil);
+end;
+
 procedure TFormMain.EditResHEXKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
@@ -633,6 +612,11 @@ begin
     Key := #0;
     ButtonFlatHEXClick(nil);
   end;
+end;
+
+procedure TFormMain.EditResHTMLChange(Sender: TObject);
+begin
+  //ButtonFlatWebClick(nil);
 end;
 
 procedure TFormMain.EditResHTMLKeyPress(Sender: TObject; var Key: Char);
@@ -644,6 +628,11 @@ begin
   end;
 end;
 
+procedure TFormMain.EditResTColorChange(Sender: TObject);
+begin
+  //ButtonFlatTColorClick(nil);
+end;
+
 procedure TFormMain.EditResTColorKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
@@ -653,14 +642,232 @@ begin
   end;
 end;
 
+procedure TFormMain.Navigate(Tab: TTabSheet);
+
+  procedure SetMenuButtonActive(Button: TButtonFlat; Value: Boolean);
+  begin
+    case Value of
+      True:
+        Button.ColorNormal := ColorDarkerOr(Color, 10);
+      False:
+        Button.ColorNormal := ColorDarkerOr(Color, 20);
+    end;
+    Button.ColorOver := ColorDarkerOr(Color, 40);
+    Button.ColorPressed := ColorDarkerOr(Button.ColorNormal, 40);
+
+    Button.Font.Color := Font.Color;
+    Button.FontDown.Color := Font.Color;
+    Button.FontOver.Color := Font.Color;
+  end;
+
+begin
+  PageControlPalette.ActivePage := Tab;
+  SetMenuButtonActive(ButtonFlatStd, PageControlPalette.ActivePage = TabSheetStd);
+  SetMenuButtonActive(ButtonFlatP2, PageControlPalette.ActivePage = TabSheetP2);
+  SetMenuButtonActive(ButtonFlatHexa, PageControlPalette.ActivePage = TabSheetHexa);
+  SetMenuButtonActive(ButtonFlatHS, PageControlPalette.ActivePage = TabSheetHS);
+  SetMenuButtonActive(ButtonFlatHSL, PageControlPalette.ActivePage = TabSheetHSL);
+  SetMenuButtonActive(ButtonFlatHSV, PageControlPalette.ActivePage = TabSheetHSV);
+  SetMenuButtonActive(ButtonFlatSLH, PageControlPalette.ActivePage = TabSheetSLH);
+end;
+
+procedure TFormMain.SetColor(IsDark: Boolean);
+var
+  CaptionColor, AC: TColor;
+
+  procedure SetPanelColor(Panel: TPanelCollapsed);
+  begin
+    if IsDark then
+    begin
+      Panel.Color := ColorLighterOr(Color, 10);
+      Panel.SimpleBorderColor := ColorLighterOr(Color, 15);
+      Panel.CaptionColor := ColorLighterOr(Color, 20);
+    end
+    else
+    begin
+      Panel.Color := Color;
+      Panel.SimpleBorderColor := ColorDarker(AC, 50);
+      Panel.CaptionColor := ColorDarker(AC, 30);
+    end;
+  end;
+
+  procedure SetEditColor(Edit: TEdit);
+  begin
+    Edit.Color := Color;
+    Edit.Font.Color := Font.Color;
+  end;
+
+  procedure SetSpinColor(Spin: TlkSpinEdit);
+  begin
+    Spin.Color := Color;
+    Spin.Font.Color := Font.Color;
+    Spin.LightButtons := IsDark;
+  end;
+
+  procedure SetButtonColor(Button: TButtonFlat);
+  begin
+    Button.ColorNormal := ColorLighterOr(Color, 10);
+    Button.ColorOver := ColorLighterOr(Color, 15);
+    Button.ColorPressed := ColorLighterOr(Color, 20);
+    Button.Font.Color := Font.Color;
+    Button.FontDown.Color := Font.Color;
+    Button.FontOver.Color := Font.Color;
+  end;
+
+var
+  i: Integer;
+begin
+  FIsDark := IsDark;
+  if IsDark then
+  begin
+    Font.Color := clWhite;
+    Color := clBlack;
+
+    SpinEditR.Color := $00000078;
+    SpinEditG.Color := $00005412;
+    SpinEditB.Color := $00572300;
+
+    SpinEditC.Color := $00615F0D;
+    SpinEditM.Color := $007D007F;
+    SpinEditY.Color := $00008886;
+    SpinEditK.Color := $001A1A1A;
+    for i := 0 to ImageList16.Count - 1 do
+      ColorImages(ImageList16, i, $00E2E2E2);
+    for i := 0 to ImageListTools.Count - 1 do
+      ColorImages(ImageListTools, i, $00E2E2E2);
+  end
+  else
+  begin
+    AC := GetAeroColor;
+    if AC = 14145495 then
+      AC := $00997800;
+
+    Font.Color := clBlack;
+    Color := $00F7F7F7;
+    CaptionColor := $005B3825;
+
+    SpinEditR.Color := $00D7D7FF;
+    SpinEditG.Color := $00D7FFD7;
+    SpinEditB.Color := $00FDDF8C;
+
+    SpinEditC.Color := $00FFFFCA;
+    SpinEditM.Color := $00FFD5FF;
+    SpinEditY.Color := $00D7FFFF;
+    SpinEditK.Color := $00EBEBEB;
+    for i := 0 to ImageList16.Count - 1 do
+      ColorImages(ImageList16, i, $00666666);
+    for i := 0 to ImageListTools.Count - 1 do
+      ColorImages(ImageListTools, i, $00666666);
+  end;
+
+  HexaColorPicker1.Color := Color;
+  HSLRingPicker1.Color := Color;
+  HSVColorPicker1.Color := Color;
+  SLHColorPicker1.Color := Color;
+  PanelDoGray.Color := Color;
+
+  SpinEditR.LightButtons := IsDark;
+  SpinEditG.LightButtons := IsDark;
+  SpinEditB.LightButtons := IsDark;
+  SpinEditR.Font.Color := Font.Color;
+  SpinEditG.Font.Color := Font.Color;
+  SpinEditB.Font.Color := Font.Color;
+
+  SpinEditC.LightButtons := IsDark;
+  SpinEditM.LightButtons := IsDark;
+  SpinEditY.LightButtons := IsDark;
+  SpinEditK.LightButtons := IsDark;
+  SpinEditC.Font.Color := Font.Color;
+  SpinEditM.Font.Color := Font.Color;
+  SpinEditY.Font.Color := Font.Color;
+  SpinEditK.Font.Color := Font.Color;
+
+  SetPanelColor(PanelCollapsedValues);
+  SetPanelColor(PanelCollapsedMagnify);
+  SetPanelColor(PanelCollapsedCurrentColor);
+  SetPanelColor(PanelCollapsedLDG);
+  SetPanelColor(PanelCollapsedPallete);
+  SetPanelColor(PanelCollapsedRGB);
+  SetPanelColor(PanelCollapsedMix);
+  SetPanelColor(PanelCollapsedCMYK);
+  SetPanelColor(PanelCollapsedHSVB);
+  SetPanelColor(PanelCollapsedTools);
+  SetPanelColor(PanelCollapsedMem);
+
+  SetEditColor(EditResHEX);
+  SetEditColor(EditResTColor);
+  SetEditColor(EditResHTML);
+
+  SetButtonColor(ButtonFlatHEX);
+  SetButtonColor(ButtonFlatTColor);
+  SetButtonColor(ButtonFlatWeb);
+
+  SetButtonColor(ButtonFlatStdDlg);
+  SetButtonColor(ButtonFlatTest);
+  SetButtonColor(ButtonFlatOnTop);
+  SetButtonColor(ButtonFlatHelp);
+
+  SetButtonColor(ButtonFlatMagnDown);
+  SetButtonColor(ButtonFlatMagnUp);
+
+  SetButtonColor(ButtonFlatDoGrey);
+  SetButtonColor(ButtonFlatTheme);
+
+  SetButtonColor(ButtonFlatMixAdd);
+  SetButtonColor(ButtonFlatMixDel);
+  ListBoxMix.Color := Color;
+
+  SetSpinColor(SpinEditRGB);
+  SetSpinColor(SpinEditH);
+  SetSpinColor(SpinEditS);
+  SetSpinColor(SpinEditV);
+
+  ButtonFlatStd.Font.Color := clWhite;
+  ButtonFlatStd.FontDown.Color := clWhite;
+  ButtonFlatStd.FontOver.Color := clWhite;
+  ButtonFlatP2.Font.Color := clWhite;
+  ButtonFlatP2.FontDown.Color := clWhite;
+  ButtonFlatP2.FontOver.Color := clWhite;
+  ButtonFlatHexa.Font.Color := clWhite;
+  ButtonFlatHexa.FontDown.Color := clWhite;
+  ButtonFlatHexa.FontOver.Color := clWhite;
+  ButtonFlatHS.Font.Color := clWhite;
+  ButtonFlatHS.FontDown.Color := clWhite;
+  ButtonFlatHS.FontOver.Color := clWhite;
+  ButtonFlatHSL.Font.Color := clWhite;
+  ButtonFlatHSL.FontDown.Color := clWhite;
+  ButtonFlatHSL.FontOver.Color := clWhite;
+  ButtonFlatSLH.Font.Color := clWhite;
+  ButtonFlatSLH.FontDown.Color := clWhite;
+  ButtonFlatSLH.FontOver.Color := clWhite;
+  ButtonFlatHSV.Font.Color := clWhite;
+  ButtonFlatHSV.FontDown.Color := clWhite;
+  ButtonFlatHSV.FontOver.Color := clWhite;
+
+  Navigate(PageControlPalette.ActivePage);
+
+  for i := 0 to PanelCollapsedMem.ControlCount - 1 do
+  begin
+    if PanelCollapsedMem.Controls[i] is TShape then
+    begin
+      Shape1MouseLeave(PanelCollapsedMem.Controls[i]);
+    end;
+  end;
+
+  if IsDark then
+    TStyleManager.TrySetStyle('Windows10 Dark')
+  else
+    TStyleManager.TrySetStyle('Windows');
+end;
+
 procedure TFormMain.FormCreate(Sender: TObject);
 var
   i: Integer;
-  AC: TColor;
   Ini: TIniFile;
   Buf: TComponent;
 begin
   FKeepColor := False;
+  FIsDark := False;
   ActiveShape := Shape1;
   FMagnify := TBitmap.Create;
   FMagnify.PixelFormat := pf24bit;
@@ -668,17 +875,6 @@ begin
   FMagnify.Height := 5;
   FMgEmpty := True;
   SetDataColor(Random(9000000));
-  AC := GetAeroColor;
-  if AC = 14145495 then AC := $00997800;
-
-  for i := 0 to ComponentCount - 1 do
-    if Components[i] is TPanelCollapsed then
-      with Components[i] as TPanelCollapsed do
-      begin
-        CaptionColor := ColorDarker(AC, 30);
-        Color := clWhite;
-        SimpleBorderColor := ColorDarker(AC, 50);
-      end;
   ButtonFlatMagnUp.ColorNormal := PanelCollapsedMagnify.CaptionColor;
   ButtonFlatMagnUp.ColorOver := ColorLighter(PanelCollapsedMagnify.CaptionColor, 40);
   ButtonFlatMagnUp.ColorPressed := ColorDarker(PanelCollapsedMagnify.CaptionColor, 30);
@@ -695,6 +891,7 @@ begin
   DrawSpect;
   Ini := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\config.ini');
   try
+    FIsDark := Ini.ReadBool('General', 'DarkTheme', False);
     for i := 1 to 16 do
     begin
       Buf := FindComponent('Shape' + IntToStr(i));
@@ -706,6 +903,7 @@ begin
   finally
     Ini.Free;
   end;
+  SetColor(FIsDark);
   Navigate(TabSheetStd);
 end;
 
@@ -723,7 +921,8 @@ begin
   DC := GetDC(0);
   GetCursorPos(Cur);
   Result := GetPixel(DC, Cur.X, Cur.Y);
-  BitBlt(FMagnify.Canvas.Handle, 0, 0, FMagnify.Width, FMagnify.Width, DC, Cur.X - FMagnify.Width div 2, Cur.Y - FMagnify.Width div 2, SRCCOPY);
+  BitBlt(FMagnify.Canvas.Handle, 0, 0, FMagnify.Width, FMagnify.Width, DC, Cur.X - FMagnify.Width div 2, Cur.Y -
+    FMagnify.Width div 2, SRCCOPY);
   FMgEmpty := False;
   DrawPanelMagnify.Repaint;
 end;
@@ -839,17 +1038,17 @@ begin
   begin
     if FormTest.RadioButtonBG.Checked then
     begin
-      FormTest.ColorSelectBG.ColorValue := FDataColor;
+      FormTest.ColorSelectBG.ColorNormal := FDataColor;
       FormTest.ColorSelectBGChange(nil);
     end;
     if FormTest.RadioButtonPanel.Checked then
     begin
-      FormTest.ColorSelectPanel.ColorValue := FDataColor;
+      FormTest.ColorSelectPanel.ColorNormal := FDataColor;
       FormTest.ColorSelectPanelChange(nil);
     end;
     if FormTest.RadioButtonFont.Checked then
     begin
-      FormTest.ColorSelectFont.ColorValue := FDataColor;
+      FormTest.ColorSelectFont.ColorNormal := FDataColor;
       FormTest.ColorSelectFontChange(nil);
     end;
   end;
@@ -878,7 +1077,7 @@ begin
   if ActiveShape = (Sender as TShape) then
     (Sender as TShape).Pen.Color := $00818181
   else
-    (Sender as TShape).Pen.Color := ColorDarker(clWhite, 10);
+    (Sender as TShape).Pen.Color := ColorDarkerOr(Color, 10);
 end;
 
 procedure TFormMain.Shape1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -908,11 +1107,11 @@ begin
   SetDataColor(SLHColorPicker1.SelectedColor);
 end;
 
-procedure TFormMain.SpeedButtonHelpClick(Sender: TObject);
+procedure TFormMain.ButtonFlatHelpClick(Sender: TObject);
 begin
-  ShowMessage('Зажмите Ctrl+Shift для выбора цвета из любой точки экрана'#13#10+
-              'Автор программы: Геннадий Малинин aka HemulGM'#13#10+
-              'Сайт: https://hemulgm.ru');
+  ShowMessage('Зажмите Ctrl+Shift для выбора цвета из любой точки экрана'#13#10 +
+    'Автор программы: Геннадий Малинин aka HemulGM'#13#10 +
+    'Сайт: https://hemulgm.ru');
 end;
 
 procedure TFormMain.SpeedButtonMixAddClick(Sender: TObject);
@@ -940,28 +1139,33 @@ begin
   end;
 end;
 
-procedure TFormMain.ButtonTestClick(Sender: TObject);
+procedure TFormMain.ButtonFlatTestClick(Sender: TObject);
 begin
   FormTest.Show;
 end;
 
-procedure TFormMain.SpeedButtonOnTopClick(Sender: TObject);
+procedure TFormMain.ButtonFlatThemeClick(Sender: TObject);
+begin
+  SetColor(not FIsDark);
+end;
+
+procedure TFormMain.ButtonFlatOnTopClick(Sender: TObject);
 begin
   if FormStyle <> fsStayOnTop then
   begin
     FormStyle := fsStayOnTop;
     Caption := 'Работа с цветом (Поверх остальных окон)';
-    SpeedButtonOnTop.NotifyVisible := True;
+    ButtonFlatOnTop.NotifyVisible := True;
   end
   else
   begin
     FormStyle := fsNormal;
     Caption := 'Работа с цветом';
-    SpeedButtonOnTop.NotifyVisible := False;
+    ButtonFlatOnTop.NotifyVisible := False;
   end;
 end;
 
-procedure TFormMain.SpeedButtonStdDlgClick(Sender: TObject);
+procedure TFormMain.ButtonFlatStdDlgClick(Sender: TObject);
 begin
   ColorDialog1.Color := FDataColor;
   if ColorDialog1.Execute(Handle) then

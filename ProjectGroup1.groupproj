@@ -6,7 +6,7 @@
         <Projects Include="CTS.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\Components\LKDUPackage.dproj">
+        <Projects Include="..\Components\HGMComponents.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -26,23 +26,23 @@
     <Target Name="CTS:Make">
         <MSBuild Projects="CTS.dproj" Targets="Make"/>
     </Target>
-    <Target Name="LKDUPackage">
-        <MSBuild Projects="..\Components\LKDUPackage.dproj"/>
+    <Target Name="HGMComponents">
+        <MSBuild Projects="..\Components\HGMComponents.dproj"/>
     </Target>
-    <Target Name="LKDUPackage:Clean">
-        <MSBuild Projects="..\Components\LKDUPackage.dproj" Targets="Clean"/>
+    <Target Name="HGMComponents:Clean">
+        <MSBuild Projects="..\Components\HGMComponents.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="LKDUPackage:Make">
-        <MSBuild Projects="..\Components\LKDUPackage.dproj" Targets="Make"/>
+    <Target Name="HGMComponents:Make">
+        <MSBuild Projects="..\Components\HGMComponents.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="CTS;LKDUPackage"/>
+        <CallTarget Targets="CTS;HGMComponents"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="CTS:Clean;LKDUPackage:Clean"/>
+        <CallTarget Targets="CTS:Clean;HGMComponents:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="CTS:Make;LKDUPackage:Make"/>
+        <CallTarget Targets="CTS:Make;HGMComponents:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
