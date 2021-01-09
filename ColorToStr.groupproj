@@ -9,6 +9,9 @@
         <Projects Include="..\Components\HGMComponents.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="..\FMXColors\FMXColors.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="HGMComponents:Make">
         <MSBuild Projects="..\Components\HGMComponents.dproj" Targets="Make"/>
     </Target>
+    <Target Name="FMXColors">
+        <MSBuild Projects="..\FMXColors\FMXColors.dproj"/>
+    </Target>
+    <Target Name="FMXColors:Clean">
+        <MSBuild Projects="..\FMXColors\FMXColors.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FMXColors:Make">
+        <MSBuild Projects="..\FMXColors\FMXColors.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="CTS;HGMComponents"/>
+        <CallTarget Targets="CTS;HGMComponents;FMXColors"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="CTS:Clean;HGMComponents:Clean"/>
+        <CallTarget Targets="CTS:Clean;HGMComponents:Clean;FMXColors:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="CTS:Make;HGMComponents:Make"/>
+        <CallTarget Targets="CTS:Make;HGMComponents:Make;FMXColors:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

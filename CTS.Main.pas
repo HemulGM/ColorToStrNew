@@ -7,8 +7,7 @@ uses
   Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Buttons, System.Types, Vcl.Imaging.pngimage,
   System.ImageList, Vcl.ImgList, System.UITypes, HGM.Controls.Labels, HGM.Controls.SpinEdit, HGM.Button,
   HGM.Controls.PanelCollapsed, HGM.Controls.PanelExt, HexaColorPicker, HSColorPicker, HSLRingPicker, HSLColorPicker,
-  SLHColorPicker, HSVColorPicker, mbDeskPickerButton, mbOfficeColorDialog, mbColorPickerControl, acPNG, Vcl.Themes,
-  Vcl.Styles;
+  SLHColorPicker, HSVColorPicker, mbDeskPickerButton, mbOfficeColorDialog, mbColorPickerControl, Vcl.Themes, Vcl.Styles;
 
 type
   TFormMain = class(TForm)
@@ -212,7 +211,7 @@ var
 implementation
 
 uses
-  Math, System.IniFiles, CTS.Test, HGM.Common.Utils;
+  Math, System.IniFiles, CTS.Test, HGM.Common.Utils, HGM.Utils.Color;
 
 {$R *.dfm}
 
@@ -224,176 +223,6 @@ end;
 function ShiftDown: Boolean;
 begin
   Result := GetKeyState(VK_SHIFT) < 0;
-end;
-
-function GrayColor(AColor: TColor): TColor;
-var
-  Gr: Byte;
-begin
-  AColor := ColorToRGB(AColor);
-  Gr := Trunc((GetBValue(AColor) + GetGValue(AColor) + GetRValue(AColor)) / 3);
-  Result := RGB(Gr, Gr, Gr);
-end;
-
-function RGBToHSV(R, G, B: Byte; var H, S, V: Double): Boolean;
-var
-  minRGB, maxRGB, delta: Double;
-begin
-  H := 0.0;
-  minRGB := Min(Min(R, G), B);
-  maxRGB := Max(Max(R, G), B);
-  delta := (maxRGB - minRGB);
-  V := maxRGB;
-  if (maxRGB <> 0.0) then
-    S := 255.0 * delta / maxRGB
-  else
-    S := 0.0;
-
-  if (S <> 0.0) then
-  begin
-    if R = maxRGB then
-      H := (G - B) / delta
-    else if G = maxRGB then
-      H := 2.0 + (B - R) / delta
-    else if B = maxRGB then
-      H := 4.0 + (R - G) / delta
-  end
-  else
-    H := -1.0;
-  H := H * 60;
-  if H < 0.0 then
-    H := H + 360.0;
-
-  S := S / 255 * 100;
-  V := V / 255 * 100;
-
-  Result := True;
-end;
-
-function HSVToRGB(H, S, V: Double; var R, G, B: Byte): Boolean;
-var
-  i: Integer;
-  f, p, q, t: Double;
-
-  procedure CopyOutput(const RV, GV, BV: Double);
-  const
-    RGBmax = 255;
-  begin
-    R := Round(RGBmax * RV);
-    G := Round(RGBmax * GV);
-    B := Round(RGBmax * BV);
-  end;
-
-begin
-  S := S / 100;
-  V := V / 100;
-  H := H / 60;
- //Assert(InRange(H, 0.0, 1.0));
- //Assert(InRange(S, 0.0, 1.0));
- //Assert(InRange(V, 0.0, 1.0));
-  if S = 0.0 then
-  begin
-    CopyOutput(B, B, B);
-    Result := True;
-    Exit;
-  end;
- //H:=H*6.0;
-  i := floor(H);
-  f := H - i;
-  p := V * (1.0 - S);
-  q := V * (1.0 - S * f);
-  t := V * (1.0 - S * (1.0 - f));
-  case i of
-    0:
-      CopyOutput(V, t, p);
-    1:
-      CopyOutput(q, V, p);
-    2:
-      CopyOutput(p, V, t);
-    3:
-      CopyOutput(p, q, V);
-    4:
-      CopyOutput(t, p, V);
-  else
-    CopyOutput(V, p, q);
-  end;
-  Result := True;
-end;
-
-procedure RGBToCMYK(const R, G, B: Byte; var C: Byte; var M: Byte; var Y: Byte; var K: Byte);
-begin
-  C := 255 - R;
-  M := 255 - G;
-  Y := 255 - B;
-  if C < M then
-    K := C
-  else
-    K := M;
-  if Y < K then
-    K := Y;
-  if K > 0 then
-  begin
-    C := C - K;
-    M := M - K;
-    Y := Y - K;
-  end;
-end;
-
-procedure CMYKToRGB(C, M, Y, K: Byte; var R: Byte; var G: Byte; var B: Byte);
-begin
-  if (Integer(C) + Integer(K)) < 255 then
-    R := 255 - (C + K)
-  else
-    R := 0;
-  if (Integer(M) + Integer(K)) < 255 then
-    G := 255 - (M + K)
-  else
-    G := 0;
-  if (Integer(Y) + Integer(K)) < 255 then
-    B := 255 - (Y + K)
-  else
-    B := 0;
-end;
-
-procedure ColorCorrectCMYK(var C: Byte; var M: Byte; var Y: Byte; var K: Byte);
-var
-  MinColor: Byte;
-begin
-  if C < M then
-    MinColor := C
-  else
-    MinColor := M;
-  if Y < MinColor then
-    MinColor := Y;
-  if MinColor + K > 255 then
-    MinColor := 255 - K;
-  C := C - MinColor;
-  M := M - MinColor;
-  Y := Y - MinColor;
-  K := K + MinColor;
-end;
-
-function HexToTColor(sColor: string): TColor;
-begin
-  Result := RGB(StrToInt('$' + Copy(sColor, 1, 2)), StrToInt('$' + Copy(sColor, 3, 2)), StrToInt('$' + Copy(sColor, 5, 2)));
-end;
-
-function ColorToHex(Color: TColor): string;
-begin
-  Result := IntToHex(GetRValue(Color), 2) + IntToHex(GetGValue(Color), 2) + IntToHex(GetBValue(Color), 2);
-end;
-
-function ColorToHtml(Color: TColor): string;
-var
-  COL: Integer;
-begin
-  COL := ColorToRGB(Color);
-  Result := '#' + IntToHex(COL and $FF, 2) + IntToHex(COL shr 8 and $FF, 2) + IntToHex(COL shr 16 and $FF, 2);
-end;
-
-function HtmlToColor(Color: string): TColor;
-begin
-  Result := StringToColor('$' + Copy(Color, 6, 2) + Copy(Color, 4, 2) + Copy(Color, 2, 2));
 end;
 
 procedure TFormMain.AddColorToMix(aColor: TColor);
@@ -514,8 +343,8 @@ begin
     S := 'Ctrl+Shift';
     DrawPanelMagnify.Canvas.TextRect(R, S, [tfCenter, tfVerticalCenter, tfSingleLine]);
   end;
-  PixW := DrawPanelMagnify.ClientRect.Width / FMagnify.Width;
   DrawPanelMagnify.Brush.Style := bsClear;
+  PixW := DrawPanelMagnify.ClientRect.Width / FMagnify.Width;
   R.Width := Ceil(PixW);
   R.Height := Ceil(PixW);
   R.Location := Point(Round((PixW * FMagnify.Width / 2) - (PixW / 2)), Round((PixW * FMagnify.Width / 2) - (PixW / 2)));
@@ -673,7 +502,8 @@ end;
 
 procedure TFormMain.SetColor(IsDark: Boolean);
 var
-  CaptionColor, AC: TColor;
+  //CaptionColor,
+  AC: TColor;
 
   procedure SetPanelColor(Panel: TPanelCollapsed);
   begin
@@ -744,7 +574,7 @@ begin
 
     Font.Color := clBlack;
     Color := $00F7F7F7;
-    CaptionColor := $005B3825;
+    //CaptionColor := $005B3825;
 
     SpinEditR.Color := $00D7D7FF;
     SpinEditG.Color := $00D7FFD7;

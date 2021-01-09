@@ -83,8 +83,10 @@ object FormTest: TFormTest
       FontDown.Height = -13
       FontDown.Name = 'Tahoma'
       FontDown.Style = []
+      IgnorBounds = True
       OnClick = ColorSelectBGClick
       RoundRectParam = 0
+      ShowFocusRect = False
       TabOrder = 0
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -120,8 +122,10 @@ object FormTest: TFormTest
       FontDown.Height = -13
       FontDown.Name = 'Tahoma'
       FontDown.Style = []
+      IgnorBounds = True
       OnClick = ColorSelectPanelClick
       RoundRectParam = 0
+      ShowFocusRect = False
       TabOrder = 1
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -157,8 +161,10 @@ object FormTest: TFormTest
       FontDown.Height = -13
       FontDown.Name = 'Tahoma'
       FontDown.Style = []
+      IgnorBounds = True
       OnClick = ColorSelectFontClick
       RoundRectParam = 0
+      ShowFocusRect = False
       TabOrder = 2
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
