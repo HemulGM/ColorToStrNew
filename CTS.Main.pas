@@ -1,13 +1,17 @@
-unit CTS.Main;
+﻿unit CTS.Main;
 
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, Vcl.Controls,
-  Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Buttons, System.Types, Vcl.Imaging.pngimage,
-  System.ImageList, Vcl.ImgList, System.UITypes, HGM.Controls.Labels, HGM.Controls.SpinEdit, HGM.Button,
-  HGM.Controls.PanelCollapsed, HGM.Controls.PanelExt, HexaColorPicker, HSColorPicker, HSLRingPicker, HSLColorPicker,
-  SLHColorPicker, HSVColorPicker, mbDeskPickerButton, mbOfficeColorDialog, mbColorPickerControl, Vcl.Themes, Vcl.Styles;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Buttons, System.Types, Vcl.Imaging.pngimage,
+  System.ImageList, Vcl.ImgList, System.UITypes, HGM.Controls.Labels,
+  HGM.Controls.SpinEdit, HGM.Button, HGM.Controls.PanelCollapsed,
+  HGM.Controls.PanelExt, HexaColorPicker, HSColorPicker, HSLRingPicker,
+  HSLColorPicker, SLHColorPicker, HSVColorPicker, mbDeskPickerButton,
+  mbOfficeColorDialog, mbColorPickerControl, Vcl.Themes, Vcl.Styles,
+  Vcl.Graphics;
 
 type
   TFormMain = class(TForm)
@@ -123,6 +127,14 @@ type
     ButtonFlatMagnUp: TButtonFlat;
     PanelDoGray: TPanel;
     ButtonFlatTheme: TButtonFlat;
+    ButtonFlatHEXCopy: TButtonFlat;
+    ButtonFlatTColorCopy: TButtonFlat;
+    ButtonFlatWebCopy: TButtonFlat;
+    ButtonFlatRGBCopy: TButtonFlat;
+    ButtonFlatTColorSelect: TButtonFlat;
+    ColorBoxTColor: TColorBox;
+    ButtonFlatHSVCopy: TButtonFlat;
+    ButtonFlatCMYKCopy: TButtonFlat;
     procedure TimerPXUCTimer(Sender: TObject);
     procedure TrackBarLChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -185,6 +197,14 @@ type
     procedure EditResHTMLChange(Sender: TObject);
     procedure EditResHEXChange(Sender: TObject);
     procedure ButtonFlatThemeClick(Sender: TObject);
+    procedure ButtonFlatHEXCopyClick(Sender: TObject);
+    procedure ButtonFlatTColorCopyClick(Sender: TObject);
+    procedure ButtonFlatWebCopyClick(Sender: TObject);
+    procedure ButtonFlatRGBCopyClick(Sender: TObject);
+    procedure ButtonFlatTColorSelectClick(Sender: TObject);
+    procedure ColorBoxTColorSelect(Sender: TObject);
+    procedure ButtonFlatHSVCopyClick(Sender: TObject);
+    procedure ButtonFlatCMYKCopyClick(Sender: TObject);
   private
     FDataColor: TColor;
     FSpectBMP: TBitmap;
@@ -193,6 +213,9 @@ type
     FActiveShape: TShape;
     FKeepColor: Boolean;
     FIsDark: Boolean;
+    FRGBCopyFormat: string;
+    FHSVCopyFormat: string;
+    FCMYKCopyFormat: string;
     procedure SetShapeColor(Shape: TShape; aColor: TColor);
     procedure SetActiveShape(const Value: TShape);
     procedure DrawSpect;
@@ -201,9 +224,14 @@ type
     procedure SetDataColor(dColor: TColor);
     procedure AddColorToMix(aColor: TColor);
     procedure Navigate(Tab: TTabSheet);
-    function GetPixelUnderCursor: TColor;
+    function GetPixelUnderCursor(Snap: Boolean = True): TColor;
     property ActiveShape: TShape read FActiveShape write SetActiveShape;
   end;
+
+const
+  DEFAULT_RGB_FORMAT = 'RGB(%d, %d, %d)';
+  DEFAULT_HSV_FORMAT = '%d, %d, %d';
+  DEFAULT_CMYK_FORMAT = '%d, %d, %d, %d';
 
 var
   FormMain: TFormMain;
@@ -211,7 +239,8 @@ var
 implementation
 
 uses
-  Math, System.IniFiles, CTS.Test, HGM.Common.Utils, HGM.Utils.Color;
+  Math, ClipBrd, System.IniFiles, CTS.Test, HGM.WinAPI, HGM.Common.Utils,
+  HGM.Utils.Color;
 
 {$R *.dfm}
 
@@ -231,6 +260,19 @@ begin
   SpeedButtonMixDoClick(nil);
 end;
 
+procedure TFormMain.ButtonFlatCMYKCopyClick(Sender: TObject);
+begin
+  try
+    Clipboard.AsText := Format(FCMYKCopyFormat, [SpinEditC.Value, SpinEditM.Value, SpinEditY.Value, SpinEditK.Value]);
+  except
+    on E: Exception do
+    begin
+      if MessageBox(Application.Handle, 'Не верный формат. Сбросить на стандартный?', 'Ошибка', MB_ICONWARNING or MB_YESNO) = mrYes then
+        FRGBCopyFormat := DEFAULT_CMYK_FORMAT;
+    end;
+  end;
+end;
+
 procedure TFormMain.ButtonFlatDoGreyClick(Sender: TObject);
 begin
   SetShapeColor(ShapeDL, GrayColor(FDataColor));
@@ -240,7 +282,7 @@ procedure TFormMain.ButtonFlatMagnDownClick(Sender: TObject);
 begin
   if FMagnify.Width >= DrawPanelMagnify.Width then
     Exit;
-  FMagnify.SetSize(FMagnify.Width + 2, FMagnify.Width + 2);
+  FMagnify.SetSize(FMagnify.Width + 2, FMagnify.Height + 2);
   DrawPanelMagnify.Repaint;
 end;
 
@@ -248,7 +290,7 @@ procedure TFormMain.ButtonFlatMagnUpClick(Sender: TObject);
 begin
   if FMagnify.Width <= 3 then
     Exit;
-  FMagnify.SetSize(FMagnify.Width - 2, FMagnify.Width - 2);
+  FMagnify.SetSize(FMagnify.Width - 2, FMagnify.Height - 2);
   DrawPanelMagnify.Repaint;
 end;
 
@@ -276,6 +318,11 @@ begin
   end;
 end;
 
+procedure TFormMain.ButtonFlatHEXCopyClick(Sender: TObject);
+begin
+  Clipboard.AsText := EditResHEX.Text;
+end;
+
 procedure TFormMain.ButtonFlatHSClick(Sender: TObject);
 begin
   Navigate(TabSheetHS);
@@ -291,9 +338,35 @@ begin
   Navigate(TabSheetHSV);
 end;
 
+procedure TFormMain.ButtonFlatHSVCopyClick(Sender: TObject);
+begin
+  try
+    Clipboard.AsText := Format(FHSVCopyFormat, [SpinEditH.Value, SpinEditS.Value, SpinEditV.Value]);
+  except
+    on E: Exception do
+    begin
+      if MessageBox(Application.Handle, 'Не верный формат. Сбросить на стандартный?', 'Ошибка', MB_ICONWARNING or MB_YESNO) = mrYes then
+        FRGBCopyFormat := DEFAULT_HSV_FORMAT;
+    end;
+  end;
+end;
+
 procedure TFormMain.ButtonFlatP2Click(Sender: TObject);
 begin
   Navigate(TabSheetP2);
+end;
+
+procedure TFormMain.ButtonFlatRGBCopyClick(Sender: TObject);
+begin
+  try
+    Clipboard.AsText := Format(FRGBCopyFormat, [SpinEditR.Value, SpinEditG.Value, SpinEditB.Value]);
+  except
+    on E: Exception do
+    begin
+      if MessageBox(Application.Handle, 'Не верный формат. Сбросить на стандартный?', 'Ошибка', MB_ICONWARNING or MB_YESNO) = mrYes then
+        FRGBCopyFormat := DEFAULT_RGB_FORMAT;
+    end;
+  end;
 end;
 
 procedure TFormMain.ButtonFlatTColorClick(Sender: TObject);
@@ -305,6 +378,16 @@ begin
   end;
 end;
 
+procedure TFormMain.ButtonFlatTColorCopyClick(Sender: TObject);
+begin
+  Clipboard.AsText := EditResTColor.Text;
+end;
+
+procedure TFormMain.ButtonFlatTColorSelectClick(Sender: TObject);
+begin
+  ColorBoxTColor.DroppedDown := True;
+end;
+
 procedure TFormMain.ButtonFlatWebClick(Sender: TObject);
 begin
   try
@@ -312,6 +395,11 @@ begin
   except
     //ShowMessage('Ops');
   end;
+end;
+
+procedure TFormMain.ButtonFlatWebCopyClick(Sender: TObject);
+begin
+  Clipboard.AsText := EditResHTML.Text;
 end;
 
 procedure TFormMain.CheckBoxHSVWebClick(Sender: TObject);
@@ -324,10 +412,15 @@ begin
   ImageRWeb.Visible := CheckBoxWeb.Checked;
 end;
 
+procedure TFormMain.ColorBoxTColorSelect(Sender: TObject);
+begin
+  EditResTColor.Text := ColorToString(ColorBoxTColor.Selected);
+end;
+
 procedure TFormMain.DrawPanelMagnifyMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   if ssDouble in Shift then
-    SetDataColor(GetPixelUnderCursor);
+    SetDataColor(GetPixelUnderCursor(False));
 end;
 
 procedure TFormMain.DrawPanelMagnifyPaint(Sender: TObject);
@@ -347,7 +440,7 @@ begin
   PixW := DrawPanelMagnify.ClientRect.Width / FMagnify.Width;
   R.Width := Ceil(PixW);
   R.Height := Ceil(PixW);
-  R.Location := Point(Round((PixW * FMagnify.Width / 2) - (PixW / 2)), Round((PixW * FMagnify.Width / 2) - (PixW / 2)));
+  R.Location := Point(Round((PixW * FMagnify.Width / 2) - (PixW / 2)), Round((PixW * FMagnify.Height / 2) - (PixW / 2)));
   DrawPanelMagnify.Canvas.FrameRect(R);
 end;
 
@@ -376,21 +469,29 @@ end;
 
 procedure TFormMain.FormClose(Sender: TObject; var Action: TCloseAction);
 var
-  Ini: TIniFile;
   i: Integer;
+  Ini: TIniFile;
   Buf: TComponent;
 begin
-  Ini := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\config.ini');
   try
-    Ini.WriteBool('General', 'DarkTheme', FIsDark);
-    for i := 1 to 16 do
-    begin
-      Buf := FindComponent('Shape' + IntToStr(i));
-      if Assigned(Buf) then
-        Ini.WriteInteger('CustomPallete', 'Shape' + IntToStr(i), (Buf as TShape).Brush.Color);
+    Ini := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\config.ini');
+    try
+      Ini.WriteBool('General', 'DarkTheme', FIsDark);
+      Ini.WriteString('General', 'RGBFormat', FRGBCopyFormat);
+      Ini.WriteString('General', 'HSVFormat', FHSVCopyFormat);
+      Ini.WriteString('General', 'CMYKFormat', FCMYKCopyFormat);
+      Ini.WriteInteger('General', 'MagnifySize', FMagnify.Width);
+      for i := 1 to 16 do
+      begin
+        Buf := FindComponent('Shape' + IntToStr(i));
+        if Assigned(Buf) then
+          Ini.WriteInteger('CustomPallete', 'Shape' + IntToStr(i), (Buf as TShape).Brush.Color);
+      end;
+    finally
+      Ini.Free;
     end;
-  finally
-    Ini.Free;
+  except
+    //
   end;
 end;
 
@@ -632,6 +733,13 @@ begin
   SetButtonColor(ButtonFlatTColor);
   SetButtonColor(ButtonFlatWeb);
 
+  SetButtonColor(ButtonFlatHEXCopy);
+  SetButtonColor(ButtonFlatTColorCopy);
+  SetButtonColor(ButtonFlatWebCopy);
+  SetButtonColor(ButtonFlatRGBCopy);
+
+  SetButtonColor(ButtonFlatTColorSelect);
+
   SetButtonColor(ButtonFlatStdDlg);
   SetButtonColor(ButtonFlatTest);
   SetButtonColor(ButtonFlatOnTop);
@@ -695,14 +803,15 @@ var
   i: Integer;
   Ini: TIniFile;
   Buf: TComponent;
+  MagnifySize: Integer;
 begin
   FKeepColor := False;
   FIsDark := False;
   ActiveShape := Shape1;
   FMagnify := TBitmap.Create;
   FMagnify.PixelFormat := pf24bit;
-  FMagnify.Width := 5;
-  FMagnify.Height := 5;
+  FMagnify.Width := 10;
+  FMagnify.Height := 10;
   FMgEmpty := True;
   SetDataColor(Random(9000000));
   ButtonFlatMagnUp.ColorNormal := PanelCollapsedMagnify.CaptionColor;
@@ -722,6 +831,11 @@ begin
   Ini := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\config.ini');
   try
     FIsDark := Ini.ReadBool('General', 'DarkTheme', False);
+    FRGBCopyFormat := Ini.ReadString('General', 'RGBFormat', DEFAULT_RGB_FORMAT);
+    FHSVCopyFormat := Ini.ReadString('General', 'HSVFormat', DEFAULT_HSV_FORMAT);
+    FCMYKCopyFormat := Ini.ReadString('General', 'CMYKFormat', DEFAULT_CMYK_FORMAT);
+    MagnifySize := Min(Max(2, Ini.ReadInteger('General', 'MagnifySize', 10)), DrawPanelMagnify.Width);
+    FMagnify.SetSize(MagnifySize, MagnifySize);
     for i := 1 to 16 do
     begin
       Buf := FindComponent('Shape' + IntToStr(i));
@@ -743,18 +857,32 @@ begin
   FSpectBMP.Free;
 end;
 
-function TFormMain.GetPixelUnderCursor: TColor;
+function TFormMain.GetPixelUnderCursor(Snap: Boolean): TColor;
+const
+  SCREEN_HWND = 0;
 var
   DC: HDC;
   Cur: TPoint;
 begin
-  DC := GetDC(0);
-  GetCursorPos(Cur);
-  Result := GetPixel(DC, Cur.X, Cur.Y);
-  BitBlt(FMagnify.Canvas.Handle, 0, 0, FMagnify.Width, FMagnify.Width, DC, Cur.X - FMagnify.Width div 2, Cur.Y -
-    FMagnify.Width div 2, SRCCOPY);
-  FMgEmpty := False;
-  DrawPanelMagnify.Repaint;
+  DC := GetDC(SCREEN_HWND);
+  try
+    GetCursorPos(Cur);
+    Result := GetPixel(DC, Cur.X, Cur.Y);
+    if Snap then
+    begin
+      if BitBlt(FMagnify.Canvas.Handle,
+        0, 0, FMagnify.Width, FMagnify.Height,
+        DC,
+        Cur.X - FMagnify.Width div 2, Cur.Y - FMagnify.Height div 2,
+        SRCCOPY) then
+      begin
+        FMgEmpty := False;
+        DrawPanelMagnify.Repaint;
+      end;
+    end;
+  finally
+    ReleaseDC(SCREEN_HWND, DC);
+  end;
 end;
 
 procedure TFormMain.HexaColorPicker1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -939,9 +1067,14 @@ end;
 
 procedure TFormMain.ButtonFlatHelpClick(Sender: TObject);
 begin
-  ShowMessage('������� Ctrl+Shift ��� ������ ����� �� ����� ����� ������'#13#10 +
-    '����� ���������: �������� ������� aka HemulGM'#13#10 +
-    '����: https://hemulgm.ru');
+  ShowMessage(
+    'Зажмите Ctrl+Shift для выбора цвета из любой точки экрана'#13#10 +
+    'Двойной клик по области лупы позволяет выбрать цвет'#13#10 +
+    'Формат копирования RGB/HSV/CMYK можно указать в config.ini'#13#10 +
+    #13#10 +
+    'Автор программы: Геннадий Малинин aka HemulGM'#13#10 +
+    'Сайт: https://hemulgm.ru'#13#10 +
+    'Исходники и свежий релиз: https://github.com/HemulGM/ColorToStrNew');
 end;
 
 procedure TFormMain.SpeedButtonMixAddClick(Sender: TObject);
@@ -984,13 +1117,13 @@ begin
   if FormStyle <> fsStayOnTop then
   begin
     FormStyle := fsStayOnTop;
-    Caption := '������ � ������ (������ ��������� ����)';
+    Caption := 'Работа с цветом (Поверх остальных окон)';
     ButtonFlatOnTop.NotifyVisible := True;
   end
   else
   begin
     FormStyle := fsNormal;
-    Caption := '������ � ������';
+    Caption := 'Работа с цветом';
     ButtonFlatOnTop.NotifyVisible := False;
   end;
 end;
