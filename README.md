@@ -1,5 +1,5 @@
 # ColorToStrNew
-![CTS](https://hemulgm.ru/images/preview/cts.png)
+![CTS](https://github.com/HemulGM/ColorToStrNew/blob/master/Media/screen.png)
 
 Used [HGM Components][hgmcomp]
 
