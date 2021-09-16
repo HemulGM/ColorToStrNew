@@ -737,6 +737,8 @@ begin
   SetButtonColor(ButtonFlatTColorCopy);
   SetButtonColor(ButtonFlatWebCopy);
   SetButtonColor(ButtonFlatRGBCopy);
+  SetButtonColor(ButtonFlatHSVCopy);
+  SetButtonColor(ButtonFlatCMYKCopy);
 
   SetButtonColor(ButtonFlatTColorSelect);
 
