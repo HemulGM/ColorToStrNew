@@ -3,8 +3,7 @@ program CTS;
 uses
   Vcl.Forms,
   CTS.Main in 'CTS.Main.pas' {FormMain},
-  CTS.Test in 'CTS.Test.pas' {FormTest},
-  HGM.Utils.Color in '..\Components\HGM.Utils.Color.pas';
+  CTS.Test in 'CTS.Test.pas' {FormTest};
 
 {$R *.res}
 

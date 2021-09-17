@@ -20836,19 +20836,19 @@ object FormMain: TFormMain
     Interval = 10
     OnTimer = TimerPXUCTimer
     Left = 24
-    Top = 502
+    Top = 497
   end
   object ColorDialog1: TColorDialog
     Options = [cdFullOpen]
-    Left = 78
-    Top = 502
+    Left = 130
+    Top = 497
   end
   object ImageListTools: TImageList
     ColorDepth = cd32Bit
     Height = 48
     Width = 48
-    Left = 130
-    Top = 502
+    Left = 236
+    Top = 497
     Bitmap = {
       494C010104001000040030003000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000C00000006000000001002000000000000020
@@ -23235,8 +23235,8 @@ object FormMain: TFormMain
   end
   object ImageList16: TImageList
     ColorDepth = cd32Bit
-    Left = 183
-    Top = 502
+    Left = 342
+    Top = 498
     Bitmap = {
       494C010106000800040010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020

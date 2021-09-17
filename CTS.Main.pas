@@ -256,7 +256,7 @@ end;
 
 procedure TFormMain.AddColorToMix(aColor: TColor);
 begin
-  ListBoxMix.Items.Add(ColorToString(aColor));
+  ListBoxMix.Items.Add(Vcl.Graphics.ColorToString(aColor));
   SpeedButtonMixDoClick(nil);
 end;
 
@@ -414,7 +414,9 @@ end;
 
 procedure TFormMain.ColorBoxTColorSelect(Sender: TObject);
 begin
-  EditResTColor.Text := ColorToString(ColorBoxTColor.Selected);
+  //EditResTColor.Text := Vcl.Graphics.ColorToString(ColorBoxTColor.Selected);
+  //ButtonFlatTColorClick(nil);
+  SetDataColor(ColorBoxTColor.Selected);
 end;
 
 procedure TFormMain.DrawPanelMagnifyMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -960,7 +962,7 @@ var
   C, M, Y, K, R, G, B: Byte;
   H, V, S: Double;
 begin
-  FDataColor := dColor;
+  FDataColor := ColorToRGB(dColor);
   R := GetRValue(ColorToRGB(FDataColor));
   G := GetGValue(ColorToRGB(FDataColor));
   B := GetBValue(ColorToRGB(FDataColor));
@@ -974,7 +976,7 @@ begin
   SpinEditRGB.Value := ColorToRGB(RGB(R, G, B));
   //
   EditResHEX.Text := ColorToHex(FDataColor);
-  EditResTColor.Text := ColorToString(FDataColor);
+  EditResTColor.Text := Vcl.Graphics.ColorToString(FDataColor);
   EditResHTML.Text := ColorToHtml(FDataColor);
 
   RGBToCMYK(R, G, B, C, M, Y, K);
