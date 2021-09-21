@@ -9,9 +9,8 @@ uses
   System.ImageList, Vcl.ImgList, System.UITypes, HGM.Controls.Labels,
   HGM.Controls.SpinEdit, HGM.Button, HGM.Controls.PanelCollapsed,
   HGM.Controls.PanelExt, HexaColorPicker, HSColorPicker, HSLRingPicker,
-  HSLColorPicker, SLHColorPicker, HSVColorPicker, mbDeskPickerButton,
-  mbOfficeColorDialog, mbColorPickerControl, Vcl.Themes, Vcl.Styles,
-  Vcl.Graphics;
+  HSLColorPicker, SLHColorPicker, HSVColorPicker, Vcl.Themes, Vcl.Styles,
+  Vcl.Graphics, Vcl.Menus, mbColorPickerControl;
 
 type
   TFormMain = class(TForm)
@@ -193,9 +192,6 @@ type
     procedure ListBoxMixDblClick(Sender: TObject);
     procedure ButtonFlatMagnUpClick(Sender: TObject);
     procedure ButtonFlatMagnDownClick(Sender: TObject);
-    procedure EditResTColorChange(Sender: TObject);
-    procedure EditResHTMLChange(Sender: TObject);
-    procedure EditResHEXChange(Sender: TObject);
     procedure ButtonFlatThemeClick(Sender: TObject);
     procedure ButtonFlatHEXCopyClick(Sender: TObject);
     procedure ButtonFlatTColorCopyClick(Sender: TObject);
@@ -211,15 +207,17 @@ type
     FMagnify: TBitmap;
     FMgEmpty: Boolean;
     FActiveShape: TShape;
-    FKeepColor: Boolean;
+    FCaptureColor: Boolean;
     FIsDark: Boolean;
     FRGBCopyFormat: string;
     FHSVCopyFormat: string;
     FCMYKCopyFormat: string;
+    FShortCut: TShortCut;
     procedure SetShapeColor(Shape: TShape; aColor: TColor);
     procedure SetActiveShape(const Value: TShape);
     procedure DrawSpect;
     procedure SetColor(IsDark: Boolean);
+    function CaptureShortCutIsDown: Boolean;
   public
     procedure SetDataColor(dColor: TColor);
     procedure AddColorToMix(aColor: TColor);
@@ -232,6 +230,7 @@ const
   DEFAULT_RGB_FORMAT = 'RGB(%d, %d, %d)';
   DEFAULT_HSV_FORMAT = '%d, %d, %d';
   DEFAULT_CMYK_FORMAT = '%d, %d, %d, %d';
+  DEFAULT_SHORTCUT = 'Ctrl+Shift';
 
 var
   FormMain: TFormMain;
@@ -239,8 +238,8 @@ var
 implementation
 
 uses
-  Math, ClipBrd, System.IniFiles, CTS.Test, HGM.WinAPI, HGM.Common.Utils,
-  HGM.Utils.Color;
+  System.Math, Vcl.ClipBrd, System.IniFiles, CTS.Test, HGM.WinAPI,
+  HGM.Common.Utils, HGM.Utils.Color;
 
 {$R *.dfm}
 
@@ -252,6 +251,30 @@ end;
 function ShiftDown: Boolean;
 begin
   Result := GetKeyState(VK_SHIFT) < 0;
+end;
+
+function ShortCutIsDown(ShortCut: TShortCut): Boolean;
+var
+  Key: Word;
+begin
+  Result := ShortCut <> 0;
+  if not Result then
+    Exit;
+  Key := ShortCut and not (scShift + scCtrl + scAlt);
+  if Key <> 0 then
+    Result := Result and (GetKeyState(Key) < 0);
+  if ShortCut and scShift <> 0 then
+    Result := Result and (GetKeyState(VK_SHIFT) < 0);
+  if ShortCut and scCtrl <> 0 then
+    Result := Result and (GetKeyState(VK_CONTROL) < 0);
+  if ShortCut and scAlt <> 0 then
+    Result := Result and (GetKeyState(VK_MENU) < 0);
+end;
+
+function TFormMain.CaptureShortCutIsDown: Boolean;
+begin
+  //Result := CtrlDown and ShiftDown;
+  Result := ShortCutIsDown(FShortCut);
 end;
 
 procedure TFormMain.AddColorToMix(aColor: TColor);
@@ -309,15 +332,6 @@ begin
   Navigate(TabSheetHexa);
 end;
 
-procedure TFormMain.ButtonFlatHEXClick(Sender: TObject);
-begin
-  try
-    SetDataColor(HexToTColor(EditResHEX.Text));
-  except
-    //ShowMessage('Ops');
-  end;
-end;
-
 procedure TFormMain.ButtonFlatHEXCopyClick(Sender: TObject);
 begin
   Clipboard.AsText := EditResHEX.Text;
@@ -369,10 +383,28 @@ begin
   end;
 end;
 
+procedure TFormMain.ButtonFlatHEXClick(Sender: TObject);
+begin
+  try
+    SetDataColor(HexToTColor(EditResHEX.Text));
+  except
+    //ShowMessage('Ops');
+  end;
+end;
+
 procedure TFormMain.ButtonFlatTColorClick(Sender: TObject);
 begin
   try
     SetDataColor(StringToColor(EditResTColor.Text));
+  except
+    //ShowMessage('Ops');
+  end;
+end;
+
+procedure TFormMain.ButtonFlatWebClick(Sender: TObject);
+begin
+  try
+    SetDataColor(HtmlToColor(EditResHTML.Text));
   except
     //ShowMessage('Ops');
   end;
@@ -386,15 +418,6 @@ end;
 procedure TFormMain.ButtonFlatTColorSelectClick(Sender: TObject);
 begin
   ColorBoxTColor.DroppedDown := True;
-end;
-
-procedure TFormMain.ButtonFlatWebClick(Sender: TObject);
-begin
-  try
-    SetDataColor(HtmlToColor(EditResHTML.Text));
-  except
-    //ShowMessage('Ops');
-  end;
 end;
 
 procedure TFormMain.ButtonFlatWebCopyClick(Sender: TObject);
@@ -414,8 +437,6 @@ end;
 
 procedure TFormMain.ColorBoxTColorSelect(Sender: TObject);
 begin
-  //EditResTColor.Text := Vcl.Graphics.ColorToString(ColorBoxTColor.Selected);
-  //ButtonFlatTColorClick(nil);
   SetDataColor(ColorBoxTColor.Selected);
 end;
 
@@ -435,7 +456,7 @@ begin
   if FMgEmpty then
   begin
     R := DrawPanelMagnify.ClientRect;
-    S := 'Ctrl+Shift';
+    S := ShortCutToText(FShortCut);
     DrawPanelMagnify.Canvas.TextRect(R, S, [tfCenter, tfVerticalCenter, tfSingleLine]);
   end;
   DrawPanelMagnify.Brush.Style := bsClear;
@@ -455,13 +476,13 @@ begin
   BR := DrawPanelSpectr.ClientToScreen(Point(DrawPanelSpectr.Width, DrawPanelSpectr.Height));
   RC := TRect.Create(TL, BR);
   ClipCursor(@RC);
-  FKeepColor := True;
+  FCaptureColor := True;
 end;
 
 procedure TFormMain.DrawPanelSpectrMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   ClipCursor(nil);
-  FKeepColor := False;
+  FCaptureColor := False;
 end;
 
 procedure TFormMain.DrawPanelSpectrPaint(Sender: TObject);
@@ -483,17 +504,20 @@ begin
       Ini.WriteString('General', 'HSVFormat', FHSVCopyFormat);
       Ini.WriteString('General', 'CMYKFormat', FCMYKCopyFormat);
       Ini.WriteInteger('General', 'MagnifySize', FMagnify.Width);
+      Ini.WriteString('General', 'ShortCut', ShortCutToText(FShortCut));
       for i := 1 to 16 do
       begin
-        Buf := FindComponent('Shape' + IntToStr(i));
+        Buf := FindComponent('Shape' + i.ToString);
         if Assigned(Buf) then
-          Ini.WriteInteger('CustomPallete', 'Shape' + IntToStr(i), (Buf as TShape).Brush.Color);
+          Ini.WriteInteger('CustomPallete', 'Shape' + i.ToString, (Buf as TShape).Brush.Color);
       end;
     finally
       Ini.Free;
     end;
   except
-    //
+    on E: Exception do
+      ShowMessage('Error: ' + E.Message);
+    // Не страшно, что не сохранили настройки
   end;
 end;
 
@@ -532,11 +556,6 @@ begin
   end;
 end;
 
-procedure TFormMain.EditResHEXChange(Sender: TObject);
-begin
-  //ButtonFlatHEXClick(nil);
-end;
-
 procedure TFormMain.EditResHEXKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
@@ -546,11 +565,6 @@ begin
   end;
 end;
 
-procedure TFormMain.EditResHTMLChange(Sender: TObject);
-begin
-  //ButtonFlatWebClick(nil);
-end;
-
 procedure TFormMain.EditResHTMLKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
@@ -558,11 +572,6 @@ begin
     Key := #0;
     ButtonFlatWebClick(nil);
   end;
-end;
-
-procedure TFormMain.EditResTColorChange(Sender: TObject);
-begin
-  //ButtonFlatTColorClick(nil);
 end;
 
 procedure TFormMain.EditResTColorKeyPress(Sender: TObject; var Key: Char);
@@ -588,8 +597,8 @@ procedure TFormMain.Navigate(Tab: TTabSheet);
     Button.ColorPressed := ColorDarkerOr(Button.ColorNormal, 40);
 
     Button.Font.Color := Font.Color;
-    Button.FontDown.Color := Font.Color;
-    Button.FontOver.Color := Font.Color;
+    Button.FontDown.Color := clWhite;
+    Button.FontOver.Color := clWhite;
   end;
 
 begin
@@ -605,8 +614,7 @@ end;
 
 procedure TFormMain.SetColor(IsDark: Boolean);
 var
-  //CaptionColor,
-  AC: TColor;
+  AC, FontColor, FontColorOver: TColor;
 
   procedure SetPanelColor(Panel: TPanelCollapsed);
   begin
@@ -627,13 +635,13 @@ var
   procedure SetEditColor(Edit: TEdit);
   begin
     Edit.Color := Color;
-    Edit.Font.Color := Font.Color;
+    Edit.Font.Color := FontColor;
   end;
 
   procedure SetSpinColor(Spin: TlkSpinEdit);
   begin
     Spin.Color := Color;
-    Spin.Font.Color := Font.Color;
+    Spin.Font.Color := FontColor;
     Spin.LightButtons := IsDark;
   end;
 
@@ -642,9 +650,9 @@ var
     Button.ColorNormal := ColorLighterOr(Color, 10);
     Button.ColorOver := ColorLighterOr(Color, 15);
     Button.ColorPressed := ColorLighterOr(Color, 20);
-    Button.Font.Color := Font.Color;
-    Button.FontDown.Color := Font.Color;
-    Button.FontOver.Color := Font.Color;
+    Button.Font.Color := FontColor;
+    Button.FontDown.Color := FontColor;
+    Button.FontOver.Color := FontColorOver;
   end;
 
 var
@@ -653,7 +661,8 @@ begin
   FIsDark := IsDark;
   if IsDark then
   begin
-    Font.Color := clWhite;
+    FontColor := clWhite;
+    FontColorOver := clWhite;
     Color := clBlack;
 
     SpinEditR.Color := $00000078;
@@ -675,9 +684,9 @@ begin
     if AC = 14145495 then
       AC := $00997800;
 
-    Font.Color := clBlack;
+    FontColor := clBlack;
+    FontColorOver := clWhite;
     Color := $00F7F7F7;
-    //CaptionColor := $005B3825;
 
     SpinEditR.Color := $00D7D7FF;
     SpinEditG.Color := $00D7FFD7;
@@ -693,6 +702,8 @@ begin
       ColorImages(ImageListTools, i, $00666666);
   end;
 
+  Font.Color := FontColor;
+
   HexaColorPicker1.Color := Color;
   HSLRingPicker1.Color := Color;
   HSVColorPicker1.Color := Color;
@@ -702,18 +713,18 @@ begin
   SpinEditR.LightButtons := IsDark;
   SpinEditG.LightButtons := IsDark;
   SpinEditB.LightButtons := IsDark;
-  SpinEditR.Font.Color := Font.Color;
-  SpinEditG.Font.Color := Font.Color;
-  SpinEditB.Font.Color := Font.Color;
+  SpinEditR.Font.Color := FontColor;
+  SpinEditG.Font.Color := FontColor;
+  SpinEditB.Font.Color := FontColor;
 
   SpinEditC.LightButtons := IsDark;
   SpinEditM.LightButtons := IsDark;
   SpinEditY.LightButtons := IsDark;
   SpinEditK.LightButtons := IsDark;
-  SpinEditC.Font.Color := Font.Color;
-  SpinEditM.Font.Color := Font.Color;
-  SpinEditY.Font.Color := Font.Color;
-  SpinEditK.Font.Color := Font.Color;
+  SpinEditC.Font.Color := FontColor;
+  SpinEditM.Font.Color := FontColor;
+  SpinEditY.Font.Color := FontColor;
+  SpinEditK.Font.Color := FontColor;
 
   SetPanelColor(PanelCollapsedValues);
   SetPanelColor(PanelCollapsedMagnify);
@@ -789,12 +800,8 @@ begin
   Navigate(PageControlPalette.ActivePage);
 
   for i := 0 to PanelCollapsedMem.ControlCount - 1 do
-  begin
     if PanelCollapsedMem.Controls[i] is TShape then
-    begin
       Shape1MouseLeave(PanelCollapsedMem.Controls[i]);
-    end;
-  end;
 
   if IsDark then
     TStyleManager.TrySetStyle('Windows10 Dark')
@@ -809,7 +816,8 @@ var
   Buf: TComponent;
   MagnifySize: Integer;
 begin
-  FKeepColor := False;
+  FShortCut := TextToShortCut(DEFAULT_SHORTCUT);
+  FCaptureColor := False;
   FIsDark := False;
   ActiveShape := Shape1;
   FMagnify := TBitmap.Create;
@@ -832,24 +840,29 @@ begin
   FSpectBMP.Width := 360;
   FSpectBMP.Height := 201;
   DrawSpect;
-  Ini := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\config.ini');
   try
-    FIsDark := Ini.ReadBool('General', 'DarkTheme', False);
-    FRGBCopyFormat := Ini.ReadString('General', 'RGBFormat', DEFAULT_RGB_FORMAT);
-    FHSVCopyFormat := Ini.ReadString('General', 'HSVFormat', DEFAULT_HSV_FORMAT);
-    FCMYKCopyFormat := Ini.ReadString('General', 'CMYKFormat', DEFAULT_CMYK_FORMAT);
-    MagnifySize := Min(Max(2, Ini.ReadInteger('General', 'MagnifySize', 10)), DrawPanelMagnify.Width);
-    FMagnify.SetSize(MagnifySize, MagnifySize);
-    for i := 1 to 16 do
-    begin
-      Buf := FindComponent('Shape' + IntToStr(i));
-      if Assigned(Buf) then
+    Ini := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\config.ini');
+    try
+      FIsDark := Ini.ReadBool('General', 'DarkTheme', False);
+      FRGBCopyFormat := Ini.ReadString('General', 'RGBFormat', DEFAULT_RGB_FORMAT);
+      FHSVCopyFormat := Ini.ReadString('General', 'HSVFormat', DEFAULT_HSV_FORMAT);
+      FCMYKCopyFormat := Ini.ReadString('General', 'CMYKFormat', DEFAULT_CMYK_FORMAT);
+      MagnifySize := Min(Max(2, Ini.ReadInteger('General', 'MagnifySize', 10)), DrawPanelMagnify.Width);
+      FShortCut := TextToShortCut(Ini.ReadString('General', 'ShortCut', DEFAULT_SHORTCUT));
+      if FShortCut = 0 then
+        FShortCut := TextToShortCut(DEFAULT_SHORTCUT);
+      FMagnify.SetSize(MagnifySize, MagnifySize);
+      for i := 1 to 16 do
       begin
-        (Buf as TShape).Brush.Color := Ini.ReadInteger('CustomPallete', 'Shape' + IntToStr(i), clGray);
+        Buf := FindComponent('Shape' + i.ToString);
+        if Assigned(Buf) then
+          (Buf as TShape).Brush.Color := Ini.ReadInteger('CustomPallete', 'Shape' + i.ToString, clGray);
       end;
+    finally
+      Ini.Free;
     end;
-  finally
-    Ini.Free;
+  except
+    // Не страшно, что сохранения не загрузили
   end;
   SetColor(FIsDark);
   Navigate(TabSheetStd);
@@ -921,7 +934,7 @@ end;
 
 procedure TFormMain.ImageRMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-  FKeepColor := True;
+  FCaptureColor := True;
 end;
 
 procedure TFormMain.ImageRMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
@@ -933,7 +946,7 @@ end;
 procedure TFormMain.ImageRMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   SetDataColor(GetPixelUnderCursor);
-  FKeepColor := False;
+  FCaptureColor := False;
 end;
 
 procedure TFormMain.ListBoxMixDblClick(Sender: TObject);
@@ -1101,13 +1114,16 @@ begin
     Exit;
   SetShapeColor(ShapeMix, StringToColor(ListBoxMix.Items[0]));
   for i := 1 to ListBoxMix.Items.Count - 1 do
-  begin
     SetShapeColor(ShapeMix, MixColors(ShapeMix.Brush.Color, StringToColor(ListBoxMix.Items[i]), 50));
-  end;
 end;
 
 procedure TFormMain.ButtonFlatTestClick(Sender: TObject);
 begin
+  if FIsDark then
+  begin
+    ShowMessage('Не работает с тёмной темой');
+    Exit;
+  end;
   FormTest.Show;
 end;
 
@@ -1180,10 +1196,8 @@ end;
 
 procedure TFormMain.TimerPXUCTimer(Sender: TObject);
 begin
-  if (CtrlDown and ShiftDown) or FKeepColor then
-  begin
+  if CaptureShortCutIsDown or FCaptureColor then
     SetDataColor(GetPixelUnderCursor);
-  end;
 end;
 
 procedure TFormMain.TrackBarHSVVChange(Sender: TObject);

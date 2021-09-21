@@ -19186,7 +19186,6 @@ object FormMain: TFormMain
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      OnChange = EditResHEXChange
       OnKeyPress = EditResHEXKeyPress
     end
     object EditResTColor: TEdit
@@ -19204,7 +19203,6 @@ object FormMain: TFormMain
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      OnChange = EditResTColorChange
       OnKeyPress = EditResTColorKeyPress
     end
     object EditResHTML: TEdit
@@ -19222,7 +19220,6 @@ object FormMain: TFormMain
       Font.Style = []
       ParentFont = False
       TabOrder = 3
-      OnChange = EditResHTMLChange
       OnKeyPress = EditResHTMLKeyPress
     end
     object ButtonFlatHEX: TButtonFlat
@@ -20140,7 +20137,7 @@ object FormMain: TFormMain
       Top = 27
       Width = 52
       Height = 58
-      Hint = #1044#1086#1087#1086#1083#1085#1080#1090#1077#1083#1100#1085#1086#1077' '#1086#1082#1085#1086' '#1074#1099#1073#1086#1088#1072' '#1094#1074#1077#1090#1072
+      Hint = #1054#1082#1085#1086' '#1076#1083#1103' '#1090#1077#1089#1090#1080#1088#1086#1074#1072#1085#1080#1103' '#1089#1086#1095#1077#1090#1072#1085#1080#1103' '#1094#1074#1077#1090#1072' '#1092#1086#1085#1072' '#1080' '#1090#1077#1082#1089#1090#1072
       Margins.Left = 0
       Margins.Top = 0
       Margins.Right = 0

@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, Vcl.Controls,
-  Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, mbDeskPickerButton, Vcl.ExtCtrls, Vcl.Buttons, HGM.Button;
+  Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, mbDeskPickerButton, Vcl.ExtCtrls, Vcl.Buttons, HGM.Button,
+  acPNG;
 
 type
   TFormTest = class(TForm)
@@ -27,6 +28,8 @@ type
     RadioButtonPanel: TRadioButton;
     RadioButtonFont: TRadioButton;
     RadioButtonBG: TRadioButton;
+    RadioButtonNone: TRadioButton;
+    Image1: TImage;
     procedure ColorSelectBGChange(Sender: TObject);
     procedure ColorSelectPanelChange(Sender: TObject);
     procedure ColorSelectFontChange(Sender: TObject);
