@@ -21075,7 +21075,6 @@ object FormMain: TFormMain
           Constraints.MinHeight = 85
           Constraints.MinWidth = 93
           OnMouseUp = HexaColorPicker1MouseUp
-          ExplicitLeft = 23
         end
       end
       object TabSheetHS: TTabSheet
@@ -23440,7 +23439,6 @@ object FormMain: TFormMain
       ColorNormal = clWhite
       ColorOver = 14540253
       ColorPressed = 9079434
-      DoubleBuffered = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = 4737096
       Font.Height = -13
@@ -23457,6 +23455,7 @@ object FormMain: TFormMain
       FontDown.Height = -13
       FontDown.Name = 'Tahoma'
       FontDown.Style = []
+      IgnorBounds = True
       ImageIndentLeft = 2
       ImageIndentRight = 3
       ImageIndex = 6
@@ -23506,6 +23505,7 @@ object FormMain: TFormMain
       FontDown.Height = -13
       FontDown.Name = 'Tahoma'
       FontDown.Style = []
+      IgnorBounds = True
       ImageIndentLeft = 2
       ImageIndentRight = 3
       ImageIndex = 7
@@ -24225,28 +24225,23 @@ object FormMain: TFormMain
     end
   end
   object PanelWait: TPanel
-    Left = 0
-    Top = 0
-    Width = 868
-    Height = 553
-    Align = alClient
+    Left = 453
+    Top = 62
+    Width = 52
+    Height = 56
     BevelOuter = bvNone
     Color = clWhite
     ParentBackground = False
     TabOrder = 12
     Visible = False
-    ExplicitLeft = 344
-    ExplicitTop = 272
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     DesignSize = (
-      868
-      553)
+      52
+      56)
     object Label18: TLabel
       Left = 0
       Top = 0
-      Width = 868
-      Height = 553
+      Width = 52
+      Height = 56
       Align = alClient
       Alignment = taCenter
       Caption = #1057#1082#1072#1095#1080#1074#1072#1085#1080#1077' '#1086#1073#1085#1086#1074#1083#1077#1085#1080#1103', '#1087#1086#1076#1086#1078#1076#1080#1090#1077' ...'
@@ -24256,15 +24251,20 @@ object FormMain: TFormMain
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
+      Transparent = True
       Layout = tlCenter
-      ExplicitWidth = 277
-      ExplicitHeight = 21
+      ExplicitLeft = -18
+      ExplicitTop = 42
+      ExplicitWidth = 204
+      ExplicitHeight = 150
     end
     object ActivityIndicator1: TActivityIndicator
-      Left = 415
-      Top = 220
+      Left = 10
+      Top = 8
       Anchors = []
       Animate = True
+      ExplicitLeft = 415
+      ExplicitTop = 220
     end
   end
   object TimerPXUC: TTimer

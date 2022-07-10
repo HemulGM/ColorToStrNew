@@ -906,6 +906,7 @@ begin
         SetButtonColor(PanelCollapsedMem.Controls[i] as TButtonFlat);
 
     SetButtonColor(ButtonFlatTColorSelect);
+    SetButtonColor(ButtonFlatOpenLD);
 
     SetButtonColor(ButtonFlatStdDlg);
     SetButtonColor(ButtonFlatTest);
@@ -957,6 +958,7 @@ begin
 
     if IsDark then
       TStyleManager.TrySetStyle('Windows10 Dark')
+      //TStyleManager.TrySetStyle('Windows11 Modern Dark')
     else
       TStyleManager.TrySetStyle('Windows');
   finally
@@ -978,6 +980,8 @@ begin
   except
     //
   end;
+  PanelWait.Visible := False;
+  PanelWait.Align := alClient;
   FShortCut := TextToShortCut(DEFAULT_SHORTCUT);
   FCaptureColor := False;
   FIsDark := False;
