@@ -3,7 +3,8 @@ program CTS;
 uses
   Vcl.Forms,
   CTS.Main in 'CTS.Main.pas' {FormMain},
-  CTS.Test in 'CTS.Test.pas' {FormTest};
+  CTS.Test in 'CTS.Test.pas' {FormTest},
+  CTS.LD in 'CTS.LD.pas' {FormLD};
 
 {$R *.res}
 
@@ -16,5 +17,6 @@ begin
   {$ENDIF}
   Application.CreateForm(TFormMain, FormMain);
   Application.CreateForm(TFormTest, FormTest);
+  Application.CreateForm(TFormLD, FormLD);
   Application.Run;
 end.
