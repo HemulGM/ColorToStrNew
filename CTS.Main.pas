@@ -261,7 +261,7 @@ const
   DEFAULT_SHORTCUT = 'Ctrl+Shift';
 
 const
-  Version = 'v1.21';
+  Version = 'v1.22';
 
 var
   FormMain: TFormMain;

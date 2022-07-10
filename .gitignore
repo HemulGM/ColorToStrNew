@@ -77,3 +77,4 @@ Win32/Release/config.ini
 *.ini
 Win32/Debug/config.ini
 *.zip
+Win32/Debug/CTS.exe_old
