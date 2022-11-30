@@ -10,7 +10,7 @@ uses
   HGM.Controls.Labels, HGM.Controls.SpinEdit, HGM.Button,
   HGM.Controls.PanelCollapsed, HGM.Controls.PanelExt, HexaColorPicker,
   HSColorPicker, HSLRingPicker, HSLColorPicker, SLHColorPicker, HSVColorPicker,
-  Vcl.Themes, Vcl.Styles, Vcl.Graphics, Vcl.Menus, mbColorPickerControl, acPNG,
+  Vcl.Themes, Vcl.Styles, Vcl.Graphics, Vcl.Menus, mbColorPickerControl,
   Vcl.WinXCtrls;
 
 type
@@ -246,6 +246,7 @@ type
     procedure DownloadAndUpdateAsync(const Ver, Url: string);
     procedure ShowUpdateError(const Url: string);
     procedure ShowUpdateDone;
+    function ShapeIsLocked(Shape: TShape): Boolean;
   public
     procedure SetDataColor(dColor: TColor);
     procedure AddColorToMix(aColor: TColor);
@@ -261,7 +262,7 @@ const
   DEFAULT_SHORTCUT = 'Ctrl+Shift';
 
 const
-  Version = 'v1.22';
+  Version = 'v1.23';
 
 var
   FormMain: TFormMain;
@@ -1150,11 +1151,18 @@ begin
   Shape1MouseLeave(FActiveShape);
 end;
 
+function TFormMain.ShapeIsLocked(Shape: TShape): Boolean;
+var
+  LockBtn: TComponent;
+begin
+  LockBtn := FindComponent('ButtonFlatLock' + Shape.Tag.ToString);
+  Result := (Assigned(LockBtn) and (LockBtn is TButtonFlat)) and ((LockBtn as TButtonFlat).ImageIndex <> 6);
+end;
+
 procedure TFormMain.SetDataColor(dColor: TColor);
 var
   C, M, Y, K, R, G, B: Byte;
   H, V, S: Double;
-  LockBtn: TComponent;
 begin
   FDataColor := ColorToRGB(dColor);
   R := GetRValue(ColorToRGB(FDataColor));
@@ -1190,13 +1198,7 @@ begin
 
   if Assigned(FActiveShape) then
   begin
-    LockBtn := FindComponent('ButtonFlatLock' + FActiveShape.Tag.ToString);
-    if Assigned(LockBtn) and (LockBtn is TButtonFlat) then
-    begin
-      if (LockBtn as TButtonFlat).ImageIndex = 6 then
-        FActiveShape.Brush.Color := FDataColor;
-    end
-    else
+    if not ShapeIsLocked(FActiveShape) then
       FActiveShape.Brush.Color := FDataColor;
   end;
   if Assigned(FormTest) then
@@ -1260,7 +1262,8 @@ begin
   end
   else if Button = mbRight then
   begin
-    (Sender as TShape).Brush.Color := FDataColor;
+    if not ShapeIsLocked(Sender as TShape) then
+      (Sender as TShape).Brush.Color := FDataColor;
   end;
   Shape1MouseLeave(OldShape);
 end;
@@ -1329,11 +1332,6 @@ end;
 
 procedure TFormMain.ButtonFlatTestClick(Sender: TObject);
 begin
-  if FIsDark then
-  begin
-    ShowMessage('Не работает с тёмной темой');
-    Exit;
-  end;
   FormTest.Show;
 end;
 

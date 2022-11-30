@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, mbDeskPickerButton, Vcl.ExtCtrls, Vcl.Buttons, HGM.Button,
-  acPNG;
+  Vcl.Imaging.pngimage;
 
 type
   TFormTest = class(TForm)
@@ -14,12 +14,6 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    PanelT1: TPanel;
-    PanelT2: TPanel;
-    PanelT3: TPanel;
-    LabelT1: TLabel;
-    LabelT2: TLabel;
-    LabelT3: TLabel;
     ColorSelectBG: TButtonFlat;
     ColorSelectPanel: TButtonFlat;
     ColorSelectFont: TButtonFlat;
@@ -30,6 +24,13 @@ type
     RadioButtonBG: TRadioButton;
     RadioButtonNone: TRadioButton;
     Image1: TImage;
+    ShapeT1: TShape;
+    LabelT1: TLabel;
+    LabelT2: TLabel;
+    LabelT3: TLabel;
+    ShapeT2: TShape;
+    ShapeT3: TShape;
+    ShapeBG: TShape;
     procedure ColorSelectBGChange(Sender: TObject);
     procedure ColorSelectPanelChange(Sender: TObject);
     procedure ColorSelectFontChange(Sender: TObject);
@@ -51,7 +52,7 @@ implementation
 
 procedure TFormTest.ColorSelectBGChange(Sender: TObject);
 begin
-  Color := ColorSelectBG.ColorNormal;
+  ShapeBG.Brush.Color := ColorSelectBG.ColorNormal;
 end;
 
 procedure TFormTest.ColorSelectBGClick(Sender: TObject);
@@ -85,9 +86,9 @@ end;
 
 procedure TFormTest.ColorSelectPanelChange(Sender: TObject);
 begin
-  PanelT1.Color := ColorSelectPanel.ColorNormal;
-  PanelT2.Color := ColorSelectPanel.ColorNormal;
-  PanelT3.Color := ColorSelectPanel.ColorNormal;
+  ShapeT1.Brush.Color := ColorSelectPanel.ColorNormal;
+  ShapeT2.Brush.Color := ColorSelectPanel.ColorNormal;
+  ShapeT3.Brush.Color := ColorSelectPanel.ColorNormal;
 end;
 
 procedure TFormTest.ColorSelectPanelClick(Sender: TObject);
