@@ -1,10 +1,10 @@
-object FormMain: TFormMain
+﻿object FormMain: TFormMain
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = #1056#1072#1073#1086#1090#1072' '#1089' '#1094#1074#1077#1090#1086#1084
-  ClientHeight = 553
+  ClientHeight = 546
   ClientWidth = 868
   Color = 16250871
   DoubleBuffered = True
@@ -88,12 +88,14 @@ object FormMain: TFormMain
       FontDown.Height = -13
       FontDown.Name = 'Tahoma'
       FontDown.Style = []
+      GroupItemKind = giLeft
       IgnorBounds = True
       ImageIndentLeft = 2
       ImageIndex = 2
       Images = ImageList16
       OnClick = ButtonFlatMagnUpClick
-      RoundRectParam = 0
+      RoundRectParam = 4
+      Shape = stRoundRect
       ShowFocusRect = False
       TabOrder = 2
       TabStop = True
@@ -128,12 +130,14 @@ object FormMain: TFormMain
       FontDown.Height = -13
       FontDown.Name = 'Tahoma'
       FontDown.Style = []
+      GroupItemKind = giRight
       IgnorBounds = True
       ImageIndentLeft = 2
       ImageIndex = 1
       Images = ImageList16
       OnClick = ButtonFlatMagnDownClick
-      RoundRectParam = 0
+      RoundRectParam = 4
+      Shape = stRoundRect
       ShowFocusRect = False
       TabOrder = 3
       TabStop = True
@@ -201,92 +205,57 @@ object FormMain: TFormMain
     ShowSimpleBorder = True
     CaptionHeight = 26
     object ShapeDL: TShape
-      Left = 522
+      Left = 564
       Top = 27
-      Width = 100
+      Width = 58
       Height = 58
+      Cursor = crHandPoint
+      Hint = #1053#1072#1078#1084#1080#1090#1077' '#1076#1074#1072' '#1088#1072#1079#1072', '#1095#1090#1086#1073#1099' '#1087#1088#1080#1084#1077#1085#1080#1090#1100' '#1094#1074#1077#1090
       Pen.Color = clWhite
       OnMouseDown = ShapeDLMouseDown
-    end
-    object ButtonFlatDoGrey: TButtonFlat
-      AlignWithMargins = True
-      Left = 406
-      Top = 27
-      Width = 116
-      Height = 58
-      Hint = #1054#1073#1077#1089#1094#1074#1077#1090#1080#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = #1054#1073#1077#1089#1094#1074#1077#1090#1080#1090#1100
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clBlack
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clBlack
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 0
-      OnClick = ButtonFlatDoGreyClick
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 1
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
+      OnMouseEnter = ShapeDLMouseEnter
+      OnMouseLeave = ShapeDLMouseLeave
     end
     object PanelDoGray: TPanel
       Left = 6
       Top = 31
-      Width = 397
+      Width = 531
       Height = 50
       BevelOuter = bvNone
-      TabOrder = 2
+      TabOrder = 1
+      StyleElements = [seFont, seBorder]
       object Label1: TLabel
-        Left = 347
+        Left = 475
         Top = 1
         Width = 43
         Height = 13
         Caption = #1057#1074#1077#1090#1083#1077#1077
       end
       object Label2: TLabel
-        Left = 12
+        Left = 11
         Top = 1
         Width = 36
         Height = 13
         Caption = #1058#1077#1084#1085#1077#1077
       end
       object TrackBarL: TTrackBar
+        AlignWithMargins = True
         Left = 3
-        Top = 17
-        Width = 394
-        Height = 23
+        Top = 20
+        Width = 525
+        Height = 27
+        Margins.Top = 20
+        Align = alClient
+        BorderWidth = 1
         Max = 200
+        PageSize = 1
         Position = 100
+        PositionToolTip = ptTop
         ShowSelRange = False
         TabOrder = 0
         TickMarks = tmBoth
         TickStyle = tsNone
+        StyleElements = [seFont, seClient]
         OnChange = TrackBarLChange
       end
     end
@@ -327,7 +296,58 @@ object FormMain: TFormMain
       ImageIndex = 8
       Images = ImageList16
       OnClick = ButtonFlatOpenLDClick
-      RoundRectParam = 0
+      RoundRectParam = 4
+      Shape = stRoundRect
+      ShowFocusRect = False
+      TabOrder = 2
+      TabStop = True
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+      SubTextFont.Charset = DEFAULT_CHARSET
+      SubTextFont.Color = clWhite
+      SubTextFont.Height = -13
+      SubTextFont.Name = 'Tahoma'
+      SubTextFont.Style = []
+      ShowCaption = False
+    end
+    object ButtonFlatGrayscale: TButtonFlat
+      AlignWithMargins = True
+      Left = 540
+      Top = 48
+      Width = 20
+      Height = 19
+      Hint = #1054#1073#1077#1089#1094#1074#1077#1090#1080#1090#1100
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 1
+      Margins.Bottom = 1
+      Align = alCustom
+      Caption = ''
+      ColorNormal = clWhite
+      ColorOver = 14540253
+      ColorPressed = 9079434
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 4737096
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      FontOver.Charset = DEFAULT_CHARSET
+      FontOver.Color = clWhite
+      FontOver.Height = -13
+      FontOver.Name = 'Tahoma'
+      FontOver.Style = []
+      FontDown.Charset = DEFAULT_CHARSET
+      FontDown.Color = clWhite
+      FontDown.Height = -13
+      FontDown.Name = 'Tahoma'
+      FontDown.Style = []
+      IgnorBounds = True
+      ImageIndentLeft = 2
+      ImageIndentRight = 3
+      ImageIndex = 10
+      Images = ImageList16
+      OnClick = ButtonFlatDoGreyClick
+      RoundRectParam = 4
+      Shape = stRoundRect
       ShowFocusRect = False
       TabOrder = 3
       TabStop = True
@@ -337,6 +357,57 @@ object FormMain: TFormMain
       SubTextFont.Height = -13
       SubTextFont.Name = 'Tahoma'
       SubTextFont.Style = []
+      ShowCaption = False
+    end
+    object ButtonFlatInvertColor: TButtonFlat
+      AlignWithMargins = True
+      Left = 540
+      Top = 28
+      Width = 20
+      Height = 19
+      Hint = #1048#1085#1074#1077#1088#1090#1080#1088#1086#1074#1072#1090#1100
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 1
+      Margins.Bottom = 1
+      Align = alCustom
+      Caption = ''
+      ColorNormal = clWhite
+      ColorOver = 14540253
+      ColorPressed = 9079434
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 4737096
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      FontOver.Charset = DEFAULT_CHARSET
+      FontOver.Color = clWhite
+      FontOver.Height = -13
+      FontOver.Name = 'Tahoma'
+      FontOver.Style = []
+      FontDown.Charset = DEFAULT_CHARSET
+      FontDown.Color = clWhite
+      FontDown.Height = -13
+      FontDown.Name = 'Tahoma'
+      FontDown.Style = []
+      IgnorBounds = True
+      ImageIndentLeft = 2
+      ImageIndentRight = 3
+      ImageIndex = 9
+      Images = ImageList16
+      OnClick = ButtonFlatInvertColorClick
+      RoundRectParam = 4
+      Shape = stRoundRect
+      ShowFocusRect = False
+      TabOrder = 4
+      TabStop = True
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+      SubTextFont.Charset = DEFAULT_CHARSET
+      SubTextFont.Color = clWhite
+      SubTextFont.Height = -13
+      SubTextFont.Name = 'Tahoma'
+      SubTextFont.Style = []
+      ShowCaption = False
     end
   end
   object PanelCollapsedPallete: TPanelCollapsed
@@ -372,7 +443,7 @@ object FormMain: TFormMain
       Margins.Top = 22
       Margins.Right = 1
       Margins.Bottom = 1
-      ActivePage = TabSheetP2
+      ActivePage = TabSheetStd
       Align = alClient
       Style = tsButtons
       TabOrder = 1
@@ -383,18 +454,20 @@ object FormMain: TFormMain
           AlignWithMargins = True
           Left = 0
           Top = 0
-          Width = 395
-          Height = 293
+          Width = 397
+          Height = 294
           Cursor = crCross
           Margins.Left = 0
           Margins.Top = 0
-          Margins.Right = 2
-          Margins.Bottom = 1
+          Margins.Right = 0
+          Margins.Bottom = 0
           OnPaint = DrawPanelSpectrPaint
           DefaultPaint = False
           OnMouseDown = DrawPanelSpectrMouseDown
+          OnMouseMove = DrawPanelSpectrMouseMove
           OnMouseUp = DrawPanelSpectrMouseUp
           Align = alClient
+          BevelOuter = bvNone
           ParentBackground = False
           TabOrder = 0
         end
@@ -3118,19 +3191,21 @@ object FormMain: TFormMain
           AlignWithMargins = True
           Left = 0
           Top = 0
-          Width = 395
-          Height = 293
+          Width = 397
+          Height = 294
           Margins.Left = 0
           Margins.Top = 0
-          Margins.Right = 2
-          Margins.Bottom = 1
+          Margins.Right = 0
+          Margins.Bottom = 0
           SelectedColor = 460777
           HintFormat = 'H: %h S: %hslS'#13'Hex: %hex'
           Align = alClient
           ShowHint = False
           ParentShowHint = False
           TabOrder = 0
+          OnMouseMove = HSColorPicker1MouseMove
           OnMouseUp = HSColorPicker1MouseUp
+          MarkerStyle = msCircle
         end
       end
       object TabSheetHSL: TTabSheet
@@ -3170,27 +3245,14 @@ object FormMain: TFormMain
       object TabSheetSLH: TTabSheet
         Caption = 'SLH'
         TabVisible = False
-        object Label21: TLabel
-          Left = 336
-          Top = -1
-          Width = 53
-          Height = 13
-          Caption = 'Web colors'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsStrikeOut]
-          ParentFont = False
-        end
         object SLHColorPicker1: TSLHColorPicker
           AlignWithMargins = True
           Left = 0
-          Top = 11
-          Width = 399
-          Height = 297
+          Top = -8
+          Width = 397
+          Height = 310
           Margins.Left = 0
-          Margins.Top = 10
+          Margins.Top = 0
           Margins.Right = 0
           Margins.Bottom = 0
           HPickerHintFormat = #1058#1086#1085': %h'
@@ -3203,8 +3265,8 @@ object FormMain: TFormMain
           ParentColor = False
           OnChange = SLHColorPicker1Change
           DesignSize = (
-            399
-            297)
+            397
+            310)
         end
       end
       object TabSheetHSV: TTabSheet
@@ -3227,7 +3289,9 @@ object FormMain: TFormMain
           TabOrder = 0
           Color = clWhite
           ParentColor = False
+          OnMouseMove = HSVColorPicker1MouseMove
           OnMouseUp = HSVColorPicker1MouseUp
+          MarkerStyle = msCircle
           OnChange = HSVColorPicker1Change
         end
         object TrackBarHSVV: TTrackBar
@@ -3741,7 +3805,8 @@ object FormMain: TFormMain
       ImageIndex = 4
       Images = ImageList16
       OnClick = ButtonFlatRGBCopyClick
-      RoundRectParam = 0
+      RoundRectParam = 4
+      Shape = stRoundRect
       ShowFocusRect = False
       TabOrder = 5
       TabStop = True
@@ -4515,7 +4580,8 @@ object FormMain: TFormMain
       ImageIndex = 4
       Images = ImageList16
       OnClick = ButtonFlatCMYKCopyClick
-      RoundRectParam = 0
+      RoundRectParam = 4
+      Shape = stRoundRect
       ShowFocusRect = False
       TabOrder = 5
       TabStop = True
@@ -4677,7 +4743,8 @@ object FormMain: TFormMain
       ImageIndex = 4
       Images = ImageList16
       OnClick = ButtonFlatHSVCopyClick
-      RoundRectParam = 0
+      RoundRectParam = 4
+      Shape = stRoundRect
       ShowFocusRect = False
       TabOrder = 4
       TabStop = True
@@ -4807,7 +4874,6 @@ object FormMain: TFormMain
       SubTextFont.Height = -13
       SubTextFont.Name = 'Tahoma'
       SubTextFont.Style = []
-      ExplicitTop = 30
     end
     object ButtonFlatOnTop: TButtonFlat
       AlignWithMargins = True
@@ -4934,7 +5000,8 @@ object FormMain: TFormMain
       ImageIndex = 3
       Images = ImageList16
       OnClick = ButtonFlatThemeClick
-      RoundRectParam = 0
+      RoundRectParam = 4
+      Shape = stRoundRect
       ShowFocusRect = False
       TabOrder = 5
       TabStop = True
@@ -4947,12 +5014,13 @@ object FormMain: TFormMain
     end
   end
   object PanelCollapsedMem: TPanelCollapsed
-    Left = 8
-    Top = 459
-    Width = 852
+    Left = 0
+    Top = 460
+    Width = 868
     Height = 86
     Caption = ' '#1056#1072#1073#1086#1095#1072#1103' '#1103#1095#1077#1081#1082#1072
     DefaultPaint = False
+    Align = alBottom
     Alignment = taLeftJustify
     BevelOuter = bvNone
     ParentBackground = False
@@ -4969,1294 +5037,1747 @@ object FormMain: TFormMain
     FontCaption.Style = [fsBold]
     ShowSimpleBorder = True
     CaptionHeight = 26
-    object Shape1: TLabelEx
-      Tag = 1
-      AlignWithMargins = True
-      Left = 2
-      Top = 28
-      Width = 53
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 2
-      Margins.Top = 1
-      Margins.Right = 0
-      Align = alLeft
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitLeft = 0
-      ExplicitTop = 27
-      ExplicitHeight = 59
-    end
-    object Shape2: TLabelEx
-      Tag = 2
-      AlignWithMargins = True
-      Left = 55
-      Top = 28
-      Width = 53
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 0
-      Margins.Top = 1
-      Margins.Right = 0
-      Align = alLeft
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitLeft = 53
-      ExplicitTop = 27
-      ExplicitHeight = 59
-    end
-    object Shape4: TLabelEx
-      Tag = 4
-      AlignWithMargins = True
-      Left = 161
-      Top = 28
-      Width = 53
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 0
-      Margins.Top = 1
-      Margins.Right = 0
-      Align = alLeft
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitLeft = 106
-      ExplicitTop = 27
-      ExplicitHeight = 59
-    end
-    object Shape3: TLabelEx
-      Tag = 3
-      AlignWithMargins = True
-      Left = 108
-      Top = 28
-      Width = 53
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 0
-      Margins.Top = 1
-      Margins.Right = 0
-      Align = alLeft
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitTop = 27
-      ExplicitHeight = 58
-    end
-    object Shape7: TLabelEx
-      Tag = 7
-      AlignWithMargins = True
-      Left = 320
-      Top = 28
-      Width = 53
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 0
-      Margins.Top = 1
-      Margins.Right = 0
-      Align = alLeft
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitLeft = 411
-      ExplicitTop = 35
-      ExplicitHeight = 58
-    end
-    object Shape8: TLabelEx
-      Tag = 8
-      AlignWithMargins = True
-      Left = 373
-      Top = 28
-      Width = 53
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 0
-      Margins.Top = 1
-      Margins.Right = 0
-      Align = alLeft
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitLeft = 426
-      ExplicitTop = 35
-      ExplicitHeight = 58
-    end
-    object Shape5: TLabelEx
-      Tag = 5
-      AlignWithMargins = True
-      Left = 214
-      Top = 28
-      Width = 53
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 0
-      Margins.Top = 1
-      Margins.Right = 0
-      Align = alLeft
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitTop = 27
-      ExplicitHeight = 58
-    end
-    object Shape6: TLabelEx
-      Tag = 6
-      AlignWithMargins = True
-      Left = 267
-      Top = 28
-      Width = 53
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 0
-      Margins.Top = 1
-      Margins.Right = 0
-      Align = alLeft
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitLeft = 369
-      ExplicitTop = 27
-      ExplicitHeight = 59
-    end
-    object Shape13: TLabelEx
-      Tag = 13
-      AlignWithMargins = True
-      Left = 638
-      Top = 28
-      Width = 53
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 0
-      Margins.Top = 1
-      Margins.Right = 0
-      Align = alLeft
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitLeft = 417
-      ExplicitTop = 27
-      ExplicitHeight = 59
-    end
-    object Shape14: TLabelEx
-      Tag = 14
-      AlignWithMargins = True
-      Left = 691
-      Top = 28
-      Width = 53
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 0
-      Margins.Top = 1
-      Margins.Right = 0
-      Align = alLeft
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitLeft = 470
-      ExplicitTop = 27
-      ExplicitHeight = 59
-    end
-    object Shape16: TLabelEx
-      Tag = 16
-      AlignWithMargins = True
-      Left = 797
-      Top = 28
-      Width = 52
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 0
-      Margins.Top = 1
+    ExplicitLeft = -1
+    ExplicitTop = 459
+    ExplicitWidth = 870
+    object GridPanel1: TGridPanel
+      Left = 0
+      Top = 27
+      Width = 868
+      Height = 59
       Align = alClient
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitLeft = 681
-      ExplicitTop = 27
-      ExplicitWidth = 53
-      ExplicitHeight = 59
-    end
-    object Shape15: TLabelEx
-      Tag = 15
-      AlignWithMargins = True
-      Left = 744
-      Top = 28
-      Width = 53
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 0
-      Margins.Top = 1
-      Margins.Right = 0
-      Align = alLeft
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitTop = 27
-      ExplicitHeight = 58
-    end
-    object Shape9: TLabelEx
-      Tag = 9
-      AlignWithMargins = True
-      Left = 426
-      Top = 28
-      Width = 53
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 0
-      Margins.Top = 1
-      Margins.Right = 0
-      Align = alLeft
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitTop = 27
-      ExplicitHeight = 58
-    end
-    object Shape10: TLabelEx
-      Tag = 10
-      AlignWithMargins = True
-      Left = 479
-      Top = 28
-      Width = 53
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 0
-      Margins.Top = 1
-      Margins.Right = 0
-      Align = alLeft
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitTop = 27
-      ExplicitHeight = 58
-    end
-    object Shape11: TLabelEx
-      Tag = 11
-      AlignWithMargins = True
-      Left = 532
-      Top = 28
-      Width = 53
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 0
-      Margins.Top = 1
-      Margins.Right = 0
-      Align = alLeft
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitTop = 27
-      ExplicitHeight = 58
-    end
-    object Shape12: TLabelEx
-      Tag = 12
-      AlignWithMargins = True
-      Left = 585
-      Top = 28
-      Width = 53
-      Height = 55
-      Cursor = crHandPoint
-      Margins.Left = 0
-      Margins.Top = 1
-      Margins.Right = 0
-      Align = alLeft
-      Brush.Color = 10053222
-      Pen.Color = clWhite
-      OnMouseDown = Shape1MouseDown
-      OnMouseEnter = Shape1MouseEnter
-      OnMouseLeave = Shape1MouseLeave
-      OnMouseUp = Shape1MouseUp
-      Caption = ''
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
-      IgnorBounds = True
-      EllipseRectVertical = False
-      ExplicitTop = 27
-      ExplicitHeight = 58
-    end
-    object ButtonFlatLock1: TButtonFlat
-      AlignWithMargins = True
-      Left = 34
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 6
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
+      BevelOuter = bvNone
+      ColumnCollection = <
+        item
+          Value = 50.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          SizeStyle = ssAbsolute
+          Value = 54.000000000000000000
+        end
+        item
+          Value = 50.000000000000000000
+        end>
+      ControlCollection = <
+        item
+          Column = 1
+          Control = PanelC1
+          Row = 0
+        end
+        item
+          Column = 2
+          Control = PanelC2
+          Row = 0
+        end
+        item
+          Column = 3
+          Control = PanelC3
+          Row = 0
+        end
+        item
+          Column = 4
+          Control = PanelC4
+          Row = 0
+        end
+        item
+          Column = 5
+          Control = PanelС5
+          Row = 0
+        end
+        item
+          Column = 6
+          Control = PanelС6
+          Row = 0
+        end
+        item
+          Column = 7
+          Control = PanelС7
+          Row = 0
+        end
+        item
+          Column = 8
+          Control = PanelС8
+          Row = 0
+        end
+        item
+          Column = 9
+          Control = PanelС9
+          Row = 0
+        end
+        item
+          Column = 10
+          Control = PanelС10
+          Row = 0
+        end
+        item
+          Column = 11
+          Control = PanelС11
+          Row = 0
+        end
+        item
+          Column = 12
+          Control = PanelС12
+          Row = 0
+        end
+        item
+          Column = 13
+          Control = PanelС13
+          Row = 0
+        end
+        item
+          Column = 14
+          Control = PanelС14
+          Row = 0
+        end
+        item
+          Column = 15
+          Control = PanelС15
+          Row = 0
+        end
+        item
+          Column = 16
+          Control = PanelС16
+          Row = 0
+        end>
+      ParentBackground = False
+      RowCollection = <
+        item
+          Value = 100.000000000000000000
+        end
+        item
+          SizeStyle = ssAuto
+        end>
       TabOrder = 1
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
-    end
-    object ButtonFlatLock2: TButtonFlat
-      AlignWithMargins = True
-      Left = 87
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 7
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 2
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
-    end
-    object ButtonFlatLock3: TButtonFlat
-      AlignWithMargins = True
-      Left = 140
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 6
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 3
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
-    end
-    object ButtonFlatLock4: TButtonFlat
-      AlignWithMargins = True
-      Left = 193
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 7
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 4
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
-    end
-    object ButtonFlatLock8: TButtonFlat
-      AlignWithMargins = True
-      Left = 405
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 7
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 5
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
-    end
-    object ButtonFlatLock7: TButtonFlat
-      AlignWithMargins = True
-      Left = 352
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 6
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 6
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
-    end
-    object ButtonFlatLock6: TButtonFlat
-      AlignWithMargins = True
-      Left = 299
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 7
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 7
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
-    end
-    object ButtonFlatLock5: TButtonFlat
-      AlignWithMargins = True
-      Left = 246
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 6
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 8
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
-    end
-    object ButtonFlatLock12: TButtonFlat
-      AlignWithMargins = True
-      Left = 617
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 7
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 9
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
-    end
-    object ButtonFlatLock11: TButtonFlat
-      AlignWithMargins = True
-      Left = 564
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 6
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 10
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
-    end
-    object ButtonFlatLock10: TButtonFlat
-      AlignWithMargins = True
-      Left = 511
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 7
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 11
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
-    end
-    object ButtonFlatLock9: TButtonFlat
-      AlignWithMargins = True
-      Left = 458
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 6
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 12
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
-    end
-    object ButtonFlatLock16: TButtonFlat
-      AlignWithMargins = True
-      Left = 829
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 7
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 13
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
-    end
-    object ButtonFlatLock15: TButtonFlat
-      AlignWithMargins = True
-      Left = 776
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 6
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 14
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
-    end
-    object ButtonFlatLock14: TButtonFlat
-      AlignWithMargins = True
-      Left = 723
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 7
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 15
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
-    end
-    object ButtonFlatLock13: TButtonFlat
-      AlignWithMargins = True
-      Left = 670
-      Top = 29
-      Width = 20
-      Height = 19
-      Hint = #1050#1086#1087#1080#1088#1086#1074#1072#1090#1100
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      BorderColor = clGray
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 6
-      Images = ImageList16
-      OnClick = ButtonFlatLock1Click
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 16
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-      ShowCaption = False
+      ExplicitWidth = 870
+      object PanelC1: TPanel
+        Left = 2
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 0
+        StyleElements = [seFont, seClient]
+        ExplicitLeft = 3
+        object Shape1: TLabelEx
+          Tag = 1
+          AlignWithMargins = True
+          Left = 0
+          Top = 0
+          Width = 54
+          Height = 59
+          Cursor = crHandPoint
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock1: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 20
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 6
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
+      object PanelC2: TPanel
+        Left = 56
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 1
+        ExplicitLeft = 57
+        object Shape2: TLabelEx
+          Tag = 2
+          AlignWithMargins = True
+          Left = 7
+          Top = 7
+          Width = 40
+          Height = 45
+          Cursor = crHandPoint
+          Margins.Left = 7
+          Margins.Top = 7
+          Margins.Right = 7
+          Margins.Bottom = 7
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock2: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 19
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 7
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
+      object PanelC3: TPanel
+        Left = 110
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 2
+        ExplicitLeft = 111
+        object Shape3: TLabelEx
+          Tag = 3
+          AlignWithMargins = True
+          Left = 7
+          Top = 7
+          Width = 40
+          Height = 45
+          Cursor = crHandPoint
+          Margins.Left = 7
+          Margins.Top = 7
+          Margins.Right = 7
+          Margins.Bottom = 7
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock3: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 19
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 6
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
+      object PanelC4: TPanel
+        Left = 164
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 3
+        ExplicitLeft = 165
+        object Shape4: TLabelEx
+          Tag = 4
+          AlignWithMargins = True
+          Left = 7
+          Top = 7
+          Width = 40
+          Height = 45
+          Cursor = crHandPoint
+          Margins.Left = 7
+          Margins.Top = 7
+          Margins.Right = 7
+          Margins.Bottom = 7
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock4: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 19
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 7
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
+      object PanelС5: TPanel
+        Left = 218
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 4
+        ExplicitLeft = 219
+        object Shape5: TLabelEx
+          Tag = 5
+          AlignWithMargins = True
+          Left = 7
+          Top = 7
+          Width = 40
+          Height = 45
+          Cursor = crHandPoint
+          Margins.Left = 7
+          Margins.Top = 7
+          Margins.Right = 7
+          Margins.Bottom = 7
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock5: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 19
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 6
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
+      object PanelС6: TPanel
+        Left = 272
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 5
+        ExplicitLeft = 273
+        object Shape6: TLabelEx
+          Tag = 6
+          AlignWithMargins = True
+          Left = 7
+          Top = 7
+          Width = 40
+          Height = 45
+          Cursor = crHandPoint
+          Margins.Left = 7
+          Margins.Top = 7
+          Margins.Right = 7
+          Margins.Bottom = 7
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock6: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 19
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 7
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
+      object PanelС7: TPanel
+        Left = 326
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 6
+        ExplicitLeft = 327
+        object Shape7: TLabelEx
+          Tag = 7
+          AlignWithMargins = True
+          Left = 7
+          Top = 7
+          Width = 40
+          Height = 45
+          Cursor = crHandPoint
+          Margins.Left = 7
+          Margins.Top = 7
+          Margins.Right = 7
+          Margins.Bottom = 7
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock7: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 19
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 6
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
+      object PanelС8: TPanel
+        Left = 380
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 7
+        ExplicitLeft = 381
+        object Shape8: TLabelEx
+          Tag = 8
+          AlignWithMargins = True
+          Left = 7
+          Top = 7
+          Width = 40
+          Height = 45
+          Cursor = crHandPoint
+          Margins.Left = 7
+          Margins.Top = 7
+          Margins.Right = 7
+          Margins.Bottom = 7
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock8: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 19
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 7
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
+      object PanelС9: TPanel
+        Left = 434
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 8
+        ExplicitLeft = 435
+        object Shape9: TLabelEx
+          Tag = 9
+          AlignWithMargins = True
+          Left = 7
+          Top = 7
+          Width = 40
+          Height = 45
+          Cursor = crHandPoint
+          Margins.Left = 7
+          Margins.Top = 7
+          Margins.Right = 7
+          Margins.Bottom = 7
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock9: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 19
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 6
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
+      object PanelС10: TPanel
+        Left = 488
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 9
+        ExplicitLeft = 489
+        object Shape10: TLabelEx
+          Tag = 10
+          AlignWithMargins = True
+          Left = 7
+          Top = 7
+          Width = 40
+          Height = 45
+          Cursor = crHandPoint
+          Margins.Left = 7
+          Margins.Top = 7
+          Margins.Right = 7
+          Margins.Bottom = 7
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock10: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 19
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 7
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
+      object PanelС11: TPanel
+        Left = 542
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 10
+        ExplicitLeft = 543
+        object Shape11: TLabelEx
+          Tag = 11
+          AlignWithMargins = True
+          Left = 7
+          Top = 7
+          Width = 40
+          Height = 45
+          Cursor = crHandPoint
+          Margins.Left = 7
+          Margins.Top = 7
+          Margins.Right = 7
+          Margins.Bottom = 7
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock11: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 19
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 6
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
+      object PanelС12: TPanel
+        Left = 596
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 11
+        ExplicitLeft = 597
+        object Shape12: TLabelEx
+          Tag = 12
+          AlignWithMargins = True
+          Left = 7
+          Top = 7
+          Width = 40
+          Height = 45
+          Cursor = crHandPoint
+          Margins.Left = 7
+          Margins.Top = 7
+          Margins.Right = 7
+          Margins.Bottom = 7
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock12: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 19
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 7
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
+      object PanelС13: TPanel
+        Left = 650
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 12
+        ExplicitLeft = 651
+        object Shape13: TLabelEx
+          Tag = 13
+          AlignWithMargins = True
+          Left = 7
+          Top = 7
+          Width = 40
+          Height = 45
+          Cursor = crHandPoint
+          Margins.Left = 7
+          Margins.Top = 7
+          Margins.Right = 7
+          Margins.Bottom = 7
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock13: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 19
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 6
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
+      object PanelС14: TPanel
+        Left = 704
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 13
+        ExplicitLeft = 705
+        object Shape14: TLabelEx
+          Tag = 14
+          AlignWithMargins = True
+          Left = 7
+          Top = 7
+          Width = 40
+          Height = 45
+          Cursor = crHandPoint
+          Margins.Left = 7
+          Margins.Top = 7
+          Margins.Right = 7
+          Margins.Bottom = 7
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock14: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 19
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 7
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
+      object PanelС15: TPanel
+        Left = 758
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 14
+        ExplicitLeft = 759
+        object Shape15: TLabelEx
+          Tag = 15
+          AlignWithMargins = True
+          Left = 7
+          Top = 7
+          Width = 40
+          Height = 45
+          Cursor = crHandPoint
+          Margins.Left = 7
+          Margins.Top = 7
+          Margins.Right = 7
+          Margins.Bottom = 7
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock15: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 19
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 6
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
+      object PanelС16: TPanel
+        Left = 812
+        Top = 0
+        Width = 54
+        Height = 59
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        ShowCaption = False
+        TabOrder = 15
+        ExplicitLeft = 813
+        object Shape16: TLabelEx
+          Tag = 16
+          AlignWithMargins = True
+          Left = 7
+          Top = 7
+          Width = 40
+          Height = 45
+          Cursor = crHandPoint
+          Margins.Left = 7
+          Margins.Top = 7
+          Margins.Right = 7
+          Margins.Bottom = 7
+          Align = alClient
+          Brush.Color = 10053222
+          Pen.Color = clWhite
+          Pen.Width = 2
+          Shape = stCircle
+          OnMouseDown = Shape1MouseDown
+          OnMouseEnter = Shape1MouseEnter
+          OnMouseLeave = Shape1MouseLeave
+          OnMouseUp = Shape1MouseUp
+          Caption = ''
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter, tfWordBreak, tfWordEllipsis]
+          IgnorBounds = True
+          EllipseRectVertical = False
+          ExplicitLeft = 16
+          ExplicitTop = 16
+          ExplicitWidth = 33
+          ExplicitHeight = 41
+        end
+        object ButtonFlatLock16: TButtonFlat
+          AlignWithMargins = True
+          Left = 34
+          Top = 0
+          Width = 20
+          Height = 19
+          Hint = #1047#1072#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100'/'#1088#1072#1079#1073#1083#1086#1082#1080#1088#1086#1074#1072#1090#1100' '#1103#1095#1077#1081#1082#1091
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 1
+          Margins.Bottom = 1
+          Align = alCustom
+          Caption = ''
+          ColorNormal = clWhite
+          ColorOver = 14540253
+          ColorPressed = 9079434
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 4737096
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Flat = False
+          BorderColor = clGray
+          FontOver.Charset = DEFAULT_CHARSET
+          FontOver.Color = clWhite
+          FontOver.Height = -13
+          FontOver.Name = 'Tahoma'
+          FontOver.Style = []
+          FontDown.Charset = DEFAULT_CHARSET
+          FontDown.Color = clWhite
+          FontDown.Height = -13
+          FontDown.Name = 'Tahoma'
+          FontDown.Style = []
+          IgnorBounds = True
+          ImageIndentLeft = 2
+          ImageIndentRight = 3
+          ImageIndex = 7
+          Images = ImageList16
+          OnClick = ButtonFlatLock1Click
+          RoundRectParam = 0
+          ShowFocusRect = False
+          TabOrder = 0
+          TabStop = True
+          TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+          SubTextFont.Charset = DEFAULT_CHARSET
+          SubTextFont.Color = clWhite
+          SubTextFont.Height = -13
+          SubTextFont.Name = 'Tahoma'
+          SubTextFont.Style = []
+          ShowCaption = False
+        end
+      end
     end
   end
   object PanelWait: TPanel
@@ -8704,7 +9225,7 @@ object FormMain: TFormMain
     Left = 342
     Top = 498
     Bitmap = {
-      494C010109001800040010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01010B001800040010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8716,115 +9237,115 @@ object FormMain: TFormMain
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000000C0C0C211D1D1D4C1515153800000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000090909182020
+      2054212121562121215621212156212121562121215621212156212121562121
+      2156212121561010102B00000000000000000000000000000000090909182020
+      2054212121562121215621212156212121562121215621212156212121562121
+      2156212121561010102B00000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000121212314A4A4AC1636363FF636363FF626262FD08080819000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000003585858E26363
+      63FF636363FF636363FF636363FF636363FF636363FF636363FF636363FF6363
+      63FF636363FF616161FA1010102B000000000000000000000003585858E26363
+      63FF636363FF636363FF636363FF636363FF636363FF636363FF636363FF6363
+      63FF636363FF616161FA1010102B000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000001D1D
       1D4B606060F6636363FF636363FF636363FF535353D600000003000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000007070716636363FF4747
+      47B80404040F0303030C0303030C0303030C575757E0636363FF636363FF6363
+      63FF3B3B3B9A636363FF21212156000000000000000007070716636363FF6363
+      63FF595959E7484848BA626262FB545454D94D4D4DC7636363FF4D4D4DC75353
+      53D6636363FF636363FF21212156000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000000000000000000000000000000000000C0C0C215E5E
       5EF2636363FF636363FF636363FF636363FF4D4D4DC700000003000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000007070716636363FF6363
+      63FF38383891000000000000000000000000565656DF636363FF636363FF4242
+      42AB0404040F636363FF21212156000000000000000007070716636363FF6363
+      63FF414141A8000000005D5D5DF12B2B2B7112121231636363FF121212322727
+      2768636363FF636363FF21212156000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000000000000000000000000000000000003D3D3D9F6363
       63FF636363FF636363FF636363FF636363FF636363FF5B5B5BEB565656DF4E4E
-      4ECB2C2C2C730101010200000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      4ECB2C2C2C730101010200000000000000000000000007070716636363FF6363
+      63FF636363FF2B2B2B720000000000000000565656DF636363FF4C4C4CC40303
+      03080303030C636363FF21212156000000000000000007070716636363FF5555
+      55DC515151D3565656DF4F4F4FCE535353D7555555DB505050CD555555DB5353
+      53D7505050CF636363FF21212156000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000000000000000000000000000000000005C5C5CEE6363
       63FF636363FF636363FF636363FF636363FF636363FF636363FF636363FF6363
-      63FF636363FF3C3C3C9D00000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      63FF636363FF3C3C3C9D00000000000000000000000007070716636363FF6363
+      63FF636363FF626262FD2020205400000000565656DF545454D9060606130000
+      00000303030C636363FF21212156000000000000000007070716636363FF1D1D
+      1D4C20202056636363FF0404040E3636368D505050CD00000000505050CD3A3A
+      3A960303030C636363FF21212156000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000006060612636363FF6262
       62FD5C5C5CEE636363FF636363FF636363FF636363FF636363FF636363FF5E5E
-      5EF3606060F8626262FE0F0F0F28000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      5EF3606060F8626262FE0F0F0F28000000000000000007070716636363FF6363
+      63FF636363FF636363FF606060F61616163B4D4D4DC90D0D0D22000000000000
+      00000303030C636363FF21212156000000000000000007070716636363FF5555
+      55DC3A3A3A98121212314C4C4CC42E2E2E771E1E1E50505050CD1E1E1E502B2B
+      2B71505050CF636363FF21212156000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000000000000000000000000000000404040D636363FF2C2C
       2C74000000034B4B4BC4636363FF636363FF636363FF636363FF5E5E5EF30606
-      061313131334636363FF1F1F1F51000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      061313131334636363FF1F1F1F51000000000000000007070716636363FF6363
+      63FF636363FF636363FF636363FF5B5B5BEC1212123300000000000000000000
+      00000303030C636363FF21212156000000000000000007070716636363FF4343
+      43AF333333842B2B2B713535358C3030307E2E2E2E773636368D2E2E2E772F2F
+      2F7D38383893636363FF21212156000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000575757E03939
       39920B0B0B1F525252D4636363FF636363FF636363FF636363FF606060F81313
-      133422222258636363FF1717173E000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      133422222258636363FF1717173E000000000000000007070716636363FF6363
+      63FF636363FF636363FF636363FF636363FF0C0C0C2000000000000000000000
+      00000303030C636363FF21212156000000000000000007070716636363FF1D1D
+      1D4C202020525D5D5DF10404040D333333854B4B4BC2000000004B4B4BC23636
+      368E0303030C636363FF21212156000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000313131816363
       63FF636363FF5D5D5DF0434343AF616161FA636363FF4A4A4ABF555555DC6363
-      63FF636363FF5B5B5BE901010107000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      63FF636363FF5B5B5BE901010107000000000000000007070716636363FF6363
+      63FF636363FF636363FF636363FF636363FF0C0C0C2000000000000000000000
+      00000303030C636363FF21212156000000000000000007070716636363FF1D1D
+      1D4C000000000000000000000000000000000000000000000000000000000000
+      00000303030C636363FF21212156000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000000000000000000000000000000000000404040D5454
       54DA636363FF2B2B2B71000000003D3D3DA0565656DF00000000121212326363
-      63FF626262FE2323235C00000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      63FF626262FE2323235C00000000000000000000000007070716636363FF6363
+      63FF636363FF636363FF636363FF636363FF0C0C0C2000000000000000000000
+      00000303030C636363FF21212156000000000000000007070716636363FF1D1D
+      1D4C000000000000000000000000000000000000000000000000000000000000
+      00000303030C636363FF21212156000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000D0D
       0D24545454DA4D4D4DC92323235C575757E2616161FA2929296D3D3D3DA06262
-      62FB2B2B2B710000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      62FB2B2B2B710000000000000000000000000000000007070714636363FF6363
+      63FF636363FF636363FF636363FF636363FF252525631D1D1D4C1D1D1D4C1D1D
+      1D4C20202055636363FF20202054000000000000000007070714636363FF3232
+      32821D1D1D4C1D1D1D4C1D1D1D4C1D1D1D4C1D1D1D4C1D1D1D4C1D1D1D4C1D1D
+      1D4C20202055636363FF20202054000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       00000404040D31313181575757E0636363FF636363FF5C5C5CEF414141A81212
-      1231000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      1231000000000000000000000000000000000000000000000000484848BA6363
+      63FF636363FF636363FF636363FF636363FF636363FF636363FF636363FF6363
+      63FF636363FF575757E209090918000000000000000000000000484848BA6363
+      63FF636363FF636363FF636363FF636363FF636363FF636363FF636363FF6363
+      63FF636363FF575757E209090918000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000000000000404040D0606061200000001000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000707
+      0714070707160707071607070716070707160707071607070716070707160707
+      0716070707160000000300000000000000000000000000000000000000000707
+      0714070707160707071607070716070707160707071607070716070707160707
+      0716070707160000000300000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -9092,11 +9613,11 @@ object FormMain: TFormMain
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000000000000000000000424D3E000000000000003E000000
       2800000040000000300000000100010000000000800100000000000000000000
-      000000000000000000000000FFFFFF00FFFF000000000000FC7F000000000000
-      F03F000000000000E03F000000000000C03F000000000000C003000000000000
-      C00300000000000080010000000000008001000000000000C001000000000000
-      C001000000000000C243000000000000E007000000000000F00F000000000000
-      FE3F000000000000FFFF000000000000FFFFFFFFFFFFFFFFF003FFFFC003C003
+      000000000000000000000000FFFFFF00FFFFFFFFFFFF0000FC7FC003C0030000
+      F03F800180010000E03F800180010000C03F870184010000C003830180010000
+      C00381118041000080018031800100008001807180010000C001807180410000
+      C00180718FF10000C24380718FF10000E007800180010000F00FC001C0010000
+      FE3FE003E0030000FFFFFFFFFFFF0000FFFFFFFFFFFFFFFFF003FFFFC003C003
       F003FFFFC003C003F3F3FFFFCFF3CFF3C3F3FFFFCE33CE33C3F3FFFFCC33CC33
       C3F3FE3FCC33CC33C3F3FC1FCE73CE73C3F3F80FCFF3CFF3C3F3F18FC003C003
       C003FBCFC003C003C003FFFFFFCFF3CFCFFFFFFFFDCFF1CFC01FFFFFF88FF08F

@@ -141,6 +141,7 @@ object FormLD: TFormLD
         Row = 18
       end>
     ExpandStyle = emFixedSize
+    ParentBackground = False
     RowCollection = <
       item
         Value = 4.761904761904760000
@@ -207,10 +208,6 @@ object FormLD: TFormLD
       end>
     ShowCaption = False
     TabOrder = 0
-    ExplicitLeft = 80
-    ExplicitTop = 64
-    ExplicitWidth = 185
-    ExplicitHeight = 297
     object Panel1: TPanel
       AlignWithMargins = True
       Left = 2
@@ -224,10 +221,6 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape100: TShape
         Tag = 100
         Left = 63
@@ -276,7 +269,7 @@ object FormLD: TFormLD
       Left = 2
       Top = 27
       Width = 376
-      Height = 21
+      Height = 22
       Margins.Left = 2
       Margins.Top = 2
       Margins.Right = 10
@@ -284,16 +277,12 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape95: TShape
         Tag = 95
         Left = 63
         Top = 0
         Width = 313
-        Height = 21
+        Height = 22
         Cursor = crHandPoint
         Align = alClient
         Pen.Style = psClear
@@ -311,7 +300,7 @@ object FormLD: TFormLD
         Left = 3
         Top = 0
         Width = 50
-        Height = 21
+        Height = 22
         Margins.Top = 0
         Margins.Right = 10
         Margins.Bottom = 0
@@ -334,7 +323,7 @@ object FormLD: TFormLD
     object Panel3: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 52
+      Top = 53
       Width = 376
       Height = 21
       Margins.Left = 2
@@ -344,10 +333,6 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 2
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape90: TShape
         Tag = 90
         Left = 63
@@ -394,9 +379,9 @@ object FormLD: TFormLD
     object Panel4: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 77
+      Top = 78
       Width = 376
-      Height = 21
+      Height = 22
       Margins.Left = 2
       Margins.Top = 2
       Margins.Right = 10
@@ -404,16 +389,12 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 3
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape85: TShape
         Tag = 85
         Left = 63
         Top = 0
         Width = 313
-        Height = 21
+        Height = 22
         Cursor = crHandPoint
         Align = alClient
         Pen.Style = psClear
@@ -431,7 +412,7 @@ object FormLD: TFormLD
         Left = 3
         Top = 0
         Width = 50
-        Height = 21
+        Height = 22
         Margins.Top = 0
         Margins.Right = 10
         Margins.Bottom = 0
@@ -454,7 +435,7 @@ object FormLD: TFormLD
     object Panel5: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 102
+      Top = 104
       Width = 376
       Height = 21
       Margins.Left = 2
@@ -464,10 +445,6 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 4
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape80: TShape
         Tag = 80
         Left = 63
@@ -514,7 +491,7 @@ object FormLD: TFormLD
     object Panel6: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 127
+      Top = 129
       Width = 376
       Height = 21
       Margins.Left = 2
@@ -524,10 +501,6 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 5
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape75: TShape
         Tag = 75
         Left = 63
@@ -574,9 +547,9 @@ object FormLD: TFormLD
     object Panel7: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 152
+      Top = 154
       Width = 376
-      Height = 21
+      Height = 22
       Margins.Left = 2
       Margins.Top = 2
       Margins.Right = 10
@@ -584,16 +557,12 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 6
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape70: TShape
         Tag = 70
         Left = 63
         Top = 0
         Width = 313
-        Height = 21
+        Height = 22
         Cursor = crHandPoint
         Align = alClient
         Pen.Style = psClear
@@ -611,7 +580,7 @@ object FormLD: TFormLD
         Left = 3
         Top = 0
         Width = 50
-        Height = 21
+        Height = 22
         Margins.Top = 0
         Margins.Right = 10
         Margins.Bottom = 0
@@ -634,7 +603,7 @@ object FormLD: TFormLD
     object Panel8: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 177
+      Top = 180
       Width = 376
       Height = 21
       Margins.Left = 2
@@ -644,10 +613,6 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 7
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape65: TShape
         Tag = 65
         Left = 63
@@ -694,7 +659,7 @@ object FormLD: TFormLD
     object Panel9: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 202
+      Top = 205
       Width = 376
       Height = 21
       Margins.Left = 2
@@ -704,10 +669,6 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 8
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape60: TShape
         Tag = 60
         Left = 63
@@ -754,9 +715,9 @@ object FormLD: TFormLD
     object Panel10: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 227
+      Top = 230
       Width = 376
-      Height = 21
+      Height = 22
       Margins.Left = 2
       Margins.Top = 2
       Margins.Right = 10
@@ -764,16 +725,12 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 9
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape55: TShape
         Tag = 55
         Left = 63
         Top = 0
         Width = 313
-        Height = 21
+        Height = 22
         Cursor = crHandPoint
         Align = alClient
         Pen.Style = psClear
@@ -791,7 +748,7 @@ object FormLD: TFormLD
         Left = 3
         Top = 0
         Width = 50
-        Height = 21
+        Height = 22
         Margins.Top = 0
         Margins.Right = 10
         Margins.Bottom = 0
@@ -814,7 +771,7 @@ object FormLD: TFormLD
     object Panel11: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 252
+      Top = 256
       Width = 376
       Height = 21
       Margins.Left = 2
@@ -824,10 +781,6 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 10
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape50: TShape
         Tag = 50
         Left = 63
@@ -874,9 +827,9 @@ object FormLD: TFormLD
     object Panel12: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 277
+      Top = 281
       Width = 376
-      Height = 21
+      Height = 22
       Margins.Left = 2
       Margins.Top = 2
       Margins.Right = 10
@@ -884,16 +837,12 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 11
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape45: TShape
         Tag = 45
         Left = 63
         Top = 0
         Width = 313
-        Height = 21
+        Height = 22
         Cursor = crHandPoint
         Align = alClient
         Pen.Style = psClear
@@ -911,7 +860,7 @@ object FormLD: TFormLD
         Left = 3
         Top = 0
         Width = 50
-        Height = 21
+        Height = 22
         Margins.Top = 0
         Margins.Right = 10
         Margins.Bottom = 0
@@ -934,7 +883,7 @@ object FormLD: TFormLD
     object Panel13: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 302
+      Top = 307
       Width = 376
       Height = 21
       Margins.Left = 2
@@ -944,10 +893,6 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 12
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape40: TShape
         Tag = 40
         Left = 63
@@ -994,7 +939,7 @@ object FormLD: TFormLD
     object Panel14: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 327
+      Top = 332
       Width = 376
       Height = 21
       Margins.Left = 2
@@ -1004,10 +949,6 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 13
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape35: TShape
         Tag = 35
         Left = 63
@@ -1054,9 +995,9 @@ object FormLD: TFormLD
     object Panel15: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 352
+      Top = 357
       Width = 376
-      Height = 21
+      Height = 22
       Margins.Left = 2
       Margins.Top = 2
       Margins.Right = 10
@@ -1064,16 +1005,12 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 14
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape30: TShape
         Tag = 30
         Left = 63
         Top = 0
         Width = 313
-        Height = 21
+        Height = 22
         Cursor = crHandPoint
         Align = alClient
         Pen.Style = psClear
@@ -1091,7 +1028,7 @@ object FormLD: TFormLD
         Left = 3
         Top = 0
         Width = 50
-        Height = 21
+        Height = 22
         Margins.Top = 0
         Margins.Right = 10
         Margins.Bottom = 0
@@ -1114,7 +1051,7 @@ object FormLD: TFormLD
     object Panel16: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 377
+      Top = 383
       Width = 376
       Height = 21
       Margins.Left = 2
@@ -1124,10 +1061,6 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 15
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape25: TShape
         Tag = 25
         Left = 63
@@ -1174,7 +1107,7 @@ object FormLD: TFormLD
     object Panel17: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 402
+      Top = 408
       Width = 376
       Height = 21
       Margins.Left = 2
@@ -1184,10 +1117,6 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 16
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape20: TShape
         Tag = 20
         Left = 63
@@ -1234,9 +1163,9 @@ object FormLD: TFormLD
     object Panel18: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 427
+      Top = 433
       Width = 376
-      Height = 21
+      Height = 22
       Margins.Left = 2
       Margins.Top = 2
       Margins.Right = 10
@@ -1244,16 +1173,12 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 17
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape15: TShape
         Tag = 15
         Left = 63
         Top = 0
         Width = 313
-        Height = 21
+        Height = 22
         Cursor = crHandPoint
         Align = alClient
         Pen.Style = psClear
@@ -1271,7 +1196,7 @@ object FormLD: TFormLD
         Left = 3
         Top = 0
         Width = 50
-        Height = 21
+        Height = 22
         Margins.Top = 0
         Margins.Right = 10
         Margins.Bottom = 0
@@ -1294,9 +1219,9 @@ object FormLD: TFormLD
     object Panel19: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 477
+      Top = 484
       Width = 376
-      Height = 21
+      Height = 22
       Margins.Left = 2
       Margins.Top = 2
       Margins.Right = 10
@@ -1304,16 +1229,12 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 18
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape5: TShape
         Tag = 5
         Left = 63
         Top = 0
         Width = 313
-        Height = 21
+        Height = 22
         Cursor = crHandPoint
         Align = alClient
         Pen.Style = psClear
@@ -1331,7 +1252,7 @@ object FormLD: TFormLD
         Left = 3
         Top = 0
         Width = 50
-        Height = 21
+        Height = 22
         Margins.Top = 0
         Margins.Right = 10
         Margins.Bottom = 0
@@ -1354,9 +1275,9 @@ object FormLD: TFormLD
     object Panel20: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 502
+      Top = 510
       Width = 376
-      Height = 29
+      Height = 21
       Margins.Left = 2
       Margins.Top = 2
       Margins.Right = 10
@@ -1364,15 +1285,11 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 19
-      ExplicitLeft = 5
-      ExplicitTop = 574
-      ExplicitWidth = 427
-      ExplicitHeight = 24
       object Shape0: TShape
         Left = 63
         Top = 0
         Width = 313
-        Height = 29
+        Height = 21
         Cursor = crHandPoint
         Align = alClient
         Brush.Color = clBlack
@@ -1391,7 +1308,7 @@ object FormLD: TFormLD
         Left = 3
         Top = 0
         Width = 50
-        Height = 29
+        Height = 21
         Margins.Top = 0
         Margins.Right = 10
         Margins.Bottom = 0
@@ -1414,7 +1331,7 @@ object FormLD: TFormLD
     object Panel21: TPanel
       AlignWithMargins = True
       Left = 2
-      Top = 452
+      Top = 459
       Width = 376
       Height = 21
       Margins.Left = 2
@@ -1424,10 +1341,6 @@ object FormLD: TFormLD
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 20
-      ExplicitLeft = 112
-      ExplicitTop = 280
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object Shape10: TShape
         Tag = 10
         Left = 63

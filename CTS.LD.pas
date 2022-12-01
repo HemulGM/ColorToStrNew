@@ -113,107 +113,36 @@ begin
   HSVToColor(H, 100, 100, NColor);
   if (RGB.R + RGB.B + RGB.G = 0) or (RGB.R + RGB.B + RGB.G = 765) then
     NColor := 0;
+
   Shape5.Brush.Color := ColorDarker(NColor, 90);
-
   Shape10.Brush.Color := ColorDarker(NColor, 80);
-
   Shape15.Brush.Color := ColorDarker(NColor, 70);
-
   Shape20.Brush.Color := ColorDarker(NColor, 60);
-
   Shape25.Brush.Color := ColorDarker(NColor, 50);
-
   Shape30.Brush.Color := ColorDarker(NColor, 40);
-
   Shape35.Brush.Color := ColorDarker(NColor, 30);
-
   Shape40.Brush.Color := ColorDarker(NColor, 20);
-
   Shape45.Brush.Color := ColorDarker(NColor, 10);
-
   Shape50.Brush.Color := NColor;
-
   Shape55.Brush.Color := ColorLighter(NColor, 10);
-
   Shape60.Brush.Color := ColorLighter(NColor, 20);
-
   Shape65.Brush.Color := ColorLighter(NColor, 30);
-
   Shape70.Brush.Color := ColorLighter(NColor, 40);
-
   Shape75.Brush.Color := ColorLighter(NColor, 50);
-
   Shape80.Brush.Color := ColorLighter(NColor, 60);
-
   Shape85.Brush.Color := ColorLighter(NColor, 70);
-
   Shape90.Brush.Color := ColorLighter(NColor, 80);
-
   Shape95.Brush.Color := ColorLighter(NColor, 90);
-                  {
-  HSVToColor(H, 100, 10, NColor);
-  Shape5.Brush.Color := NColor;
 
-  HSVToColor(H, 100, 20, NColor);
-  Shape10.Brush.Color := NColor;
-
-  HSVToColor(H, 100, 30, NColor);
-  Shape15.Brush.Color := NColor;
-
-  HSVToColor(H, 100, 40, NColor);
-  Shape20.Brush.Color := NColor;
-
-  HSVToColor(H, 100, 50, NColor);
-  Shape25.Brush.Color := NColor;
-
-  HSVToColor(H, 100, 60, NColor);
-  Shape30.Brush.Color := NColor;
-
-  HSVToColor(H, 100, 70, NColor);
-  Shape35.Brush.Color := NColor;
-
-  HSVToColor(H, 100, 80, NColor);
-  Shape40.Brush.Color := NColor;
-
-  HSVToColor(H, 100, 90, NColor);
-  Shape45.Brush.Color := NColor;
-
-  HSVToColor(H, 100, 100, NColor);
-  Shape50.Brush.Color := NColor;
-
-  HSVToColor(H, 90, 100, NColor);
-  Shape55.Brush.Color := NColor;
-
-  HSVToColor(H, 80, 100, NColor);
-  Shape60.Brush.Color := NColor;
-
-  HSVToColor(H, 70, 100, NColor);
-  Shape65.Brush.Color := NColor;
-
-  HSVToColor(H, 60, 100, NColor);
-  Shape70.Brush.Color := NColor;
-
-  HSVToColor(H, 50, 100, NColor);
-  Shape75.Brush.Color := NColor;
-
-  HSVToColor(H, 40, 100, NColor);
-  Shape80.Brush.Color := NColor;
-
-  HSVToColor(H, 30, 100, NColor);
-  Shape85.Brush.Color := NColor;
-
-  HSVToColor(H, 20, 100, NColor);
-  Shape90.Brush.Color := NColor;
-
-  HSVToColor(H, 10, 100, NColor);
-  Shape95.Brush.Color := NColor;   }
+  Invalidate;
+  Repaint;
 end;
 
 procedure TFormLD.Shape100MouseEnter(Sender: TObject);
 begin
   (Sender as TShape).Pen.Style := psSolid;
   (Sender as TShape).Pen.Width := 1;
-  (Sender as TShape).Pen.Color := $00818181;
+  (Sender as TShape).Pen.Color := VisibilityColor((Sender as TShape).Brush.Color);
 end;
 
 procedure TFormLD.Shape100MouseLeave(Sender: TObject);

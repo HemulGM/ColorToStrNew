@@ -77,22 +77,6 @@ type
     HSVColorPicker1: THSVColorPicker;
     ColorDialog1: TColorDialog;
     PanelCollapsedMem: TPanelCollapsed;
-    Shape1: TLabelEx;
-    Shape2: TLabelEx;
-    Shape4: TLabelEx;
-    Shape3: TLabelEx;
-    Shape7: TLabelEx;
-    Shape8: TLabelEx;
-    Shape5: TLabelEx;
-    Shape6: TLabelEx;
-    Shape13: TLabelEx;
-    Shape14: TLabelEx;
-    Shape16: TLabelEx;
-    Shape15: TLabelEx;
-    Shape9: TLabelEx;
-    Shape10: TLabelEx;
-    Shape11: TLabelEx;
-    Shape12: TLabelEx;
     TabSheetStd: TTabSheet;
     DrawPanelSpectr: TDrawPanel;
     Panel1: TPanel;
@@ -100,7 +84,6 @@ type
     CheckBoxWeb: TCheckBox;
     Label19: TLabel;
     Label20: TLabel;
-    Label21: TLabel;
     TrackBarHSVV: TTrackBar;
     ImageRWeb: TImage;
     ButtonFlatStdDlg: TButtonFlat;
@@ -108,7 +91,6 @@ type
     ButtonFlatOnTop: TButtonFlat;
     ButtonFlatHelp: TButtonFlat;
     ImageListTools: TImageList;
-    ButtonFlatDoGrey: TButtonFlat;
     ButtonFlatHEX: TButtonFlat;
     ImageList16: TImageList;
     ButtonFlatTColor: TButtonFlat;
@@ -135,26 +117,61 @@ type
     ColorBoxTColor: TColorBox;
     ButtonFlatHSVCopy: TButtonFlat;
     ButtonFlatCMYKCopy: TButtonFlat;
-    ButtonFlatLock1: TButtonFlat;
-    ButtonFlatLock2: TButtonFlat;
-    ButtonFlatLock3: TButtonFlat;
-    ButtonFlatLock4: TButtonFlat;
-    ButtonFlatLock8: TButtonFlat;
-    ButtonFlatLock7: TButtonFlat;
-    ButtonFlatLock6: TButtonFlat;
-    ButtonFlatLock5: TButtonFlat;
-    ButtonFlatLock12: TButtonFlat;
-    ButtonFlatLock11: TButtonFlat;
-    ButtonFlatLock10: TButtonFlat;
-    ButtonFlatLock9: TButtonFlat;
-    ButtonFlatLock16: TButtonFlat;
-    ButtonFlatLock15: TButtonFlat;
-    ButtonFlatLock14: TButtonFlat;
-    ButtonFlatLock13: TButtonFlat;
     ButtonFlatOpenLD: TButtonFlat;
     PanelWait: TPanel;
     Label18: TLabel;
     ActivityIndicator1: TActivityIndicator;
+    GridPanel1: TGridPanel;
+    PanelC1: TPanel;
+    Shape1: TLabelEx;
+    PanelC2: TPanel;
+    Shape2: TLabelEx;
+    PanelC3: TPanel;
+    Shape3: TLabelEx;
+    PanelC4: TPanel;
+    Shape4: TLabelEx;
+    PanelС5: TPanel;
+    Shape5: TLabelEx;
+    PanelС6: TPanel;
+    Shape6: TLabelEx;
+    PanelС7: TPanel;
+    Shape7: TLabelEx;
+    PanelС8: TPanel;
+    Shape8: TLabelEx;
+    PanelС9: TPanel;
+    Shape9: TLabelEx;
+    PanelС10: TPanel;
+    Shape10: TLabelEx;
+    PanelС11: TPanel;
+    Shape11: TLabelEx;
+    PanelС12: TPanel;
+    Shape12: TLabelEx;
+    PanelС13: TPanel;
+    Shape13: TLabelEx;
+    PanelС14: TPanel;
+    Shape14: TLabelEx;
+    PanelС15: TPanel;
+    Shape15: TLabelEx;
+    PanelС16: TPanel;
+    Shape16: TLabelEx;
+    ButtonFlatLock1: TButtonFlat;
+    ButtonFlatLock2: TButtonFlat;
+    ButtonFlatLock3: TButtonFlat;
+    ButtonFlatLock4: TButtonFlat;
+    ButtonFlatLock5: TButtonFlat;
+    ButtonFlatLock6: TButtonFlat;
+    ButtonFlatLock7: TButtonFlat;
+    ButtonFlatLock8: TButtonFlat;
+    ButtonFlatLock9: TButtonFlat;
+    ButtonFlatLock10: TButtonFlat;
+    ButtonFlatLock11: TButtonFlat;
+    ButtonFlatLock12: TButtonFlat;
+    ButtonFlatLock13: TButtonFlat;
+    ButtonFlatLock14: TButtonFlat;
+    ButtonFlatLock15: TButtonFlat;
+    ButtonFlatLock16: TButtonFlat;
+    ButtonFlatGrayscale: TButtonFlat;
+    ButtonFlatInvertColor: TButtonFlat;
     procedure TimerPXUCTimer(Sender: TObject);
     procedure TrackBarLChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -224,6 +241,12 @@ type
     procedure ButtonFlatCMYKCopyClick(Sender: TObject);
     procedure ButtonFlatLock1Click(Sender: TObject);
     procedure ButtonFlatOpenLDClick(Sender: TObject);
+    procedure HSColorPicker1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure HSVColorPicker1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure DrawPanelSpectrMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure ButtonFlatInvertColorClick(Sender: TObject);
+    procedure ShapeDLMouseEnter(Sender: TObject);
+    procedure ShapeDLMouseLeave(Sender: TObject);
   private
     FDataColor: TColor;
     FSpectBMP: TBitmap;
@@ -260,9 +283,10 @@ const
   DEFAULT_HSV_FORMAT = '%d, %d, %d';
   DEFAULT_CMYK_FORMAT = '%d, %d, %d, %d';
   DEFAULT_SHORTCUT = 'Ctrl+Shift';
+  DefaultColor = clWhite;
 
 const
-  Version = 'v1.23';
+  Version = 'v1.24';
 
 var
   FormMain: TFormMain;
@@ -493,6 +517,11 @@ begin
   end;
 end;
 
+procedure TFormMain.ButtonFlatInvertColorClick(Sender: TObject);
+begin
+  SetShapeColor(ShapeDL, InvertColor(FDataColor));
+end;
+
 procedure TFormMain.ButtonFlatP2Click(Sender: TObject);
 begin
   Navigate(TabSheetP2);
@@ -580,18 +609,22 @@ var
   R: TRect;
   S: string;
 begin
-  DrawPanelMagnify.Canvas.StretchDraw(DrawPanelMagnify.ClientRect, FMagnify);
   if FMgEmpty then
   begin
     R := DrawPanelMagnify.ClientRect;
     S := ShortCutToText(FShortCut);
+    DrawPanelMagnify.Canvas.FillRect(R);
     DrawPanelMagnify.Canvas.TextRect(R, S, [tfCenter, tfVerticalCenter, tfSingleLine]);
+    Exit;
   end;
+  DrawPanelMagnify.Canvas.StretchDraw(DrawPanelMagnify.ClientRect, FMagnify);
   DrawPanelMagnify.Brush.Style := bsClear;
   PixW := DrawPanelMagnify.ClientRect.Width / FMagnify.Width;
   R.Width := Ceil(PixW);
   R.Height := Ceil(PixW);
   R.Location := Point(Round((PixW * FMagnify.Width / 2) - (PixW / 2)), Round((PixW * FMagnify.Height / 2) - (PixW / 2)));
+
+  DrawPanelMagnify.Canvas.Brush.Color := VisibilityColor(FDataColor);
   DrawPanelMagnify.Canvas.FrameRect(R);
 end;
 
@@ -604,13 +637,19 @@ begin
   BR := DrawPanelSpectr.ClientToScreen(Point(DrawPanelSpectr.Width, DrawPanelSpectr.Height));
   RC := TRect.Create(TL, BR);
   ClipCursor(@RC);
-  FCaptureColor := True;
+  //FCaptureColor := True;
+end;
+
+procedure TFormMain.DrawPanelSpectrMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+begin
+  if ssLeft in Shift then
+    SetDataColor(DrawPanelSpectr.Canvas.Pixels[X, Y]);
 end;
 
 procedure TFormMain.DrawPanelSpectrMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   ClipCursor(nil);
-  FCaptureColor := False;
+  //FCaptureColor := False;
 end;
 
 procedure TFormMain.DrawPanelSpectrPaint(Sender: TObject);
@@ -727,7 +766,7 @@ procedure TFormMain.Navigate(Tab: TTabSheet);
   begin
     case Value of
       True:
-        Button.ColorNormal := ColorDarkerOr(Color, 10);
+        Button.ColorNormal := Color;
       False:
         Button.ColorNormal := ColorDarkerOr(Color, 20);
     end;
@@ -783,7 +822,7 @@ var
     Spin.LightButtons := IsDark;
   end;
 
-  procedure SetButtonColor(Button: TButtonFlat);
+  procedure SetButtonColor(Button: TButtonFlat; SetBG: Boolean = False);
   begin
     if FIsDark then
     begin
@@ -796,6 +835,13 @@ var
       Button.ColorNormal := Color;
       Button.ColorOver := ColorDarkerOr(Color, 20);
       Button.ColorPressed := ColorDarkerOr(Color, 30);
+    end;
+    if SetBG then
+    begin
+      if IsDark then
+        Button.BackgroundColor := ColorLighterOr(Color, 20)
+      else
+        Button.BackgroundColor := ColorDarker(AC, 30);
     end;
     Button.Font.Color := FontColor;
     Button.FontDown.Color := FontColor;
@@ -858,7 +904,10 @@ begin
     HSLRingPicker1.Color := Color;
     HSVColorPicker1.Color := Color;
     SLHColorPicker1.Color := Color;
-    PanelDoGray.Color := Color;
+    if IsDark then
+      PanelDoGray.Color := ColorLighterOr(Color, 10)
+    else
+      PanelDoGray.Color := Color;
 
     SpinEditR.LightButtons := IsDark;
     SpinEditG.LightButtons := IsDark;
@@ -899,26 +948,42 @@ begin
     SetButtonColor(ButtonFlatHEXCopy);
     SetButtonColor(ButtonFlatTColorCopy);
     SetButtonColor(ButtonFlatWebCopy);
-    SetButtonColor(ButtonFlatRGBCopy);
-    SetButtonColor(ButtonFlatHSVCopy);
-    SetButtonColor(ButtonFlatCMYKCopy);
-    for i := 0 to Pred(PanelCollapsedMem.ControlCount) do
-      if PanelCollapsedMem.Controls[i] is TButtonFlat then
-        SetButtonColor(PanelCollapsedMem.Controls[i] as TButtonFlat);
+
+    SetButtonColor(ButtonFlatRGBCopy, True);
+    SetButtonColor(ButtonFlatHSVCopy, True);
+    SetButtonColor(ButtonFlatCMYKCopy, True);
+
+    SetButtonColor(ButtonFlatLock1);
+    SetButtonColor(ButtonFlatLock2);
+    SetButtonColor(ButtonFlatLock3);
+    SetButtonColor(ButtonFlatLock4);
+    SetButtonColor(ButtonFlatLock5);
+    SetButtonColor(ButtonFlatLock6);
+    SetButtonColor(ButtonFlatLock7);
+    SetButtonColor(ButtonFlatLock8);
+    SetButtonColor(ButtonFlatLock9);
+    SetButtonColor(ButtonFlatLock10);
+    SetButtonColor(ButtonFlatLock11);
+    SetButtonColor(ButtonFlatLock12);
+    SetButtonColor(ButtonFlatLock13);
+    SetButtonColor(ButtonFlatLock14);
+    SetButtonColor(ButtonFlatLock15);
+    SetButtonColor(ButtonFlatLock16);
 
     SetButtonColor(ButtonFlatTColorSelect);
-    SetButtonColor(ButtonFlatOpenLD);
+    SetButtonColor(ButtonFlatOpenLD, True);
 
     SetButtonColor(ButtonFlatStdDlg);
     SetButtonColor(ButtonFlatTest);
     SetButtonColor(ButtonFlatOnTop);
     SetButtonColor(ButtonFlatHelp);
 
-    SetButtonColor(ButtonFlatMagnDown);
-    SetButtonColor(ButtonFlatMagnUp);
+    SetButtonColor(ButtonFlatMagnDown, True);
+    SetButtonColor(ButtonFlatMagnUp, True);
 
-    SetButtonColor(ButtonFlatDoGrey);
-    SetButtonColor(ButtonFlatTheme);
+    SetButtonColor(ButtonFlatGrayscale);
+    SetButtonColor(ButtonFlatInvertColor);
+    SetButtonColor(ButtonFlatTheme, True);
 
     SetButtonColor(ButtonFlatMixAdd);
     SetButtonColor(ButtonFlatMixDel);
@@ -953,16 +1018,25 @@ begin
 
     Navigate(PageControlPalette.ActivePage);
 
-    for i := 0 to PanelCollapsedMem.ControlCount - 1 do
-      if PanelCollapsedMem.Controls[i] is TShape then
-        Shape1MouseLeave(PanelCollapsedMem.Controls[i]);
+    for i := 0 to GridPanel1.ControlCount - 1 do
+      if (GridPanel1.Controls[i] is TPanel) and ((GridPanel1.Controls[i] as TPanel).ControlCount > 0)
+         and ((GridPanel1.Controls[i] as TPanel).Controls[0] is TLabelEx)
+      then
+        Shape1MouseLeave((GridPanel1.Controls[i] as TPanel).Controls[0]);
 
     if IsDark then
-      TStyleManager.TrySetStyle('Windows10 Dark')
+    begin
+      TStyleManager.TrySetStyle('Windows10 Dark');
+      ClientHeight := 555;
+    end
       //TStyleManager.TrySetStyle('Windows11 Modern Dark')
     else
+    begin
       TStyleManager.TrySetStyle('Windows');
+      ClientHeight := 546;
+    end;
   finally
+    GridPanel1.Refresh;
     Application.ProcessMessages;
     Visible := True;
   end;
@@ -1088,6 +1162,12 @@ begin
   SetDataColor(HexaColorPicker1.SelectedColor);
 end;
 
+procedure TFormMain.HSColorPicker1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+begin
+  if ssLeft in Shift then
+    SetDataColor(HSColorPicker1.SelectedColor);
+end;
+
 procedure TFormMain.HSColorPicker1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   SetDataColor(HSColorPicker1.SelectedColor);
@@ -1101,6 +1181,12 @@ end;
 procedure TFormMain.HSVColorPicker1Change(Sender: TObject);
 begin
   TrackBarHSVV.Position := 255 - HSVColorPicker1.Value;
+end;
+
+procedure TFormMain.HSVColorPicker1MouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+begin
+  if ssLeft in Shift then
+    SetDataColor(HSVColorPicker1.SelectedColor);
 end;
 
 procedure TFormMain.HSVColorPicker1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -1239,14 +1325,22 @@ end;
 procedure TFormMain.Shape1MouseEnter(Sender: TObject);
 begin
   (Sender as TShape).Pen.Color := $00818181;
+  if FActiveShape <> (Sender as TShape) then
+    (Sender as TShape).Margins.SetBounds(4, 4, 4, 4);
 end;
 
 procedure TFormMain.Shape1MouseLeave(Sender: TObject);
 begin
   if ActiveShape = (Sender as TShape) then
-    (Sender as TShape).Pen.Color := $00818181
+  begin
+    (Sender as TShape).Pen.Color := $00818181;
+    (Sender as TShape).Margins.SetBounds(0, 0, 0, 0);
+  end
   else
+  begin
     (Sender as TShape).Pen.Color := ColorDarkerOr(Color, 10);
+    (Sender as TShape).Margins.SetBounds(7, 7, 7, 7);
+  end;
 end;
 
 procedure TFormMain.Shape1MouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -1264,6 +1358,11 @@ begin
   begin
     if not ShapeIsLocked(Sender as TShape) then
       (Sender as TShape).Brush.Color := FDataColor;
+  end
+  else if Button = mbMiddle then
+  begin
+    if not ShapeIsLocked(Sender as TShape) then
+      (Sender as TShape).Brush.Color := DefaultColor;
   end;
   Shape1MouseLeave(OldShape);
 end;
@@ -1272,6 +1371,16 @@ procedure TFormMain.ShapeDLMouseDown(Sender: TObject; Button: TMouseButton; Shif
 begin
   if ssDouble in Shift then
     SetDataColor(ShapeDL.Brush.Color);
+end;
+
+procedure TFormMain.ShapeDLMouseEnter(Sender: TObject);
+begin
+  ShapeDL.Pen.Width := 2;
+end;
+
+procedure TFormMain.ShapeDLMouseLeave(Sender: TObject);
+begin
+  ShapeDL.Pen.Width := 0;
 end;
 
 procedure TFormMain.ShapeMixMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
