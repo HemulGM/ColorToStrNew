@@ -286,7 +286,7 @@ const
   DefaultColor = clWhite;
 
 const
-  Version = 'v1.24';
+  Version = 'v1.25';
 
 var
   FormMain: TFormMain;
@@ -337,6 +337,8 @@ end;
 procedure TFormMain.DownloadAndUpdateAsync(const Ver, Url: string);
 begin
   PanelWait.Visible := True;
+  PanelCollapsedMem.Visible := False;
+  ActivityIndicator1.Animate := True;
   TTask.Run(
     procedure
     var
@@ -366,6 +368,8 @@ end;
 procedure TFormMain.ShowUpdateDone;
 begin
   PanelWait.Visible := False;
+  PanelCollapsedMem.Visible := True;
+  ActivityIndicator1.Animate := False;
   if TaskMessageDlg('Обновление успешно', 'Перезагрузить программу сейчас?', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0) = mrYes then
   begin
     Visible := False;
@@ -376,7 +380,9 @@ end;
 
 procedure TFormMain.ShowUpdateError(const Url: string);
 begin
-  PanelWait.Visible := True;
+  PanelWait.Visible := False;
+  PanelCollapsedMem.Visible := True;
+  ActivityIndicator1.Animate := False;
   if TaskMessageDlg('Ошибка', 'Не удалось скачать обновление. Вы можете попробовать скачать вручную. ' + #13#10 + Url, TMsgDlgType.mtError, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0) = mrYes then
     ShellExecute(Application.Handle, 'open', PWideChar(Url), nil, nil, SW_NORMAL);
 end;
@@ -1020,8 +1026,8 @@ begin
 
     for i := 0 to GridPanel1.ControlCount - 1 do
       if (GridPanel1.Controls[i] is TPanel) and ((GridPanel1.Controls[i] as TPanel).ControlCount > 0)
-         and ((GridPanel1.Controls[i] as TPanel).Controls[0] is TLabelEx)
-      then
+        and ((GridPanel1.Controls[i] as TPanel).Controls[0] is TLabelEx)
+        then
         Shape1MouseLeave((GridPanel1.Controls[i] as TPanel).Controls[0]);
 
     if IsDark then
@@ -1049,6 +1055,7 @@ var
   Buf: TComponent;
   MagnifySize: Integer;
 begin
+  Caption := 'Работа с цветом ' + Version;
   try
     if TFile.Exists(ParamStr(0) + '_old') then
       TFile.Delete(ParamStr(0) + '_old');
@@ -1056,6 +1063,8 @@ begin
     //
   end;
   PanelWait.Visible := False;
+  PanelCollapsedMem.Visible := True;
+  ActivityIndicator1.Animate := False;
   PanelWait.Align := alClient;
   FShortCut := TextToShortCut(DEFAULT_SHORTCUT);
   FCaptureColor := False;

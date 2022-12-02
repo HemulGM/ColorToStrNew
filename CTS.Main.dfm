@@ -5037,9 +5037,6 @@
     FontCaption.Style = [fsBold]
     ShowSimpleBorder = True
     CaptionHeight = 26
-    ExplicitLeft = -1
-    ExplicitTop = 459
-    ExplicitWidth = 870
     object GridPanel1: TGridPanel
       Left = 0
       Top = 27
@@ -5208,7 +5205,6 @@
           SizeStyle = ssAuto
         end>
       TabOrder = 1
-      ExplicitWidth = 870
       object PanelC1: TPanel
         Left = 2
         Top = 0
@@ -5220,7 +5216,6 @@
         ShowCaption = False
         TabOrder = 0
         StyleElements = [seFont, seClient]
-        ExplicitLeft = 3
         object Shape1: TLabelEx
           Tag = 1
           AlignWithMargins = True
@@ -5318,7 +5313,6 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 1
-        ExplicitLeft = 57
         object Shape2: TLabelEx
           Tag = 2
           AlignWithMargins = True
@@ -5416,7 +5410,6 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 2
-        ExplicitLeft = 111
         object Shape3: TLabelEx
           Tag = 3
           AlignWithMargins = True
@@ -5514,7 +5507,6 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 3
-        ExplicitLeft = 165
         object Shape4: TLabelEx
           Tag = 4
           AlignWithMargins = True
@@ -5612,7 +5604,6 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 4
-        ExplicitLeft = 219
         object Shape5: TLabelEx
           Tag = 5
           AlignWithMargins = True
@@ -5710,7 +5701,6 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 5
-        ExplicitLeft = 273
         object Shape6: TLabelEx
           Tag = 6
           AlignWithMargins = True
@@ -5808,7 +5798,6 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 6
-        ExplicitLeft = 327
         object Shape7: TLabelEx
           Tag = 7
           AlignWithMargins = True
@@ -5906,7 +5895,6 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 7
-        ExplicitLeft = 381
         object Shape8: TLabelEx
           Tag = 8
           AlignWithMargins = True
@@ -6004,7 +5992,6 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 8
-        ExplicitLeft = 435
         object Shape9: TLabelEx
           Tag = 9
           AlignWithMargins = True
@@ -6102,7 +6089,6 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 9
-        ExplicitLeft = 489
         object Shape10: TLabelEx
           Tag = 10
           AlignWithMargins = True
@@ -6200,7 +6186,6 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 10
-        ExplicitLeft = 543
         object Shape11: TLabelEx
           Tag = 11
           AlignWithMargins = True
@@ -6298,7 +6283,6 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 11
-        ExplicitLeft = 597
         object Shape12: TLabelEx
           Tag = 12
           AlignWithMargins = True
@@ -6396,7 +6380,6 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 12
-        ExplicitLeft = 651
         object Shape13: TLabelEx
           Tag = 13
           AlignWithMargins = True
@@ -6494,7 +6477,6 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 13
-        ExplicitLeft = 705
         object Shape14: TLabelEx
           Tag = 14
           AlignWithMargins = True
@@ -6592,7 +6574,6 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 14
-        ExplicitLeft = 759
         object Shape15: TLabelEx
           Tag = 15
           AlignWithMargins = True
@@ -6690,7 +6671,6 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 15
-        ExplicitLeft = 813
         object Shape16: TLabelEx
           Tag = 16
           AlignWithMargins = True
@@ -6781,23 +6761,29 @@
     end
   end
   object PanelWait: TPanel
-    Left = 456
-    Top = 62
-    Width = 52
-    Height = 56
+    Left = 453
+    Top = 61
+    Width = 59
+    Height = 48
+    Margins.Top = 100
     BevelOuter = bvNone
     Color = clWhite
     ParentBackground = False
     TabOrder = 12
     Visible = False
     DesignSize = (
-      52
-      56)
+      59
+      48)
     object Label18: TLabel
-      Left = 0
-      Top = 0
-      Width = 52
-      Height = 56
+      AlignWithMargins = True
+      Left = 100
+      Top = 100
+      Width = -141
+      Height = -152
+      Margins.Left = 100
+      Margins.Top = 100
+      Margins.Right = 100
+      Margins.Bottom = 100
       Align = alClient
       Alignment = taCenter
       Caption = #1057#1082#1072#1095#1080#1074#1072#1085#1080#1077' '#1086#1073#1085#1086#1074#1083#1077#1085#1080#1103', '#1087#1086#1076#1086#1078#1076#1080#1090#1077' ...'
@@ -6809,14 +6795,17 @@
       ParentFont = False
       Transparent = True
       Layout = tlCenter
-      ExplicitWidth = 277
-      ExplicitHeight = 21
+      ExplicitLeft = 2
+      ExplicitTop = -6
+      ExplicitWidth = 868
+      ExplicitHeight = 460
     end
     object ActivityIndicator1: TActivityIndicator
-      Left = 10
-      Top = 8
+      Left = 14
+      Top = 5
       Anchors = []
-      Animate = True
+      ExplicitLeft = 10
+      ExplicitTop = 8
     end
   end
   object TimerPXUC: TTimer
