@@ -14,6 +14,8 @@ uses
   Vcl.WinXCtrls;
 
 type
+  TColorField3Mode = (fmHTML, fmFMX);
+
   TFormMain = class(TForm)
     TimerPXUC: TTimer;
     PanelCollapsedMagnify: TPanelCollapsed;
@@ -41,8 +43,8 @@ type
     Label6: TLabel;
     EditResHEX: TEdit;
     EditResTColor: TEdit;
-    Label7: TLabel;
-    Label8: TLabel;
+    LabelVCL: TLabel;
+    LabelHTMLFMX: TLabel;
     EditResHTML: TEdit;
     PanelCollapsedMix: TPanelCollapsed;
     ListBoxMix: TListBox;
@@ -75,7 +77,7 @@ type
     SLHColorPicker1: TSLHColorPicker;
     TabSheetHSV: TTabSheet;
     HSVColorPicker1: THSVColorPicker;
-    ColorDialog1: TColorDialog;
+    ColorDialogStd: TColorDialog;
     PanelCollapsedMem: TPanelCollapsed;
     TabSheetStd: TTabSheet;
     DrawPanelSpectr: TDrawPanel;
@@ -91,10 +93,7 @@ type
     ButtonFlatOnTop: TButtonFlat;
     ButtonFlatHelp: TButtonFlat;
     ImageListTools: TImageList;
-    ButtonFlatHEX: TButtonFlat;
     ImageList16: TImageList;
-    ButtonFlatTColor: TButtonFlat;
-    ButtonFlatWeb: TButtonFlat;
     ButtonFlatMixAdd: TButtonFlat;
     ButtonFlatMixDel: TButtonFlat;
     Panel2: TPanel;
@@ -247,6 +246,9 @@ type
     procedure ButtonFlatInvertColorClick(Sender: TObject);
     procedure ShapeDLMouseEnter(Sender: TObject);
     procedure ShapeDLMouseLeave(Sender: TObject);
+    procedure LabelHTMLFMXClick(Sender: TObject);
+    procedure LabelHTMLFMXMouseEnter(Sender: TObject);
+    procedure LabelHTMLFMXMouseLeave(Sender: TObject);
   private
     FDataColor: TColor;
     FSpectBMP: TBitmap;
@@ -259,6 +261,7 @@ type
     FHSVCopyFormat: string;
     FCMYKCopyFormat: string;
     FShortCut: TShortCut;
+    FColorField3Mode: TColorField3Mode;
     procedure SetShapeColor(Shape: TShape; aColor: TColor);
     procedure SetActiveShape(const Value: TShape);
     procedure DrawSpect;
@@ -270,12 +273,14 @@ type
     procedure ShowUpdateError(const Url: string);
     procedure ShowUpdateDone;
     function ShapeIsLocked(Shape: TShape): Boolean;
+    procedure SetColorField3Mode(const Value: TColorField3Mode);
   public
     procedure SetDataColor(dColor: TColor);
     procedure AddColorToMix(aColor: TColor);
     procedure Navigate(Tab: TTabSheet);
     function GetPixelUnderCursor(Snap: Boolean = True): TColor;
     property ActiveShape: TShape read FActiveShape write SetActiveShape;
+    property ColorField3Mode: TColorField3Mode read FColorField3Mode write SetColorField3Mode;
   end;
 
 const
@@ -286,7 +291,7 @@ const
   DefaultColor = clWhite;
 
 const
-  Version = 'v1.25';
+  Version = 'v1.26';
 
 var
   FormMain: TFormMain;
@@ -567,7 +572,12 @@ end;
 procedure TFormMain.ButtonFlatWebClick(Sender: TObject);
 begin
   try
-    SetDataColor(HtmlToColor(EditResHTML.Text));
+    case ColorField3Mode of
+      fmHTML:
+        SetDataColor(HtmlToColor(EditResHTML.Text));
+      fmFMX:
+        SetDataColor(FMXColorToColor(EditResHTML.Text));
+    end;
   except
     //ShowMessage('Ops');
   end;
@@ -678,6 +688,7 @@ begin
       Ini.WriteString('General', 'CMYKFormat', FCMYKCopyFormat);
       Ini.WriteInteger('General', 'MagnifySize', FMagnify.Width);
       Ini.WriteString('General', 'ShortCut', ShortCutToText(FShortCut));
+      Ini.WriteInteger('General', 'ColorField3Mode', Ord(ColorField3Mode));
       for i := 1 to 16 do
       begin
         Buf := FindComponent('Shape' + i.ToString);
@@ -947,10 +958,6 @@ begin
     SetEditColor(EditResTColor);
     SetEditColor(EditResHTML);
 
-    SetButtonColor(ButtonFlatHEX);
-    SetButtonColor(ButtonFlatTColor);
-    SetButtonColor(ButtonFlatWeb);
-
     SetButtonColor(ButtonFlatHEXCopy);
     SetButtonColor(ButtonFlatTColorCopy);
     SetButtonColor(ButtonFlatWebCopy);
@@ -1062,6 +1069,7 @@ begin
   except
     //
   end;
+  ColorField3Mode := fmHTML;
   PanelWait.Visible := False;
   PanelCollapsedMem.Visible := True;
   ActivityIndicator1.Animate := False;
@@ -1098,6 +1106,11 @@ begin
       FHSVCopyFormat := Ini.ReadString('General', 'HSVFormat', DEFAULT_HSV_FORMAT);
       FCMYKCopyFormat := Ini.ReadString('General', 'CMYKFormat', DEFAULT_CMYK_FORMAT);
       MagnifySize := Min(Max(3, Ini.ReadInteger('General', 'MagnifySize', 9)), DrawPanelMagnify.Width);
+      try
+        ColorField3Mode := TColorField3Mode(Ini.ReadInteger('General', 'ColorField3Mode', Ord(fmHTML)));
+      except
+        ColorField3Mode := fmHTML;
+      end;
       FShortCut := TextToShortCut(Ini.ReadString('General', 'ShortCut', DEFAULT_SHORTCUT));
       if FShortCut = 0 then
         FShortCut := TextToShortCut(DEFAULT_SHORTCUT);
@@ -1225,6 +1238,24 @@ begin
   FCaptureColor := False;
 end;
 
+procedure TFormMain.LabelHTMLFMXClick(Sender: TObject);
+begin
+  if ColorField3Mode = fmHTML then
+    ColorField3Mode := fmFMX
+  else
+    ColorField3Mode := fmHTML;
+end;
+
+procedure TFormMain.LabelHTMLFMXMouseEnter(Sender: TObject);
+begin
+  LabelHTMLFMX.Font.Style := [fsBold];
+end;
+
+procedure TFormMain.LabelHTMLFMXMouseLeave(Sender: TObject);
+begin
+  LabelHTMLFMX.Font.Style := [];
+end;
+
 procedure TFormMain.ListBoxMixDblClick(Sender: TObject);
 begin
   if ListBoxMix.ItemIndex >= 0 then
@@ -1274,7 +1305,12 @@ begin
   //
   EditResHEX.Text := ColorToHex(FDataColor);
   EditResTColor.Text := Vcl.Graphics.ColorToString(FDataColor);
-  EditResHTML.Text := ColorToHtml(FDataColor);
+  case ColorField3Mode of
+    fmHTML:
+      EditResHTML.Text := ColorToHtml(FDataColor);
+    fmFMX:
+      EditResHTML.Text := ColorToFMXColor(FDataColor);
+  end;
 
   RGBToCMYK(R, G, B, C, M, Y, K);
   SpinEditC.Value := C;
@@ -1318,6 +1354,22 @@ begin
     FormLD.SetDataColor(FDataColor);
 
   Repaint;
+end;
+
+procedure TFormMain.SetColorField3Mode(const Value: TColorField3Mode);
+begin
+  FColorField3Mode := Value;
+  case FColorField3Mode of
+    fmHTML:
+      begin
+        LabelHTMLFMX.Caption := 'HTML';
+      end;
+    fmFMX:
+      begin
+        LabelHTMLFMX.Caption := 'FMX';
+      end;
+  end;
+  SetDataColor(FDataColor);
 end;
 
 procedure TFormMain.SetShapeColor(Shape: TShape; aColor: TColor);
@@ -1482,9 +1534,9 @@ end;
 
 procedure TFormMain.ButtonFlatStdDlgClick(Sender: TObject);
 begin
-  ColorDialog1.Color := FDataColor;
-  if ColorDialog1.Execute(Handle) then
-    SetDataColor(ColorDialog1.Color);
+  ColorDialogStd.Color := FDataColor;
+  if ColorDialogStd.Execute(Handle) then
+    SetDataColor(ColorDialogStd.Color);
 end;
 
 procedure TFormMain.SpinEditKChange(Sender: TObject);

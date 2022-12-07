@@ -3667,7 +3667,7 @@
       Caption = #1057#1080#1085#1080#1081' (B)'
     end
     object Label13: TLabel
-      Left = 9
+      Left = 8
       Top = 78
       Width = 65
       Height = 13
@@ -3849,21 +3849,25 @@
       AutoSize = False
       Caption = 'HEX'
     end
-    object Label7: TLabel
+    object LabelVCL: TLabel
       Left = 10
       Top = 70
       Width = 33
       Height = 13
       AutoSize = False
-      Caption = 'TColor'
+      Caption = 'VCL'
     end
-    object Label8: TLabel
+    object LabelHTMLFMX: TLabel
       Left = 10
       Top = 97
       Width = 33
       Height = 13
+      Cursor = crHandPoint
       AutoSize = False
       Caption = 'HTML'
+      OnClick = LabelHTMLFMXClick
+      OnMouseEnter = LabelHTMLFMXMouseEnter
+      OnMouseLeave = LabelHTMLFMXMouseLeave
     end
     object EditResHEX: TEdit
       Left = 49
@@ -3916,153 +3920,9 @@
       TabOrder = 3
       OnKeyPress = EditResHTMLKeyPress
     end
-    object ButtonFlatHEX: TButtonFlat
-      AlignWithMargins = True
-      Left = 194
-      Top = 41
-      Width = 20
-      Height = 19
-      Hint = #1055#1088#1080#1084#1077#1085#1080#1090#1100' '#1094#1074#1077#1090
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 0
-      Images = ImageList16
-      OnClick = ButtonFlatHEXClick
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 4
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-    end
-    object ButtonFlatTColor: TButtonFlat
-      AlignWithMargins = True
-      Left = 194
-      Top = 68
-      Width = 20
-      Height = 19
-      Hint = #1055#1088#1080#1084#1077#1085#1080#1090#1100' '#1094#1074#1077#1090
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 0
-      Images = ImageList16
-      OnClick = ButtonFlatTColorClick
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 5
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-    end
-    object ButtonFlatWeb: TButtonFlat
-      AlignWithMargins = True
-      Left = 194
-      Top = 95
-      Width = 20
-      Height = 19
-      Hint = #1055#1088#1080#1084#1077#1085#1080#1090#1100' '#1094#1074#1077#1090
-      Margins.Left = 0
-      Margins.Top = 0
-      Margins.Right = 1
-      Margins.Bottom = 1
-      Align = alCustom
-      Caption = ''
-      ColorNormal = clWhite
-      ColorOver = 14540253
-      ColorPressed = 9079434
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 4737096
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      FontOver.Charset = DEFAULT_CHARSET
-      FontOver.Color = clWhite
-      FontOver.Height = -13
-      FontOver.Name = 'Tahoma'
-      FontOver.Style = []
-      FontDown.Charset = DEFAULT_CHARSET
-      FontDown.Color = clWhite
-      FontDown.Height = -13
-      FontDown.Name = 'Tahoma'
-      FontDown.Style = []
-      IgnorBounds = True
-      ImageIndentLeft = 2
-      ImageIndentRight = 3
-      ImageIndex = 0
-      Images = ImageList16
-      OnClick = ButtonFlatWebClick
-      RoundRectParam = 0
-      ShowFocusRect = False
-      TabOrder = 6
-      TabStop = True
-      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-      SubTextFont.Charset = DEFAULT_CHARSET
-      SubTextFont.Color = clWhite
-      SubTextFont.Height = -13
-      SubTextFont.Name = 'Tahoma'
-      SubTextFont.Style = []
-    end
     object ButtonFlatHEXCopy: TButtonFlat
       AlignWithMargins = True
-      Left = 174
+      Left = 194
       Top = 41
       Width = 20
       Height = 19
@@ -4099,7 +3959,7 @@
       OnClick = ButtonFlatHEXCopyClick
       RoundRectParam = 0
       ShowFocusRect = False
-      TabOrder = 7
+      TabOrder = 4
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
@@ -4110,7 +3970,7 @@
     end
     object ButtonFlatTColorCopy: TButtonFlat
       AlignWithMargins = True
-      Left = 174
+      Left = 194
       Top = 68
       Width = 20
       Height = 19
@@ -4147,7 +4007,7 @@
       OnClick = ButtonFlatTColorCopyClick
       RoundRectParam = 0
       ShowFocusRect = False
-      TabOrder = 8
+      TabOrder = 5
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
@@ -4158,7 +4018,7 @@
     end
     object ButtonFlatWebCopy: TButtonFlat
       AlignWithMargins = True
-      Left = 174
+      Left = 194
       Top = 95
       Width = 20
       Height = 19
@@ -4195,7 +4055,7 @@
       OnClick = ButtonFlatWebCopyClick
       RoundRectParam = 0
       ShowFocusRect = False
-      TabOrder = 9
+      TabOrder = 6
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
@@ -4206,7 +4066,7 @@
     end
     object ButtonFlatTColorSelect: TButtonFlat
       AlignWithMargins = True
-      Left = 154
+      Left = 174
       Top = 68
       Width = 20
       Height = 19
@@ -4243,7 +4103,7 @@
       OnClick = ButtonFlatTColorSelectClick
       RoundRectParam = 0
       ShowFocusRect = False
-      TabOrder = 10
+      TabOrder = 7
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
@@ -4428,7 +4288,7 @@
       Caption = #1043#1086#1083'. (C)'
     end
     object Label10: TLabel
-      Left = 60
+      Left = 61
       Top = 35
       Width = 46
       Height = 13
@@ -4436,7 +4296,7 @@
       Caption = #1056#1086#1079'. (M)'
     end
     object Label11: TLabel
-      Left = 112
+      Left = 115
       Top = 35
       Width = 46
       Height = 13
@@ -4444,7 +4304,7 @@
       Caption = #1046#1105#1083'. (Y)'
     end
     object Label12: TLabel
-      Left = 163
+      Left = 168
       Top = 35
       Width = 49
       Height = 13
@@ -5035,13 +4895,13 @@
     FontCaption.Height = -13
     FontCaption.Name = 'Tahoma'
     FontCaption.Style = [fsBold]
-    ShowSimpleBorder = True
+    ShowSimpleBorder = False
     CaptionHeight = 26
     object GridPanel1: TGridPanel
       Left = 0
-      Top = 27
+      Top = 26
       Width = 868
-      Height = 59
+      Height = 60
       Align = alClient
       BevelOuter = bvNone
       ColumnCollection = <
@@ -5205,24 +5065,27 @@
           SizeStyle = ssAuto
         end>
       TabOrder = 1
+      ExplicitTop = 27
+      ExplicitHeight = 59
       object PanelC1: TPanel
         Left = 2
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 0
         StyleElements = [seFont, seClient]
+        ExplicitHeight = 59
         object Shape1: TLabelEx
           Tag = 1
           AlignWithMargins = True
           Left = 0
           Top = 0
           Width = 54
-          Height = 59
+          Height = 60
           Cursor = crHandPoint
           Margins.Left = 0
           Margins.Top = 0
@@ -5307,19 +5170,20 @@
         Left = 56
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 1
+        ExplicitHeight = 59
         object Shape2: TLabelEx
           Tag = 2
           AlignWithMargins = True
           Left = 7
           Top = 7
           Width = 40
-          Height = 45
+          Height = 46
           Cursor = crHandPoint
           Margins.Left = 7
           Margins.Top = 7
@@ -5404,19 +5268,20 @@
         Left = 110
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 2
+        ExplicitHeight = 59
         object Shape3: TLabelEx
           Tag = 3
           AlignWithMargins = True
           Left = 7
           Top = 7
           Width = 40
-          Height = 45
+          Height = 46
           Cursor = crHandPoint
           Margins.Left = 7
           Margins.Top = 7
@@ -5501,19 +5366,20 @@
         Left = 164
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 3
+        ExplicitHeight = 59
         object Shape4: TLabelEx
           Tag = 4
           AlignWithMargins = True
           Left = 7
           Top = 7
           Width = 40
-          Height = 45
+          Height = 46
           Cursor = crHandPoint
           Margins.Left = 7
           Margins.Top = 7
@@ -5598,19 +5464,20 @@
         Left = 218
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 4
+        ExplicitHeight = 59
         object Shape5: TLabelEx
           Tag = 5
           AlignWithMargins = True
           Left = 7
           Top = 7
           Width = 40
-          Height = 45
+          Height = 46
           Cursor = crHandPoint
           Margins.Left = 7
           Margins.Top = 7
@@ -5695,19 +5562,20 @@
         Left = 272
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 5
+        ExplicitHeight = 59
         object Shape6: TLabelEx
           Tag = 6
           AlignWithMargins = True
           Left = 7
           Top = 7
           Width = 40
-          Height = 45
+          Height = 46
           Cursor = crHandPoint
           Margins.Left = 7
           Margins.Top = 7
@@ -5792,19 +5660,20 @@
         Left = 326
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 6
+        ExplicitHeight = 59
         object Shape7: TLabelEx
           Tag = 7
           AlignWithMargins = True
           Left = 7
           Top = 7
           Width = 40
-          Height = 45
+          Height = 46
           Cursor = crHandPoint
           Margins.Left = 7
           Margins.Top = 7
@@ -5889,19 +5758,20 @@
         Left = 380
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 7
+        ExplicitHeight = 59
         object Shape8: TLabelEx
           Tag = 8
           AlignWithMargins = True
           Left = 7
           Top = 7
           Width = 40
-          Height = 45
+          Height = 46
           Cursor = crHandPoint
           Margins.Left = 7
           Margins.Top = 7
@@ -5986,19 +5856,20 @@
         Left = 434
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 8
+        ExplicitHeight = 59
         object Shape9: TLabelEx
           Tag = 9
           AlignWithMargins = True
           Left = 7
           Top = 7
           Width = 40
-          Height = 45
+          Height = 46
           Cursor = crHandPoint
           Margins.Left = 7
           Margins.Top = 7
@@ -6083,19 +5954,20 @@
         Left = 488
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 9
+        ExplicitHeight = 59
         object Shape10: TLabelEx
           Tag = 10
           AlignWithMargins = True
           Left = 7
           Top = 7
           Width = 40
-          Height = 45
+          Height = 46
           Cursor = crHandPoint
           Margins.Left = 7
           Margins.Top = 7
@@ -6180,19 +6052,20 @@
         Left = 542
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 10
+        ExplicitHeight = 59
         object Shape11: TLabelEx
           Tag = 11
           AlignWithMargins = True
           Left = 7
           Top = 7
           Width = 40
-          Height = 45
+          Height = 46
           Cursor = crHandPoint
           Margins.Left = 7
           Margins.Top = 7
@@ -6277,19 +6150,20 @@
         Left = 596
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 11
+        ExplicitHeight = 59
         object Shape12: TLabelEx
           Tag = 12
           AlignWithMargins = True
           Left = 7
           Top = 7
           Width = 40
-          Height = 45
+          Height = 46
           Cursor = crHandPoint
           Margins.Left = 7
           Margins.Top = 7
@@ -6374,19 +6248,20 @@
         Left = 650
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 12
+        ExplicitHeight = 59
         object Shape13: TLabelEx
           Tag = 13
           AlignWithMargins = True
           Left = 7
           Top = 7
           Width = 40
-          Height = 45
+          Height = 46
           Cursor = crHandPoint
           Margins.Left = 7
           Margins.Top = 7
@@ -6471,19 +6346,20 @@
         Left = 704
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 13
+        ExplicitHeight = 59
         object Shape14: TLabelEx
           Tag = 14
           AlignWithMargins = True
           Left = 7
           Top = 7
           Width = 40
-          Height = 45
+          Height = 46
           Cursor = crHandPoint
           Margins.Left = 7
           Margins.Top = 7
@@ -6568,19 +6444,20 @@
         Left = 758
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 14
+        ExplicitHeight = 59
         object Shape15: TLabelEx
           Tag = 15
           AlignWithMargins = True
           Left = 7
           Top = 7
           Width = 40
-          Height = 45
+          Height = 46
           Cursor = crHandPoint
           Margins.Left = 7
           Margins.Top = 7
@@ -6665,19 +6542,20 @@
         Left = 812
         Top = 0
         Width = 54
-        Height = 59
+        Height = 60
         Align = alClient
         BevelOuter = bvNone
         ParentBackground = False
         ShowCaption = False
         TabOrder = 15
+        ExplicitHeight = 59
         object Shape16: TLabelEx
           Tag = 16
           AlignWithMargins = True
           Left = 7
           Top = 7
           Width = 40
-          Height = 45
+          Height = 46
           Cursor = crHandPoint
           Margins.Left = 7
           Margins.Top = 7
@@ -6795,17 +6673,13 @@
       ParentFont = False
       Transparent = True
       Layout = tlCenter
-      ExplicitLeft = 2
-      ExplicitTop = -6
-      ExplicitWidth = 868
-      ExplicitHeight = 460
+      ExplicitWidth = 277
+      ExplicitHeight = 21
     end
     object ActivityIndicator1: TActivityIndicator
       Left = 14
       Top = 5
       Anchors = []
-      ExplicitLeft = 10
-      ExplicitTop = 8
     end
   end
   object TimerPXUC: TTimer
@@ -6814,7 +6688,7 @@
     Left = 24
     Top = 497
   end
-  object ColorDialog1: TColorDialog
+  object ColorDialogStd: TColorDialog
     Options = [cdFullOpen]
     Left = 130
     Top = 497
