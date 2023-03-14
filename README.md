@@ -1,5 +1,6 @@
 # ColorToStrNew
-![CTS](https://github.com/HemulGM/ColorToStrNew/blob/master/Media/screen.png?raw=true)
+![CTS Dark](https://github.com/HemulGM/ColorToStrNew/blob/master/Media/dark.png?raw=true)
+![CTS Light](https://github.com/HemulGM/ColorToStrNew/blob/master/Media/light.png?raw=true)
 
 Requirements: [HGM Components][hgmcomp], [mbColorLib][mbColorLib]
 
