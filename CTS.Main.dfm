@@ -32,7 +32,7 @@
   object PanelCollapsedMagnify: TPanelCollapsed
     Left = 344
     Top = 100
-    Width = 102
+    Width = 103
     Height = 128
     Caption = ' '#1051#1091#1087#1072
     DefaultPaint = False
@@ -41,7 +41,7 @@
     Locked = True
     ParentBackground = False
     ShowCaption = True
-    TabOrder = 0
+    TabOrder = 6
     ShowCollapseButton = False
     Collapsed = False
     SimpleBorderColor = clSilver
@@ -62,7 +62,7 @@
       DefaultPaint = False
       OnMouseDown = DrawPanelMagnifyMouseDown
       ParentBackground = False
-      TabOrder = 1
+      TabOrder = 2
     end
     object ButtonFlatMagnUp: TButtonFlat
       Left = 59
@@ -97,7 +97,7 @@
       RoundRectParam = 4
       Shape = stRoundRect
       ShowFocusRect = False
-      TabOrder = 2
+      TabOrder = 0
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
@@ -139,7 +139,7 @@
       RoundRectParam = 4
       Shape = stRoundRect
       ShowFocusRect = False
-      TabOrder = 3
+      TabOrder = 1
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
@@ -161,7 +161,7 @@
     Locked = True
     ParentBackground = False
     ShowCaption = True
-    TabOrder = 1
+    TabOrder = 5
     ShowCollapseButton = False
     Collapsed = False
     SimpleBorderColor = clSilver
@@ -194,7 +194,7 @@
     Locked = True
     ParentBackground = False
     ShowCaption = True
-    TabOrder = 2
+    TabOrder = 8
     ShowCollapseButton = False
     Collapsed = False
     SimpleBorderColor = clSilver
@@ -424,7 +424,7 @@
     Locked = True
     ParentBackground = False
     ShowCaption = True
-    TabOrder = 3
+    TabOrder = 9
     ShowCollapseButton = False
     Collapsed = False
     SimpleBorderColor = clSilver
@@ -3634,7 +3634,7 @@
     Locked = True
     ParentBackground = False
     ShowCaption = True
-    TabOrder = 4
+    TabOrder = 1
     ShowCollapseButton = False
     Collapsed = False
     SimpleBorderColor = clSilver
@@ -3840,7 +3840,7 @@
     Locked = True
     ParentBackground = False
     ShowCaption = True
-    TabOrder = 5
+    TabOrder = 0
     ShowCollapseButton = False
     Collapsed = False
     SimpleBorderColor = clSilver
@@ -3865,6 +3865,7 @@
       Top = 70
       Width = 33
       Height = 13
+      Cursor = crHandPoint
       Hint = 'VCL/Alpha VCL'
       AutoSize = False
       Caption = 'VCL'
@@ -4141,7 +4142,7 @@
     Locked = True
     ParentBackground = False
     ShowCaption = True
-    TabOrder = 6
+    TabOrder = 7
     ShowCollapseButton = False
     Collapsed = False
     SimpleBorderColor = clSilver
@@ -4172,7 +4173,7 @@
       BevelInner = bvNone
       BevelKind = bkFlat
       BorderStyle = bsNone
-      TabOrder = 1
+      TabOrder = 0
       OnDblClick = ListBoxMixDblClick
       OnDrawItem = ListBoxMixDrawItem
     end
@@ -4215,7 +4216,7 @@
       OnClick = SpeedButtonMixAddClick
       RoundRectParam = 0
       ShowFocusRect = False
-      TabOrder = 2
+      TabOrder = 1
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
@@ -4263,7 +4264,7 @@
       OnClick = SpeedButtonMixDeleteClick
       RoundRectParam = 0
       ShowFocusRect = False
-      TabOrder = 3
+      TabOrder = 2
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
@@ -4285,7 +4286,7 @@
     Locked = True
     ParentBackground = False
     ShowCaption = True
-    TabOrder = 7
+    TabOrder = 3
     ShowCollapseButton = False
     Collapsed = False
     SimpleBorderColor = clSilver
@@ -4346,7 +4347,7 @@
       MaxValue = 255
       MinValue = 0
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 1
       Value = 255
       OnChange = SpinEditKChange
       LightButtons = False
@@ -4369,7 +4370,7 @@
       MaxValue = 255
       MinValue = 0
       ParentFont = False
-      TabOrder = 5
+      TabOrder = 2
       Value = 255
       OnChange = SpinEditKChange
       LightButtons = False
@@ -4483,7 +4484,7 @@
     Locked = True
     ParentBackground = False
     ShowCaption = True
-    TabOrder = 8
+    TabOrder = 2
     ShowCollapseButton = False
     Collapsed = False
     SimpleBorderColor = clSilver
@@ -4647,7 +4648,7 @@
     Locked = True
     ParentBackground = False
     ShowCaption = True
-    TabOrder = 9
+    TabOrder = 4
     ShowCollapseButton = False
     Collapsed = False
     SimpleBorderColor = clSilver

@@ -96,9 +96,9 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_MinorVer>27</VerInfo_MinorVer>
         <VerInfo_Release>1</VerInfo_Release>
-        <VerInfo_Build>2</VerInfo_Build>
+        <VerInfo_Build>6</VerInfo_Build>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Keys>CompanyName=HGM;FileDescription=$(MSBuildProjectName);FileVersion=1.27.1.2;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=CTS.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.27;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=HGM;FileDescription=$(MSBuildProjectName);FileVersion=1.27.1.6;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=CTS.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.27;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
