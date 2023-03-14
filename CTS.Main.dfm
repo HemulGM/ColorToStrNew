@@ -4917,6 +4917,8 @@
     FontCaption.Style = [fsBold]
     ShowSimpleBorder = False
     CaptionHeight = 26
+    ExplicitTop = 451
+    ExplicitWidth = 862
     object GridPanel1: TGridPanel
       Left = 0
       Top = 26
@@ -5085,7 +5087,7 @@
           SizeStyle = ssAuto
         end>
       TabOrder = 1
-      ExplicitWidth = 864
+      ExplicitWidth = 862
       object PanelC1: TPanel
         Left = 2
         Top = 0
@@ -5097,7 +5099,7 @@
         ShowCaption = False
         TabOrder = 0
         StyleElements = [seFont, seClient]
-        ExplicitLeft = 0
+        ExplicitLeft = -1
         object Shape1: TLabelEx
           Tag = 1
           AlignWithMargins = True
@@ -5195,7 +5197,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 1
-        ExplicitLeft = 54
+        ExplicitLeft = 53
         object Shape2: TLabelEx
           Tag = 2
           AlignWithMargins = True
@@ -5293,7 +5295,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 2
-        ExplicitLeft = 108
+        ExplicitLeft = 107
         object Shape3: TLabelEx
           Tag = 3
           AlignWithMargins = True
@@ -5391,7 +5393,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 3
-        ExplicitLeft = 162
+        ExplicitLeft = 161
         object Shape4: TLabelEx
           Tag = 4
           AlignWithMargins = True
@@ -5489,7 +5491,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 4
-        ExplicitLeft = 216
+        ExplicitLeft = 215
         object Shape5: TLabelEx
           Tag = 5
           AlignWithMargins = True
@@ -5587,7 +5589,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 5
-        ExplicitLeft = 270
+        ExplicitLeft = 269
         object Shape6: TLabelEx
           Tag = 6
           AlignWithMargins = True
@@ -5685,7 +5687,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 6
-        ExplicitLeft = 324
+        ExplicitLeft = 323
         object Shape7: TLabelEx
           Tag = 7
           AlignWithMargins = True
@@ -5783,7 +5785,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 7
-        ExplicitLeft = 378
+        ExplicitLeft = 377
         object Shape8: TLabelEx
           Tag = 8
           AlignWithMargins = True
@@ -5881,7 +5883,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 8
-        ExplicitLeft = 432
+        ExplicitLeft = 431
         object Shape9: TLabelEx
           Tag = 9
           AlignWithMargins = True
@@ -5979,7 +5981,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 9
-        ExplicitLeft = 486
+        ExplicitLeft = 485
         object Shape10: TLabelEx
           Tag = 10
           AlignWithMargins = True
@@ -6077,7 +6079,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 10
-        ExplicitLeft = 540
+        ExplicitLeft = 539
         object Shape11: TLabelEx
           Tag = 11
           AlignWithMargins = True
@@ -6175,7 +6177,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 11
-        ExplicitLeft = 594
+        ExplicitLeft = 593
         object Shape12: TLabelEx
           Tag = 12
           AlignWithMargins = True
@@ -6273,7 +6275,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 12
-        ExplicitLeft = 648
+        ExplicitLeft = 647
         object Shape13: TLabelEx
           Tag = 13
           AlignWithMargins = True
@@ -6371,7 +6373,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 13
-        ExplicitLeft = 702
+        ExplicitLeft = 701
         object Shape14: TLabelEx
           Tag = 14
           AlignWithMargins = True
@@ -6469,7 +6471,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 14
-        ExplicitLeft = 756
+        ExplicitLeft = 755
         object Shape15: TLabelEx
           Tag = 15
           AlignWithMargins = True
@@ -6567,7 +6569,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 15
-        ExplicitLeft = 810
+        ExplicitLeft = 809
         object Shape16: TLabelEx
           Tag = 16
           AlignWithMargins = True

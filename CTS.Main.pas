@@ -281,6 +281,7 @@ type
     function ShapeIsLocked(Shape: TShape): Boolean;
     procedure SetColorField3Mode(const Value: TColorField3Mode);
     procedure SetColorField2Mode(const Value: TColorField2Mode);
+    procedure WMDpiChanged(var Message: TWMDpi); message WM_DPICHANGED;
   public
     procedure SetDataColor(dColor: TColor);
     procedure AddColorToMix(aColor: TColor);
@@ -874,6 +875,15 @@ var
     Button.FontOver.Color := FontColorOver;
   end;
 
+  procedure SetButtonImageIdent(Items: TArray<TButtonFlat>);
+  begin
+    for var Item in Items do
+      if Assigned(Item.Images) then
+      begin
+        Item.ImageIndentLeft := (Item.Width div 2) - (Item.Images.Width div 2);
+      end;
+  end;
+
 var
   i: Integer;
 begin
@@ -1046,17 +1056,56 @@ begin
         then
         Shape1MouseLeave((GridPanel1.Controls[i] as TPanel).Controls[0]);
 
+    SetButtonImageIdent([
+      ButtonFlatStdDlg,
+      ButtonFlatTest,
+      ButtonFlatOnTop,
+      ButtonFlatHelp,
+      ButtonFlatMixAdd,
+      ButtonFlatMixDel,
+      ButtonFlatStd,
+      ButtonFlatP2,
+      ButtonFlatHexa,
+      ButtonFlatHS,
+      ButtonFlatHSL,
+      ButtonFlatSLH,
+      ButtonFlatHSV,
+      ButtonFlatMagnDown,
+      ButtonFlatMagnUp,
+      ButtonFlatTheme,
+      ButtonFlatHEXCopy,
+      ButtonFlatTColorCopy,
+      ButtonFlatWebCopy,
+      ButtonFlatRGBCopy,
+      ButtonFlatTColorSelect,
+      ButtonFlatHSVCopy,
+      ButtonFlatCMYKCopy,
+      ButtonFlatOpenLD,
+      ButtonFlatLock1,
+      ButtonFlatLock2,
+      ButtonFlatLock3,
+      ButtonFlatLock4,
+      ButtonFlatLock5,
+      ButtonFlatLock6,
+      ButtonFlatLock7,
+      ButtonFlatLock8,
+      ButtonFlatLock9,
+      ButtonFlatLock10,
+      ButtonFlatLock11,
+      ButtonFlatLock12,
+      ButtonFlatLock13,
+      ButtonFlatLock14,
+      ButtonFlatLock15,
+      ButtonFlatLock16,
+      ButtonFlatGrayscale,
+      ButtonFlatInvertColor
+      ]);
+
     if IsDark then
-    begin
-      TStyleManager.TrySetStyle('Windows10 Dark');
-      ClientHeight := 555;
-    end
+      TStyleManager.TrySetStyle('Windows10 Dark')
       //TStyleManager.TrySetStyle('Windows11 Modern Dark')
     else
-    begin
       TStyleManager.TrySetStyle('Windows');
-      ClientHeight := 546;
-    end;
   finally
     GridPanel1.Refresh;
     Application.ProcessMessages;
@@ -1655,6 +1704,12 @@ begin
     101..200:
       SetShapeColor(ShapeDL, ColorLighter(FDataColor, TrackBarL.Position - 100));
   end;
+end;
+
+procedure TFormMain.WMDpiChanged(var Message: TWMDpi);
+begin
+  inherited;
+  SetColor(FIsDark);
 end;
 
 end.
