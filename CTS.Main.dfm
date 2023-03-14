@@ -13,13 +13,12 @@
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
+  Padding.Top = 8
   Position = poScreenCenter
   ShowHint = True
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  PixelsPerInch = 96
   TextHeight = 13
   object ColorBoxTColor: TColorBox
     Left = 57
@@ -39,6 +38,7 @@
     DefaultPaint = False
     Alignment = taLeftJustify
     BevelOuter = bvNone
+    Locked = True
     ParentBackground = False
     ShowCaption = True
     TabOrder = 0
@@ -158,6 +158,7 @@
     DefaultPaint = False
     Alignment = taLeftJustify
     BevelOuter = bvNone
+    Locked = True
     ParentBackground = False
     ShowCaption = True
     TabOrder = 1
@@ -190,6 +191,7 @@
     DefaultPaint = False
     Alignment = taLeftJustify
     BevelOuter = bvNone
+    Locked = True
     ParentBackground = False
     ShowCaption = True
     TabOrder = 2
@@ -419,6 +421,7 @@
     DefaultPaint = True
     Alignment = taLeftJustify
     BevelOuter = bvNone
+    Locked = True
     ParentBackground = False
     ShowCaption = True
     TabOrder = 3
@@ -3628,6 +3631,7 @@
     DefaultPaint = False
     Alignment = taLeftJustify
     BevelOuter = bvNone
+    Locked = True
     ParentBackground = False
     ShowCaption = True
     TabOrder = 4
@@ -3683,6 +3687,7 @@
       BevelInner = bvNone
       BevelKind = bkFlat
       Color = 14155735
+      Ctl3D = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -3690,6 +3695,7 @@
       Font.Style = []
       MaxValue = 255
       MinValue = 0
+      ParentCtl3D = False
       ParentFont = False
       TabOrder = 1
       Value = 255
@@ -3707,6 +3713,7 @@
       BevelInner = bvNone
       BevelKind = bkFlat
       Color = 16767449
+      Ctl3D = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -3714,6 +3721,7 @@
       Font.Style = []
       MaxValue = 255
       MinValue = 0
+      ParentCtl3D = False
       ParentFont = False
       TabOrder = 2
       Value = 255
@@ -3731,6 +3739,7 @@
       BevelInner = bvNone
       BevelKind = bkFlat
       Color = 14145535
+      Ctl3D = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -15
@@ -3738,8 +3747,9 @@
       Font.Style = []
       MaxValue = 255
       MinValue = 0
+      ParentCtl3D = False
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 0
       Value = 255
       OnChange = SpinEditRChange
       OnKeyUp = SpinEditRKeyUp
@@ -3762,7 +3772,7 @@
       MaxValue = 16777215
       MinValue = 0
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 3
       Value = 255
       OnChange = SpinEditRGBChange
       LightButtons = False
@@ -3808,7 +3818,7 @@
       RoundRectParam = 4
       Shape = stRoundRect
       ShowFocusRect = False
-      TabOrder = 5
+      TabOrder = 4
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
@@ -3827,6 +3837,7 @@
     DefaultPaint = False
     Alignment = taLeftJustify
     BevelOuter = bvNone
+    Locked = True
     ParentBackground = False
     ShowCaption = True
     TabOrder = 5
@@ -3854,8 +3865,12 @@
       Top = 70
       Width = 33
       Height = 13
+      Hint = 'VCL/Alpha VCL'
       AutoSize = False
       Caption = 'VCL'
+      OnClick = LabelVCLClick
+      OnMouseEnter = LabelVCLMouseEnter
+      OnMouseLeave = LabelVCLMouseLeave
     end
     object LabelHTMLFMX: TLabel
       Left = 10
@@ -3863,6 +3878,7 @@
       Width = 33
       Height = 13
       Cursor = crHandPoint
+      Hint = 'HTML/FMX'
       AutoSize = False
       Caption = 'HTML'
       OnClick = LabelHTMLFMXClick
@@ -3883,7 +3899,7 @@
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 0
       OnKeyPress = EditResHEXKeyPress
     end
     object EditResTColor: TEdit
@@ -3917,7 +3933,7 @@
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 5
       OnKeyPress = EditResHTMLKeyPress
     end
     object ButtonFlatHEXCopy: TButtonFlat
@@ -3959,7 +3975,7 @@
       OnClick = ButtonFlatHEXCopyClick
       RoundRectParam = 0
       ShowFocusRect = False
-      TabOrder = 4
+      TabOrder = 1
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
@@ -4007,7 +4023,7 @@
       OnClick = ButtonFlatTColorCopyClick
       RoundRectParam = 0
       ShowFocusRect = False
-      TabOrder = 5
+      TabOrder = 4
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
@@ -4103,7 +4119,7 @@
       OnClick = ButtonFlatTColorSelectClick
       RoundRectParam = 0
       ShowFocusRect = False
-      TabOrder = 7
+      TabOrder = 3
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
@@ -4122,6 +4138,7 @@
     DefaultPaint = False
     Alignment = taLeftJustify
     BevelOuter = bvNone
+    Locked = True
     ParentBackground = False
     ShowCaption = True
     TabOrder = 6
@@ -4265,6 +4282,7 @@
     DefaultPaint = False
     Alignment = taLeftJustify
     BevelOuter = bvNone
+    Locked = True
     ParentBackground = False
     ShowCaption = True
     TabOrder = 7
@@ -4328,7 +4346,7 @@
       MaxValue = 255
       MinValue = 0
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 2
       Value = 255
       OnChange = SpinEditKChange
       LightButtons = False
@@ -4351,7 +4369,7 @@
       MaxValue = 255
       MinValue = 0
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 5
       Value = 255
       OnChange = SpinEditKChange
       LightButtons = False
@@ -4374,7 +4392,7 @@
       MaxValue = 255
       MinValue = 0
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 0
       Value = 255
       OnChange = SpinEditKChange
       LightButtons = False
@@ -4397,7 +4415,7 @@
       MaxValue = 255
       MinValue = 0
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 3
       Value = 255
       OnChange = SpinEditKChange
       LightButtons = False
@@ -4443,7 +4461,7 @@
       RoundRectParam = 4
       Shape = stRoundRect
       ShowFocusRect = False
-      TabOrder = 5
+      TabOrder = 4
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
@@ -4462,6 +4480,7 @@
     DefaultPaint = False
     Alignment = taLeftJustify
     BevelOuter = bvNone
+    Locked = True
     ParentBackground = False
     ShowCaption = True
     TabOrder = 8
@@ -4560,7 +4579,7 @@
       MaxValue = 359
       MinValue = 0
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 0
       Value = 359
       OnChange = SpinEditVChange
       LightButtons = False
@@ -4606,7 +4625,7 @@
       RoundRectParam = 4
       Shape = stRoundRect
       ShowFocusRect = False
-      TabOrder = 4
+      TabOrder = 3
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
@@ -4625,6 +4644,7 @@
     DefaultPaint = False
     Alignment = taLeftJustify
     BevelOuter = bvNone
+    Locked = True
     ParentBackground = False
     ShowCaption = True
     TabOrder = 9
@@ -5065,8 +5085,7 @@
           SizeStyle = ssAuto
         end>
       TabOrder = 1
-      ExplicitTop = 27
-      ExplicitHeight = 59
+      ExplicitWidth = 864
       object PanelC1: TPanel
         Left = 2
         Top = 0
@@ -5078,7 +5097,7 @@
         ShowCaption = False
         TabOrder = 0
         StyleElements = [seFont, seClient]
-        ExplicitHeight = 59
+        ExplicitLeft = 0
         object Shape1: TLabelEx
           Tag = 1
           AlignWithMargins = True
@@ -5176,7 +5195,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 1
-        ExplicitHeight = 59
+        ExplicitLeft = 54
         object Shape2: TLabelEx
           Tag = 2
           AlignWithMargins = True
@@ -5274,7 +5293,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 2
-        ExplicitHeight = 59
+        ExplicitLeft = 108
         object Shape3: TLabelEx
           Tag = 3
           AlignWithMargins = True
@@ -5372,7 +5391,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 3
-        ExplicitHeight = 59
+        ExplicitLeft = 162
         object Shape4: TLabelEx
           Tag = 4
           AlignWithMargins = True
@@ -5470,7 +5489,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 4
-        ExplicitHeight = 59
+        ExplicitLeft = 216
         object Shape5: TLabelEx
           Tag = 5
           AlignWithMargins = True
@@ -5568,7 +5587,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 5
-        ExplicitHeight = 59
+        ExplicitLeft = 270
         object Shape6: TLabelEx
           Tag = 6
           AlignWithMargins = True
@@ -5666,7 +5685,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 6
-        ExplicitHeight = 59
+        ExplicitLeft = 324
         object Shape7: TLabelEx
           Tag = 7
           AlignWithMargins = True
@@ -5764,7 +5783,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 7
-        ExplicitHeight = 59
+        ExplicitLeft = 378
         object Shape8: TLabelEx
           Tag = 8
           AlignWithMargins = True
@@ -5862,7 +5881,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 8
-        ExplicitHeight = 59
+        ExplicitLeft = 432
         object Shape9: TLabelEx
           Tag = 9
           AlignWithMargins = True
@@ -5960,7 +5979,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 9
-        ExplicitHeight = 59
+        ExplicitLeft = 486
         object Shape10: TLabelEx
           Tag = 10
           AlignWithMargins = True
@@ -6058,7 +6077,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 10
-        ExplicitHeight = 59
+        ExplicitLeft = 540
         object Shape11: TLabelEx
           Tag = 11
           AlignWithMargins = True
@@ -6156,7 +6175,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 11
-        ExplicitHeight = 59
+        ExplicitLeft = 594
         object Shape12: TLabelEx
           Tag = 12
           AlignWithMargins = True
@@ -6254,7 +6273,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 12
-        ExplicitHeight = 59
+        ExplicitLeft = 648
         object Shape13: TLabelEx
           Tag = 13
           AlignWithMargins = True
@@ -6352,7 +6371,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 13
-        ExplicitHeight = 59
+        ExplicitLeft = 702
         object Shape14: TLabelEx
           Tag = 14
           AlignWithMargins = True
@@ -6450,7 +6469,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 14
-        ExplicitHeight = 59
+        ExplicitLeft = 756
         object Shape15: TLabelEx
           Tag = 15
           AlignWithMargins = True
@@ -6548,7 +6567,7 @@
         ParentBackground = False
         ShowCaption = False
         TabOrder = 15
-        ExplicitHeight = 59
+        ExplicitLeft = 810
         object Shape16: TLabelEx
           Tag = 16
           AlignWithMargins = True

@@ -12,6 +12,9 @@
         <Projects Include="..\FMXColors\FMXColors.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="..\#Fork\mbColorLib\mbColorLibDXTokyo.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -47,14 +50,23 @@
     <Target Name="FMXColors:Make">
         <MSBuild Projects="..\FMXColors\FMXColors.dproj" Targets="Make"/>
     </Target>
+    <Target Name="mbColorLibDXTokyo">
+        <MSBuild Projects="..\#Fork\mbColorLib\mbColorLibDXTokyo.dproj"/>
+    </Target>
+    <Target Name="mbColorLibDXTokyo:Clean">
+        <MSBuild Projects="..\#Fork\mbColorLib\mbColorLibDXTokyo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mbColorLibDXTokyo:Make">
+        <MSBuild Projects="..\#Fork\mbColorLib\mbColorLibDXTokyo.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="CTS;HGMComponents;FMXColors"/>
+        <CallTarget Targets="CTS;HGMComponents;FMXColors;mbColorLibDXTokyo"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="CTS:Clean;HGMComponents:Clean;FMXColors:Clean"/>
+        <CallTarget Targets="CTS:Clean;HGMComponents:Clean;FMXColors:Clean;mbColorLibDXTokyo:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="CTS:Make;HGMComponents:Make;FMXColors:Make"/>
+        <CallTarget Targets="CTS:Make;HGMComponents:Make;FMXColors:Make;mbColorLibDXTokyo:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

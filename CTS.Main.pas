@@ -16,6 +16,8 @@ uses
 type
   TColorField3Mode = (fmHTML, fmFMX);
 
+  TColorField2Mode = (fmVCL, fmFMXConts);
+
   TFormMain = class(TForm)
     TimerPXUC: TTimer;
     PanelCollapsedMagnify: TPanelCollapsed;
@@ -249,6 +251,9 @@ type
     procedure LabelHTMLFMXClick(Sender: TObject);
     procedure LabelHTMLFMXMouseEnter(Sender: TObject);
     procedure LabelHTMLFMXMouseLeave(Sender: TObject);
+    procedure LabelVCLMouseEnter(Sender: TObject);
+    procedure LabelVCLMouseLeave(Sender: TObject);
+    procedure LabelVCLClick(Sender: TObject);
   private
     FDataColor: TColor;
     FSpectBMP: TBitmap;
@@ -262,6 +267,7 @@ type
     FCMYKCopyFormat: string;
     FShortCut: TShortCut;
     FColorField3Mode: TColorField3Mode;
+    FColorField2Mode: TColorField2Mode;
     procedure SetShapeColor(Shape: TShape; aColor: TColor);
     procedure SetActiveShape(const Value: TShape);
     procedure DrawSpect;
@@ -274,12 +280,14 @@ type
     procedure ShowUpdateDone;
     function ShapeIsLocked(Shape: TShape): Boolean;
     procedure SetColorField3Mode(const Value: TColorField3Mode);
+    procedure SetColorField2Mode(const Value: TColorField2Mode);
   public
     procedure SetDataColor(dColor: TColor);
     procedure AddColorToMix(aColor: TColor);
     procedure Navigate(Tab: TTabSheet);
     function GetPixelUnderCursor(Snap: Boolean = True): TColor;
     property ActiveShape: TShape read FActiveShape write SetActiveShape;
+    property ColorField2Mode: TColorField2Mode read FColorField2Mode write SetColorField2Mode;
     property ColorField3Mode: TColorField3Mode read FColorField3Mode write SetColorField3Mode;
   end;
 
@@ -300,8 +308,8 @@ implementation
 
 uses
   System.Math, Vcl.ClipBrd, System.IniFiles, CTS.Test, HGM.WinAPI,
-  HGM.Common.Utils, HGM.Utils.Color, CTS.LD, System.Net.HttpClient,
-  System.Threading, System.Net.URLClient, System.IOUtils;
+  HGM.Common.PngUtils, HGM.Common.Utils, HGM.Utils.Color, CTS.LD,
+  System.Net.HttpClient, System.Threading, System.Net.URLClient, System.IOUtils;
 
 {$R *.dfm}
 
@@ -689,6 +697,7 @@ begin
       Ini.WriteInteger('General', 'MagnifySize', FMagnify.Width);
       Ini.WriteString('General', 'ShortCut', ShortCutToText(FShortCut));
       Ini.WriteInteger('General', 'ColorField3Mode', Ord(ColorField3Mode));
+      Ini.WriteInteger('General', 'ColorField2Mode', Ord(ColorField2Mode));
       for i := 1 to 16 do
       begin
         Buf := FindComponent('Shape' + i.ToString);
@@ -1070,6 +1079,7 @@ begin
     //
   end;
   ColorField3Mode := fmHTML;
+  ColorField2Mode := fmVCL;
   PanelWait.Visible := False;
   PanelCollapsedMem.Visible := True;
   ActivityIndicator1.Animate := False;
@@ -1110,6 +1120,11 @@ begin
         ColorField3Mode := TColorField3Mode(Ini.ReadInteger('General', 'ColorField3Mode', Ord(fmHTML)));
       except
         ColorField3Mode := fmHTML;
+      end;
+      try
+        ColorField2Mode := TColorField2Mode(Ini.ReadInteger('General', 'ColorField2Mode', Ord(fmVCL)));
+      except
+        ColorField2Mode := fmVCL;
       end;
       FShortCut := TextToShortCut(Ini.ReadString('General', 'ShortCut', DEFAULT_SHORTCUT));
       if FShortCut = 0 then
@@ -1256,6 +1271,24 @@ begin
   LabelHTMLFMX.Font.Style := [];
 end;
 
+procedure TFormMain.LabelVCLClick(Sender: TObject);
+begin
+  if ColorField2Mode = fmVCL then
+    ColorField2Mode := fmFMXConts
+  else
+    ColorField2Mode := fmVCL;
+end;
+
+procedure TFormMain.LabelVCLMouseEnter(Sender: TObject);
+begin
+  LabelVCL.Font.Style := [fsBold];
+end;
+
+procedure TFormMain.LabelVCLMouseLeave(Sender: TObject);
+begin
+  LabelVCL.Font.Style := [];
+end;
+
 procedure TFormMain.ListBoxMixDblClick(Sender: TObject);
 begin
   if ListBoxMix.ItemIndex >= 0 then
@@ -1311,6 +1344,12 @@ begin
     fmFMX:
       EditResHTML.Text := ColorToFMXColor(FDataColor);
   end;
+  case ColorField2Mode of
+    fmVCL:
+      EditResTColor.Text := Vcl.Graphics.ColorToString(FDataColor);
+    fmFMXConts:
+      EditResTColor.Text := Vcl.Graphics.ColorToString(FDataColor).Replace('$00', '$FF');
+  end;
 
   RGBToCMYK(R, G, B, C, M, Y, K);
   SpinEditC.Value := C;
@@ -1354,6 +1393,22 @@ begin
     FormLD.SetDataColor(FDataColor);
 
   Repaint;
+end;
+
+procedure TFormMain.SetColorField2Mode(const Value: TColorField2Mode);
+begin
+  FColorField2Mode := Value;
+  case FColorField2Mode of
+    fmVCL:
+      begin
+        LabelVCL.Caption := 'VCL';
+      end;
+    fmFMXConts:
+      begin
+        LabelVCL.Caption := 'VCL';
+      end;
+  end;
+  SetDataColor(FDataColor);
 end;
 
 procedure TFormMain.SetColorField3Mode(const Value: TColorField3Mode);
