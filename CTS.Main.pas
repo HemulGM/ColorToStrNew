@@ -894,7 +894,7 @@ begin
     begin
       FontColor := clWhite;
       FontColorOver := clWhite;
-      Color := clBlack;
+      Color := $00303030;
 
       SpinEditR.Color := $00000078;
       SpinEditG.Color := $00005412;
@@ -1102,8 +1102,7 @@ begin
       ]);
 
     if IsDark then
-      TStyleManager.TrySetStyle('Windows10 Dark')
-      //TStyleManager.TrySetStyle('Windows11 Modern Dark')
+      TStyleManager.TrySetStyle('Windows11 Modern Dark')
     else
       TStyleManager.TrySetStyle('Windows');
   finally

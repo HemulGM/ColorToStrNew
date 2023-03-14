@@ -5,7 +5,9 @@ uses
   CTS.Main in 'CTS.Main.pas' {FormMain},
   CTS.Test in 'CTS.Test.pas' {FormTest},
   CTS.LD in 'CTS.LD.pas' {FormLD},
-  HGM.GitHubUpdater in '..\GitHubUpdater\HGM.GitHubUpdater.pas';
+  HGM.GitHubUpdater in '..\GitHubUpdater\HGM.GitHubUpdater.pas',
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 
