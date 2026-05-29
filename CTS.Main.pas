@@ -300,7 +300,7 @@ const
   DefaultColor = clWhite;
 
 const
-  Version = 'v1.27';
+  Version = 'v1.28';
 
 var
   FormMain: TFormMain;

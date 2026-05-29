@@ -1,0 +1,6 @@
+[submodule "Components"]
+	path = Components
+	url = https://github.com/HemulGM/Components
+[submodule "mbColorLib"]
+	path = mbColorLib
+	url = https://github.com/HemulGM/mbColorLib

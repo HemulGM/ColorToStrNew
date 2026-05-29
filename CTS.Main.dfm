@@ -14,11 +14,13 @@
   Font.Name = 'Tahoma'
   Font.Style = []
   Padding.Top = 8
+  OldCreateOrder = True
   Position = poScreenCenter
   ShowHint = True
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  PixelsPerInch = 96
   TextHeight = 13
   object ColorBoxTColor: TColorBox
     Left = 57
@@ -4916,8 +4918,6 @@
     FontCaption.Style = [fsBold]
     ShowSimpleBorder = False
     CaptionHeight = 26
-    ExplicitTop = 459
-    ExplicitWidth = 864
     object GridPanel1: TGridPanel
       Left = 0
       Top = 26
@@ -5086,7 +5086,6 @@
           SizeStyle = ssAuto
         end>
       TabOrder = 1
-      ExplicitWidth = 864
       object PanelC1: TPanel
         Left = 2
         Top = 0
